@@ -1295,3 +1295,19 @@ table.pg thead th:last-child { border-top-right-radius: 10px; }
   .factsheet dl > div { grid-template-columns: 1fr; gap: 3px; }
   .factsheet dt { align-self: start; }
 }
+
+/* ── Vertrauens-Streifen im Seiten-Kopf (page-hero) ── */
+.hero-cred {
+  list-style: none; margin: 22px 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 10px 12px;
+}
+.hero-cred li {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .92rem; font-weight: 700; color: #eafcfe;
+  background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22);
+  padding: 7px 14px; border-radius: 999px; backdrop-filter: blur(2px);
+}
+.hero-cred li::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: #a5edf7; flex: none;
+}
