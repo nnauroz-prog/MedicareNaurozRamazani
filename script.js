@@ -18,8 +18,50 @@
     initCookieBanner();
     initAvatarFallback();
     initWhatsAppChooser();
+    initCallChooser();
     setYear();
   });
+
+  /* ---- Anrufen: erst Person wählen (Nadim/Farhad), dann Nummer wählen ---- */
+  function initCallChooser() {
+    // Alle generischen "Anrufen"-Buttons (Standardnummer) öffnen die Auswahl.
+    // Explizite Personen-Links sind mit data-direct ausgenommen und wählen direkt.
+    var triggers = document.querySelectorAll('a[href="tel:+491607621876"]:not([data-direct])');
+    if (!triggers.length) return;
+
+    var people = [
+      { name: "Nadim Nauroz", disp: "0160 762 18 76", tel: "+491607621876" },
+      { name: "Farhad Ramazani", disp: "0176 317 308 27", tel: "+4917631730827" }
+    ];
+
+    var ov = document.createElement("div");
+    ov.className = "call-modal";
+    ov.innerHTML =
+      '<div class="call-card" role="dialog" aria-modal="true" aria-label="Anrufen – Person wählen">' +
+        '<button class="call-close" aria-label="Schließen">&times;</button>' +
+        '<div class="call-title">Wen möchten Sie anrufen?</div>' +
+        people.map(function (p) {
+          return '<a class="call-opt" href="tel:' + p.tel + '">' +
+            '<span class="call-opt-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>' +
+            '<span class="call-opt-txt"><strong>' + p.name + '</strong><span>' + p.disp + '</span></span></a>';
+        }).join("") +
+      '</div>';
+    document.body.appendChild(ov);
+
+    var setOpen = function (v) { ov.classList.toggle("show", v); };
+    triggers.forEach(function (t) {
+      t.addEventListener("click", function (e) { e.preventDefault(); setOpen(true); });
+    });
+    ov.addEventListener("click", function (e) {
+      if (e.target === ov || e.target.classList.contains("call-close")) setOpen(false);
+    });
+    ov.querySelectorAll(".call-opt").forEach(function (a) {
+      a.addEventListener("click", function () { setOpen(false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+  }
 
   /* ---- WhatsApp: erst Person wählen (Nadim/Farhad), dann Chat öffnen ---- */
   function initWhatsAppChooser() {
