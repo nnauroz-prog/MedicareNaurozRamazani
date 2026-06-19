@@ -1593,3 +1593,12 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
 }
 .footer-links a { transition: color .2s, padding-left .2s; }
 .footer-links a:hover { padding-left: 4px; }
+
+/* ---- Saubere SVG-Icons statt Emoji (hochwertiger Eindruck) ---- */
+.ico { width: 1.05em; height: 1.05em; flex: none; vertical-align: -.16em; }
+.btn .ico { width: 1.12em; height: 1.12em; }
+.call-bar .ico { width: 1.2em; height: 1.2em; }
+.footer-links a, .nav-cta a, .contact-info .vcard-link {
+  display: inline-flex; align-items: center; gap: .5em;
+}
+.footer-links a:hover { gap: .5em; }
