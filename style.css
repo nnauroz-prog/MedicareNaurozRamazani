@@ -266,6 +266,27 @@ section { padding: 72px 0; }
   transition: transform .3s ease, box-shadow .3s ease;
 }
 .hero-person:hover img { transform: translateY(-5px); box-shadow: 0 24px 52px rgba(0,0,0,.4); }
+
+/* Duo-Hero: ein gemeinsames Teamfoto (Hochformat) */
+.hero-team { margin: 0; position: relative; max-width: 440px; width: 100%; justify-self: center; }
+.hero-team img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 12%;
+  border-radius: 24px;
+  border: 5px solid rgba(255,255,255,.92);
+  box-shadow: 0 24px 60px rgba(0,0,0,.34);
+  background: #d6eef2;
+}
+.hero-team figcaption {
+  position: absolute;
+  left: 16px; bottom: 16px;
+  background: rgba(20,63,114,.85);
+  color: #fff; font-weight: 700; font-size: .95rem;
+  padding: 8px 16px; border-radius: 999px;
+  backdrop-filter: blur(3px);
+}
 .hero-person figcaption {
   position: absolute;
   left: 14px;

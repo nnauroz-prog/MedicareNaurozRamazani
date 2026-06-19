@@ -192,6 +192,10 @@
       return;
     }
 
+    var revealAll = function () {
+      els.forEach(function (el) { el.classList.add("visible"); });
+    };
+
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -203,10 +207,11 @@
 
     els.forEach(function (el) { obs.observe(el); });
 
-    // Sicherheitsnetz: nichts darf dauerhaft unsichtbar bleiben
-    setTimeout(function () {
-      els.forEach(function (el) { el.classList.add("visible"); });
-    }, 2200);
+    // Sicherheitsnetz: spätestens wenn die Seite fertig geladen ist, wird alles
+    // sichtbar – so bleibt nie etwas unsichtbar (z. B. ohne Scrollen / Screenshots)
+    if (document.readyState === "complete") setTimeout(revealAll, 200);
+    else window.addEventListener("load", function () { setTimeout(revealAll, 200); });
+    setTimeout(revealAll, 1500);
   }
 
   /* ---- Back to top ---- */
