@@ -1197,3 +1197,37 @@ table.pg thead th:last-child { border-top-right-radius: 10px; }
 @media (max-width: 860px) {
   .nav-a11y { display: flex; margin: 10px 0 0; justify-content: center; }
 }
+
+/* "Das macht den Unterschied" – Vergleich */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 900px; margin: 0 auto; }
+.compare-col { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 26px; box-shadow: var(--shadow-sm); }
+.compare-col h3 { margin-bottom: 14px; }
+.compare-col ul { list-style: none; padding: 0; margin: 0; }
+.compare-col li { position: relative; padding: 11px 0 11px 34px; border-bottom: 1px solid var(--line); }
+.compare-col li:last-child { border-bottom: 0; }
+.compare-old { background: #fbfbfc; }
+.compare-old h3 { color: var(--muted); }
+.compare-old li { color: var(--muted); }
+.compare-old li::before { content: "✕"; position: absolute; left: 0; top: 11px; color: #c0555a; font-weight: 800; }
+.compare-new { border-color: rgba(0,175,185,.45); box-shadow: 0 14px 34px rgba(0,175,185,.16); }
+.compare-new h3 { color: var(--blue-deep); }
+.compare-new li { color: var(--ink); font-weight: 600; }
+.compare-new li::before {
+  content: "✓"; position: absolute; left: 0; top: 9px; color: #fff; font-weight: 800; font-size: .72rem;
+  width: 20px; height: 20px; border-radius: 50%; background: var(--teal); display: grid; place-items: center;
+}
+@media (max-width: 760px) { .compare { grid-template-columns: 1fr; } }
+
+/* Echtes Bewertungssignal (Google 4,9) */
+.rating-highlight {
+  display: flex; gap: 34px; align-items: center; flex-wrap: wrap; justify-content: center;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 34px; max-width: 900px; margin: 0 auto;
+}
+.rating-score { text-align: center; flex: 0 0 auto; }
+.rating-num { display: block; font-size: 3.6rem; font-weight: 800; color: var(--navy); line-height: 1; letter-spacing: -.02em; }
+.rating-stars { color: var(--star); font-size: 1.45rem; letter-spacing: 2px; display: block; margin: 6px 0 2px; }
+.rating-meta { color: var(--muted); font-weight: 700; }
+.rating-text { flex: 1 1 320px; }
+.rating-text h2 { margin-bottom: .3em; }
+.rating-text p { color: var(--muted); }
