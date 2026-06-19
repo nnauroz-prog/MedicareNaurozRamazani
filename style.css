@@ -1670,3 +1670,17 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
     linear-gradient(158deg, #0a8f99 0%, #06717c 52%, #0b4f63 100%);
 }
 .page-hero::before { opacity: .55; }
+
+/* ---- Icon-Flächen vereinheitlichen: ruhiges Marken-Navy (konsistent, premium) ---- */
+.contact-pill-ic, .contact-info .ic, .promise-ic {
+  background: linear-gradient(150deg, var(--blue-deep) 0%, var(--navy) 120%);
+}
+
+/* ---- Formular-Fallback (wenn Online-Formular noch nicht eingerichtet) ---- */
+.form-fallback {
+  margin-top: 16px; padding: 18px 20px; border-radius: 14px;
+  background: var(--bg-blue-soft); border: 1px solid rgba(0,131,140,.28);
+  color: var(--ink); line-height: 1.6;
+}
+.form-fallback-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.form-fallback-actions .btn { flex: 1 1 auto; justify-content: center; }

@@ -483,6 +483,28 @@
       f.addEventListener("change", function () { validateField(f); });
     });
 
+    // Fallback, falls das Formspree-Formular noch nicht eingerichtet ist:
+    // keine Anfrage ins Leere/auf eine Fehlerseite schicken.
+    var showFallback = function () {
+      var btn = form.querySelector('button[type="submit"]');
+      var box = form.querySelector(".form-fallback");
+      if (!box) {
+        box = document.createElement("div");
+        box.className = "form-fallback";
+        box.setAttribute("role", "alert");
+        box.innerHTML =
+          '<strong>Fast geschafft!</strong> Unser Online-Formular wird gerade eingerichtet. ' +
+          'Am schnellsten erreichen Sie uns direkt – wir sind rund um die Uhr für Sie da:' +
+          '<div class="form-fallback-actions">' +
+            '<a class="btn btn-cta" href="tel:+491607621876" data-direct>Jetzt anrufen</a>' +
+            '<a class="btn btn-outline" href="https://wa.me/491607621876" target="_blank" rel="noopener">WhatsApp schreiben</a>' +
+          '</div>';
+        if (btn) btn.parentNode.insertBefore(box, btn.nextSibling);
+        else form.appendChild(box);
+      }
+      box.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+
     form.addEventListener("submit", function (e) {
       var ok = true, first = null;
       fields.forEach(function (f) {
@@ -491,6 +513,11 @@
       if (!ok) {
         e.preventDefault();
         if (first && first.focus) first.focus();
+        return;
+      }
+      if ((form.getAttribute("action") || "").indexOf("YOUR_FORM_ID") !== -1) {
+        e.preventDefault();
+        showFallback();
       }
     });
   }
