@@ -6,15 +6,16 @@
    ========================================================= */
 
 :root {
-  /* Medicare-CI: Türkis/Teal-dominant (angeglichen an medicare-hamburg.de) */
-  --blue: #3a94a6;        /* Marken-Teal (Header/Hero/Footer) */
-  --blue-dark: #2f7e8f;
-  --blue-deep: #266c7b;   /* tiefes Marken-Teal (Verlaufsende) */
+  /* Medicare-CI: Anker-Logo, Teal + Navy (medicare-hamburg.de) */
+  --blue: #16a3b4;        /* Marken-Teal (Header/Hero) */
+  --blue-dark: #138f9e;
+  --blue-deep: #0f7e8c;   /* tiefes Marken-Teal (Verlaufsende) */
   --teal: #0d9488;        /* CTA-Teal */
   --teal-dark: #0b7d72;
-  --navy: #1e40af;        /* sekundärer dunkelblauer Akzent */
+  --navy: #1a4f8a;        /* CI-Navy (Logo "care", Akzente) */
+  --navy-deep: #143f72;   /* tiefes Navy (Footer) */
   --cyan: #06b6d4;
-  --cyan-light: #a5edf7;
+  --cyan-light: #b8eef5;
   --ink: #1f2933;
   --text: #374151;
   --muted: #6b7280;
@@ -196,7 +197,7 @@ section { padding: 72px 0; }
 }
 .hero-grid {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
 }
@@ -220,31 +221,39 @@ section { padding: 72px 0; }
   border: 2px dashed rgba(165,237,247,.6);
 }
 
-/* Duo-Hero: zwei Portraits nebeneinander */
+/* Duo-Hero: zwei Foto-Karten (Querformat) */
 .hero-photos {
   display: flex;
-  gap: 22px;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 480px;
+  width: 100%;
+  justify-self: center;
 }
-.hero-person { margin: 0; text-align: center; }
+.hero-person { margin: 0; position: relative; }
 .hero-person img {
-  width: 158px;
-  height: 158px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid rgba(255,255,255,.9);
-  box-shadow: 0 16px 38px rgba(0,0,0,.32);
+  border-radius: 20px;
+  border: 4px solid rgba(255,255,255,.92);
+  box-shadow: 0 18px 44px rgba(0,0,0,.3);
   background: #d6eef2;
   transition: transform .3s ease, box-shadow .3s ease;
 }
-.hero-person:hover img { transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 48px rgba(0,0,0,.4); }
+.hero-person:hover img { transform: translateY(-5px); box-shadow: 0 24px 52px rgba(0,0,0,.4); }
 .hero-person figcaption {
-  margin-top: 12px;
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  background: rgba(20,63,114,.82);
   color: #fff;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: .92rem;
   letter-spacing: .2px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(2px);
 }
 .hero h1 { color: #fff; margin-bottom: .35em; }
 .hero h1 .accent { color: var(--cyan-light); }
@@ -361,7 +370,7 @@ section { padding: 72px 0; }
 .team-card.cyan .areas li::before { background: var(--cyan); }
 
 /* ---------- Counters ---------- */
-.counters { background: linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%); color: #fff; }
+.counters { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%); color: #fff; }
 .counters .grid-3 { gap: 30px; }
 .counter-item { text-align: center; }
 .counter-num {
@@ -553,8 +562,8 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 
 /* ---------- Footer ---------- */
 .site-footer {
-  background: var(--blue-deep);
-  color: #c7d2fe;
+  background: var(--navy-deep);
+  color: #c7d6ef;
   padding: 54px 0 24px;
 }
 .footer-grid {
