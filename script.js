@@ -22,7 +22,7 @@
     initWhatsAppChooser();
     initCallChooser();
     initScrollProgress();
-    initTilt();
+    // 3D-Tilt bewusst deaktiviert: ruhiger & seniorenfreundlicher
     setYear();
   });
 

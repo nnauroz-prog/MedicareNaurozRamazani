@@ -25,7 +25,7 @@
   --cyan-light: #b8eef5;
   --ink: #1f2933;
   --text: #374151;
-  --muted: #6b7280;
+  --muted: #51606e;
   --line: #e5e7eb;
   --bg: #ffffff;
   --bg-soft: #f4f9fa;
@@ -54,10 +54,18 @@ body {
   margin: 0;
   font-family: var(--font);
   color: var(--text);
-  line-height: 1.65;
+  font-size: 1.08rem;       /* größer & seniorenfreundlich */
+  line-height: 1.75;
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* Klare Fokus-Markierung für Tastatur-Nutzung */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
 }
 
 img { max-width: 100%; display: block; }
@@ -116,10 +124,10 @@ section { padding: 72px 0; }
   display: inline-flex;
   align-items: center;
   gap: .55rem;
-  padding: 14px 26px;
+  padding: 15px 30px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.05rem;
   border: 2px solid transparent;
   cursor: pointer;
   transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
@@ -140,7 +148,7 @@ section { padding: 72px 0; }
 .btn-ghost:hover { background: rgba(255,255,255,.22); color: #fff; }
 .btn-outline { background: transparent; color: var(--blue); border-color: var(--blue); }
 .btn-outline:hover { background: var(--blue); color: #fff; }
-.btn-lg { padding: 16px 34px; font-size: 1.08rem; }
+.btn-lg { padding: 18px 40px; font-size: 1.18rem; }
 
 /* ---------- Header / Nav ---------- */
 .site-header {
@@ -186,8 +194,8 @@ section { padding: 72px 0; }
 .nav-links a {
   color: #e5edff;
   font-weight: 600;
-  font-size: .95rem;
-  padding: 8px 12px;
+  font-size: 1rem;
+  padding: 10px 14px;
   border-radius: 8px;
   transition: background .2s, color .2s;
 }
@@ -291,9 +299,7 @@ section { padding: 72px 0; }
   border: 5px solid rgba(255,255,255,.92);
   box-shadow: 0 24px 60px rgba(0,0,0,.34);
   background: #d6eef2;
-  animation: floaty 6s ease-in-out infinite;
 }
-@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .hero-team figcaption {
   position: absolute;
   left: 16px; bottom: 16px;
@@ -877,7 +883,7 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 .text-center { text-align: center; }
 .mt-0 { margin-top: 0; }
 .mb-0 { margin-bottom: 0; }
-.lead { font-size: 1.15rem; }
+.lead { font-size: 1.22rem; }
 .skip-link {
   position: absolute;
   left: -999px;
