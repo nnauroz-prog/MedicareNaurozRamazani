@@ -1,7 +1,7 @@
-# Medicare – Nadim Nauroz & Ferhad Ramazani
+# Medicare – Nadim Nauroz & Farhad Ramazani
 
 Statische Website für das gemeinsame Pflegeangebot von **Nadim Nauroz** und
-**Ferhad Ramazani** (examinierte Pflegefachkräfte) innerhalb von Medicare Hamburg.
+**Farhad Ramazani** (examinierte Pflegefachkräfte) innerhalb von Medicare Hamburg.
 „Wir"-Ansprache, CI von medicare-hamburg.de (Anker-Logo, Teal + Navy).
 
 ## Seiten
@@ -14,7 +14,7 @@ Statische Website für das gemeinsame Pflegeangebot von **Nadim Nauroz** und
 
 ## Assets
 - `logo.svg` – weißes Anker-Logo (Header), `favicon.svg` – Anker auf Teal (Browser-Tab)
-- `IMG_7363.jpeg` – Foto Nadim Nauroz (Hero) · `IMG_0631.jpeg` – Foto Ferhad Ramazani (Hero)
+- `IMG_7363.jpeg` – Foto Nadim Nauroz (Hero) · `IMG_0631.jpeg` – Foto Farhad Ramazani (Hero)
 - `IMG_0376–0381` – offizielle Medicare-Logos/Brand-Vorlagen (Referenz, nicht eingebunden)
 - Hinweis: `IMG_0630.png` ist ein versehentlich hochgeladener Screenshot (kein Medicare-Motiv) und kann gelöscht werden.
 

@@ -368,6 +368,9 @@ section { padding: 72px 0; }
   background: var(--teal); flex: none;
 }
 .team-card.cyan .areas li::before { background: var(--cyan); }
+.team-lead { margin: 6px 0 16px; color: var(--navy); font-size: .98rem; }
+.team-lead strong { color: var(--navy); }
+.team-cta { display: flex; gap: 10px; flex-wrap: wrap; }
 
 /* ---------- Counters ---------- */
 .counters { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%); color: #fff; }
@@ -774,6 +777,9 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
   font-size: .8rem; font-weight: 600; color: var(--teal-dark);
   background: #e7f7f5; padding: 5px 11px; border-radius: 8px;
 }
+.member-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.member-actions .btn { font-size: .92rem; padding: 11px 18px; }
+.btn-vcard { gap: .45rem; }
 
 /* ---------- Leistungsspektrum-Liste ---------- */
 .spectrum { list-style: none; padding: 0; margin: 0; }
