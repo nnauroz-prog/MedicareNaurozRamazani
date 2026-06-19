@@ -1684,3 +1684,15 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
 }
 .form-fallback-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
 .form-fallback-actions .btn { flex: 1 1 auto; justify-content: center; }
+
+/* =========================================================
+   Mobile Conversion: größere Touch-Flächen (Telefon/Kontakt/Footer)
+   ========================================================= */
+.contact-info a:not(.btn) { display: inline-block; padding: 5px 0; }
+.contact-info .vcard-link { padding: 7px 0; }
+.contact-info strong { margin-bottom: 2px; }
+@media (max-width: 860px) {
+  .footer-links a { padding: 7px 0; }
+  .footer-links li { margin-bottom: 3px; }
+  .breadcrumb a { display: inline-block; padding: 4px 0; }
+}
