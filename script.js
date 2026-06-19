@@ -22,9 +22,40 @@
     initWhatsAppChooser();
     initCallChooser();
     initScrollProgress();
+    initFontControl();
     // 3D-Tilt bewusst deaktiviert: ruhiger & seniorenfreundlicher
     setYear();
   });
+
+  /* ---- Seniorenfreundlich: Schriftgröße A- / A+ (gespeichert) ---- */
+  function initFontControl() {
+    var btns = document.querySelectorAll("[data-font]");
+    if (!btns.length) return;
+    var steps = [100, 112, 125, 138]; // Prozent der Grundschrift
+    var KEY = "medicare_fontstep";
+    var idx = 0;
+    try { idx = parseInt(localStorage.getItem(KEY), 10) || 0; } catch (e) {}
+    idx = Math.max(0, Math.min(steps.length - 1, idx));
+
+    var apply = function () {
+      document.documentElement.style.fontSize = steps[idx] + "%";
+      btns.forEach(function (b) {
+        var dir = b.getAttribute("data-font");
+        var disabled = (dir === "dec" && idx === 0) || (dir === "inc" && idx === steps.length - 1);
+        b.setAttribute("aria-disabled", disabled ? "true" : "false");
+      });
+    };
+    apply();
+
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        idx += b.getAttribute("data-font") === "inc" ? 1 : -1;
+        idx = Math.max(0, Math.min(steps.length - 1, idx));
+        try { localStorage.setItem(KEY, idx); } catch (e) {}
+        apply();
+      });
+    });
+  }
 
   /* ---- Scroll-Fortschrittsleiste oben ---- */
   function initScrollProgress() {
