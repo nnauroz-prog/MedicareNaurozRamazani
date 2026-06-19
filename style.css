@@ -138,15 +138,8 @@ section { padding: 88px 0; }
   line-height: 1;
 }
 .btn:hover { text-decoration: none; transform: translateY(-2px); }
-.btn-cta { background: var(--teal); color: #fff; box-shadow: 0 8px 20px rgba(13, 148, 136, .35); position: relative; overflow: hidden; }
-.btn-cta:hover { background: var(--teal-dark); color: #fff; box-shadow: 0 12px 28px rgba(13,148,136,.45); }
-/* Glanz-Sweep über CTA-Buttons */
-.btn-cta::after {
-  content: ""; position: absolute; top: 0; left: -130%; width: 55%; height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,.5), transparent);
-  transform: skewX(-20deg); transition: left .6s ease; pointer-events: none;
-}
-.btn-cta:hover::after { left: 150%; }
+.btn-cta { background: var(--teal); color: #fff; box-shadow: 0 6px 18px rgba(13, 148, 136, .28); }
+.btn-cta:hover { background: var(--teal-dark); color: #fff; box-shadow: 0 10px 24px rgba(13,148,136,.36); }
 .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.5); }
 .btn-ghost:hover { background: rgba(255,255,255,.22); color: #fff; }
 .btn-outline { background: transparent; color: var(--blue); border-color: var(--blue); }
@@ -241,8 +234,8 @@ section { padding: 88px 0; }
   color: #fff;
   padding: 64px 0 84px;
   position: relative;
-  border-bottom-left-radius: 50% 34px;
-  border-bottom-right-radius: 50% 34px;
+  border-bottom-left-radius: 50% 22px;
+  border-bottom-right-radius: 50% 22px;
 }
 .hero-grid {
   display: grid;
@@ -638,8 +631,8 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
     linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%);
   color: #fff;
   padding: 56px 0 64px;
-  border-bottom-left-radius: 50% 30px;
-  border-bottom-right-radius: 50% 30px;
+  border-bottom-left-radius: 50% 18px;
+  border-bottom-right-radius: 50% 18px;
 }
 .page-hero h1 { color: #fff; }
 .page-hero p { color: #dbe6ff; max-width: 680px; margin: 0; }
@@ -737,9 +730,8 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
   background: var(--green);
   color: #fff;
   display: grid; place-items: center;
-  box-shadow: 0 8px 24px rgba(37,211,102,.5);
+  box-shadow: 0 10px 26px rgba(0,0,0,.22);
   z-index: 900;
-  animation: pulse-wa 2.4s infinite;
 }
 .whatsapp-float:hover { text-decoration: none; transform: scale(1.06); }
 @keyframes pulse-wa {
