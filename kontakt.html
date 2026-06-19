@@ -63,9 +63,10 @@
               <h2 style="margin-top:0;">Pflegeanfrage senden</h2>
               <p style="color:var(--muted);">Füllen Sie das Formular aus – wir melden uns schnellstmöglich persönlich bei Ihnen.</p>
               <!-- WICHTIG: YOUR_FORM_ID durch Ihre echte Formspree-ID ersetzen (formspree.io → Form für nnauroz@live.de anlegen). -->
-              <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <form id="careForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
                 <input type="hidden" name="_subject" value="Neue Pflegeanfrage über die Website" />
                 <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                <p class="form-hint">Mit <span aria-hidden="true">*</span> markierte Felder bitte ausfüllen. Wir melden uns persönlich – meist innerhalb eines Tages.</p>
                 <div class="form-grid">
                   <div class="field">
                     <label for="name">Ihr Name *</label>
@@ -73,7 +74,7 @@
                   </div>
                   <div class="field">
                     <label for="phone">Telefon *</label>
-                    <input id="phone" name="Telefon" type="tel" required autocomplete="tel" />
+                    <input id="phone" name="Telefon" type="tel" inputmode="tel" required autocomplete="tel" />
                   </div>
                   <div class="field">
                     <label for="email">E-Mail</label>

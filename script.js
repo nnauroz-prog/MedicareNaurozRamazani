@@ -23,6 +23,7 @@
     initCallChooser();
     initScrollProgress();
     initFontControl();
+    initFormValidation();
     // 3D-Tilt bewusst deaktiviert: ruhiger & seniorenfreundlicher
     setYear();
   });
@@ -424,6 +425,67 @@
         banner.classList.remove("show");
       });
     }
+  }
+
+  /* ---- Kontaktformular: freundliche Live-Validierung ---- */
+  function initFormValidation() {
+    var form = document.getElementById("careForm");
+    if (!form) return;
+
+    var setError = function (field, msg) {
+      var wrap = field.closest(".field") || field.parentNode;
+      wrap.classList.add("invalid");
+      var el = wrap.querySelector(".field-error");
+      if (!el) {
+        el = document.createElement("span");
+        el.className = "field-error";
+        el.setAttribute("aria-live", "polite");
+        wrap.appendChild(el);
+      }
+      el.textContent = msg;
+      field.setAttribute("aria-invalid", "true");
+    };
+    var clearError = function (field) {
+      var wrap = field.closest(".field") || field.parentNode;
+      wrap.classList.remove("invalid");
+      var el = wrap.querySelector(".field-error");
+      if (el) el.textContent = "";
+      field.removeAttribute("aria-invalid");
+    };
+
+    var validateField = function (field) {
+      var val = (field.value || "").trim();
+      if (field.type === "checkbox") {
+        if (field.required && !field.checked) { setError(field, "Bitte bestätigen Sie diesen Punkt."); return false; }
+        clearError(field); return true;
+      }
+      if (field.required && !val) { setError(field, "Bitte ausfüllen."); return false; }
+      if (field.type === "email" && val) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { setError(field, "Bitte eine gültige E-Mail-Adresse eingeben."); return false; }
+      }
+      if (field.id === "phone" && val) {
+        if (!/[0-9]{4,}/.test(val.replace(/[^0-9]/g, ""))) { setError(field, "Bitte eine erreichbare Telefonnummer angeben."); return false; }
+      }
+      clearError(field); return true;
+    };
+
+    var fields = form.querySelectorAll("input[required], input#phone, input[type=email], input[type=checkbox]");
+    fields.forEach(function (f) {
+      f.addEventListener("blur", function () { validateField(f); });
+      f.addEventListener("input", function () { if (f.closest(".field, .consent").classList.contains("invalid")) validateField(f); });
+      f.addEventListener("change", function () { validateField(f); });
+    });
+
+    form.addEventListener("submit", function (e) {
+      var ok = true, first = null;
+      fields.forEach(function (f) {
+        if (!validateField(f)) { ok = false; if (!first) first = f; }
+      });
+      if (!ok) {
+        e.preventDefault();
+        if (first && first.focus) first.focus();
+      }
+    });
   }
 
   /* ---- Current year in footer ---- */

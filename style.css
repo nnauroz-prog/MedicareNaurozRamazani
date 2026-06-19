@@ -1231,3 +1231,12 @@ table.pg thead th:last-child { border-top-right-radius: 10px; }
 .rating-text { flex: 1 1 320px; }
 .rating-text h2 { margin-bottom: .3em; }
 .rating-text p { color: var(--muted); }
+
+/* Kontaktformular: Hinweise & Validierung */
+.form-hint { color: var(--muted); font-size: .96rem; margin: -2px 0 18px; }
+.field-error { display: block; color: #c0392b; font-size: .9rem; font-weight: 700; margin-top: 5px; }
+.field.invalid input, .field.invalid select, .field.invalid textarea {
+  border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192,57,43,.14);
+}
+.consent.invalid { color: #c0392b; }
+.consent.invalid .field-error { margin-top: 6px; }
