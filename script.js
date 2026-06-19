@@ -12,6 +12,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     initMobileNav();
     initFAQ();
+    initFaqSearch();
     initCounters();
     initReveal();
     initBackToTop();
@@ -145,6 +146,25 @@
         toggle.classList.remove("open");
         toggle.setAttribute("aria-expanded", "false");
       });
+    });
+  }
+
+  /* ---- FAQ Suche/Filter ---- */
+  function initFaqSearch() {
+    var input = document.getElementById("faqSearch");
+    var list = document.getElementById("faqList");
+    if (!input || !list) return;
+    var items = list.querySelectorAll(".faq-item");
+    var empty = document.getElementById("faqEmpty");
+    input.addEventListener("input", function () {
+      var q = input.value.trim().toLowerCase();
+      var hits = 0;
+      items.forEach(function (it) {
+        var match = it.textContent.toLowerCase().indexOf(q) !== -1;
+        it.style.display = match ? "" : "none";
+        if (match) hits++;
+      });
+      if (empty) empty.hidden = hits !== 0;
     });
   }
 
