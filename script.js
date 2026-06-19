@@ -24,9 +24,23 @@
     initScrollProgress();
     initFontControl();
     initFormValidation();
+    initCtaReassure();
     // 3D-Tilt bewusst deaktiviert: ruhiger & seniorenfreundlicher
     setYear();
   });
+
+  /* ---- Reibung senken: kurze Bestätigung direkt unter den CTA-Buttons ---- */
+  function initCtaReassure() {
+    var ctas = document.querySelectorAll(".cta-band .hero-cta");
+    if (!ctas.length) return;
+    ctas.forEach(function (cta) {
+      if (cta.parentNode.querySelector(".cta-reassure")) return;
+      var p = document.createElement("p");
+      p.className = "cta-reassure";
+      p.textContent = "Kostenlos · unverbindlich · meist Antwort am selben Tag";
+      cta.parentNode.insertBefore(p, cta.nextSibling);
+    });
+  }
 
   /* ---- Seniorenfreundlich: Schriftgröße A- / A+ (gespeichert) ---- */
   function initFontControl() {

@@ -1696,3 +1696,9 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
   .footer-links li { margin-bottom: 3px; }
   .breadcrumb a { display: inline-block; padding: 4px 0; }
 }
+
+/* ---- Bestätigungszeile unter CTA-Bändern (Reibung senken) ---- */
+.cta-band .cta-reassure {
+  margin: 18px 0 0; color: #d8fbff; font-weight: 600; font-size: .92rem;
+  letter-spacing: .01em;
+}
