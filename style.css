@@ -298,10 +298,10 @@ section { padding: 88px 0; }
 }
 .hero-team figcaption {
   position: absolute;
-  left: 16px; bottom: 16px;
+  left: 50%; bottom: 16px; transform: translateX(-50%);
   background: rgba(20,63,114,.85);
   color: #fff; font-weight: 700; font-size: .95rem;
-  padding: 8px 16px; border-radius: 999px;
+  padding: 8px 18px; border-radius: 999px; white-space: nowrap; text-align: center;
   -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
 }
 
@@ -1146,10 +1146,10 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 }
 .hero-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
 .hero-badge .star { color: var(--star); }
-.hero-badge-tl { top: 16px; left: -14px; }
+.hero-badge-tl { top: -16px; left: -14px; }
 .hero-badge-br { bottom: 70px; right: -14px; }
 @media (max-width: 760px) {
-  .hero-badge-tl { left: 6px; }
+  .hero-badge-tl { top: -12px; left: 6px; }
   .hero-badge-br { right: 6px; }
   .hero-badge { font-size: .82rem; padding: 8px 13px; }
 }
