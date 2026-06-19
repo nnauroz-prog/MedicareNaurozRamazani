@@ -425,6 +425,21 @@ section { padding: 72px 0; }
 .team-lead strong { color: var(--navy); }
 .team-cta { display: flex; gap: 10px; flex-wrap: wrap; }
 
+/* Gebiet: einheitliche Ansprechpartner-Pillen (keine getrennten Territorien) */
+.contacts-row { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; max-width: 720px; margin: 0 auto; }
+.contact-pill {
+  display: flex; align-items: center; gap: 14px;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 999px; padding: 12px 24px 12px 12px;
+  box-shadow: var(--shadow-sm); color: var(--ink); text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.contact-pill:hover { transform: translateY(-3px); box-shadow: var(--shadow); text-decoration: none; }
+.contact-pill-ic { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--grad-teal); display: grid; place-items: center; }
+.contact-pill strong { display: block; font-size: 1.02rem; color: var(--ink); }
+.contact-pill > span:last-child > span { display: block; color: var(--muted); font-size: .9rem; font-weight: 600; }
+.area-note { text-align: center; color: var(--muted); margin-top: 22px; font-size: .95rem; }
+
 /* ---------- Counters ---------- */
 .counters { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%); color: #fff; }
 .counters .grid-3 { gap: 30px; }
