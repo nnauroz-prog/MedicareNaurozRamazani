@@ -16,7 +16,6 @@ Statische Website für das gemeinsame Pflegeangebot von **Nadim Nauroz** und
 - `logo.svg` – weißes Anker-Logo (Header), `favicon.svg` – Anker auf Teal (Browser-Tab)
 - `IMG_7363.jpeg` – Foto Nadim Nauroz (Hero) · `IMG_0631.jpeg` – Foto Farhad Ramazani (Hero)
 - `IMG_0376–0381` – offizielle Medicare-Logos/Brand-Vorlagen (Referenz, nicht eingebunden)
-- Hinweis: `IMG_0630.png` ist ein versehentlich hochgeladener Screenshot (kein Medicare-Motiv) und kann gelöscht werden.
 
 ## Vor dem Live-Gang noch zu erledigen
 1. In `kontakt.html` die Formspree-ID (`YOUR_FORM_ID`) durch die echte ID ersetzen (Ziel-E-Mail nnauroz@live.de).
