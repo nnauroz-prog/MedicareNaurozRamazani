@@ -28,14 +28,14 @@
   --muted: #51606e;
   --line: #e5e7eb;
   --bg: #ffffff;
-  --bg-soft: #f4f9fa;
+  --bg-soft: #f5f8fb;
   --bg-blue-soft: #e9f4f6;
   --white: #ffffff;
   --green: #25d366;
   --star: #f59e0b;
-  --shadow-sm: 0 1px 2px rgba(16,42,67,.04), 0 4px 14px rgba(16,42,67,.06);
-  --shadow: 0 10px 30px rgba(16,42,67,.10);
-  --shadow-lg: 0 30px 70px rgba(16,42,67,.18);
+  --shadow-sm: 0 1px 2px rgba(17,40,75,.05), 0 2px 6px rgba(17,40,75,.05);
+  --shadow: 0 4px 12px rgba(17,40,75,.06), 0 16px 40px rgba(17,40,75,.10);
+  --shadow-lg: 0 14px 32px rgba(17,40,75,.10), 0 44px 90px rgba(17,40,75,.17);
   --ring: 0 0 0 4px rgba(0,175,185,.16);
   --radius: 20px;
   --radius-sm: 12px;
@@ -1310,4 +1310,244 @@ table.pg thead th:last-child { border-top-right-radius: 10px; }
 .hero-cred li::before {
   content: ""; width: 8px; height: 8px; border-radius: 50%;
   background: #a5edf7; flex: none;
+}
+
+/* =========================================================
+   PREMIUM-VEREDELUNG v2 — hochwertiger, institutioneller Look
+   (am Dateiende: überschreibt frühere Basisregeln gezielt)
+   ========================================================= */
+
+/* ---- Typografie: ausbalancierte Zeilen, klarere Hierarchie ---- */
+h1, h2, h3, h4 { text-wrap: balance; }
+p { text-wrap: pretty; }
+h1 { font-size: clamp(2.4rem, 5.4vw, 3.75rem); font-weight: 800; letter-spacing: -.032em; line-height: 1.08; }
+h2 { font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; }
+h3 { font-weight: 750; }
+
+/* ---- Sektions-Rhythmus: mehr Großzügigkeit (Premium-Atem) ---- */
+section { padding: 104px 0; }
+.section-head { max-width: 720px; margin: 0 auto 60px; }
+.section-head p { font-size: 1.14rem; color: var(--muted); line-height: 1.7; margin-top: 4px; }
+@media (max-width: 760px) { section { padding: 72px 0; } .section-head { margin-bottom: 44px; } }
+
+/* ---- Eyebrow: editoriales Label mit feiner Linie ---- */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: none; padding: 0 0 2px; margin-bottom: 18px;
+  font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+  font-weight: 800; color: var(--blue-deep);
+}
+.eyebrow::before {
+  content: ""; width: 26px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--teal)); flex: none;
+}
+.section-head { display: flex; flex-direction: column; align-items: center; }
+.section-head .eyebrow { justify-content: center; }
+
+/* ---- Hero: tiefere Markenfläche + feines Blueprint-Raster + Halo ---- */
+.hero {
+  background:
+    radial-gradient(1100px 520px at 78% -12%, rgba(120,225,235,.30), transparent 62%),
+    radial-gradient(760px 420px at 8% 8%, rgba(26,79,138,.42), transparent 60%),
+    linear-gradient(157deg, #04b3bd 0%, #007781 52%, #0a5f73 100%);
+  padding: 76px 0 96px;
+  border-bottom-left-radius: 46% 26px;
+  border-bottom-right-radius: 46% 26px;
+}
+.hero .container { position: relative; z-index: 2; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(125% 100% at 72% 0%, #000 28%, transparent 76%);
+  mask-image: radial-gradient(125% 100% at 72% 0%, #000 28%, transparent 76%);
+}
+.hero .role {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.32);
+  font-weight: 700; letter-spacing: .01em;
+  padding: 8px 16px; backdrop-filter: blur(3px);
+}
+.hero .lead { font-size: 1.22rem; line-height: 1.66; color: #eefcff; }
+.hero h1 { letter-spacing: -.034em; }
+
+/* Unter-Seiten-Hero im gleichen, edleren Stil */
+.page-hero {
+  background:
+    radial-gradient(900px 420px at 85% -25%, rgba(120,225,235,.30), transparent 62%),
+    linear-gradient(157deg, #04b3bd 0%, #007781 55%, #0a5f73 100%);
+  padding: 70px 0 78px;
+  position: relative; overflow: hidden;
+}
+.page-hero .container { position: relative; z-index: 2; }
+.page-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(120% 110% at 85% 0%, #000 22%, transparent 72%);
+  mask-image: radial-gradient(120% 110% at 85% 0%, #000 22%, transparent 72%);
+}
+.page-hero h1 { font-size: clamp(2.1rem, 4.4vw, 3.1rem); }
+
+/* ---- Karten: edler Rahmen, weiche geschichtete Tiefe ---- */
+.card {
+  border: 1px solid #e7ecf3;
+  border-radius: 18px;
+  padding: 30px 28px;
+  box-shadow: 0 1px 2px rgba(17,40,75,.04), 0 1px 3px rgba(17,40,75,.06);
+  transition: transform .28s cubic-bezier(.2,.7,.3,1), box-shadow .28s ease, border-color .28s ease;
+}
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(0,175,185,.42); }
+.card::before { height: 3px; }
+.card p { color: var(--muted); line-height: 1.62; }
+
+/* ---- Icon-Kacheln: ruhiger Verlauf + feiner Innen-Glanz ---- */
+.icon-circle {
+  width: 54px; height: 54px; border-radius: 15px;
+  background: linear-gradient(140deg, var(--blue) 0%, var(--blue-deep) 100%);
+  box-shadow: 0 8px 20px rgba(0,131,140,.26), inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+/* ---- Buttons: ruhige, hochwertige Tiefe ---- */
+.btn { font-weight: 700; letter-spacing: .005em; }
+.btn-cta {
+  background: linear-gradient(180deg, #11a394 0%, var(--teal) 100%);
+  box-shadow: 0 6px 16px rgba(13,148,136,.30), inset 0 1px 0 rgba(255,255,255,.22);
+}
+.btn-cta:hover { box-shadow: 0 12px 26px rgba(13,148,136,.38), inset 0 1px 0 rgba(255,255,255,.22); }
+.btn-cta:active { transform: translateY(0); }
+.hero .btn-cta { background: #fff; color: var(--teal-dark); }
+
+/* ---- Statistik-/CTA-Bänder: feines Raster für Tiefe ---- */
+.counters, .cta-band { position: relative; overflow: hidden; }
+.counters::before, .cta-band::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(120% 120% at 50% 0%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(120% 120% at 50% 0%, #000 25%, transparent 78%);
+}
+.counters .container, .cta-band .container { position: relative; z-index: 1; }
+
+/* ---- Feine Trennlinie zwischen weißen & weichen Sektionen ---- */
+.section-soft + section:not(.section-soft):not(.cta-band):not(.counters) { border-top: 1px solid #eef1f5; }
+
+/* ---- Header: edler Verlauf + Haarlinie ---- */
+.site-header {
+  background: linear-gradient(180deg, #0093a0 0%, var(--blue-deep) 100%);
+  box-shadow: 0 1px 0 rgba(255,255,255,.10) inset, 0 6px 22px rgba(0,40,46,.28);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.nav-links a { position: relative; font-weight: 600; }
+.nav-links a.active::after {
+  content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 2px;
+  border-radius: 2px; background: var(--cyan-light);
+}
+.nav-cta a { box-shadow: 0 6px 16px rgba(0,0,0,.16); font-weight: 800; }
+
+/* ---- Soft-Sektionen: noch dezenteres Raster ---- */
+.section-soft {
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,131,140,.045) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+
+/* ---- Hero-Sekundärbutton: klarer & edler ---- */
+.hero .btn-ghost {
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.55);
+  backdrop-filter: blur(3px);
+}
+.hero .btn-ghost:hover { background: rgba(255,255,255,.20); }
+
+/* ---- Trust-Bar: ruhiger, mit feinen Trennern ---- */
+.trust-bar { background: linear-gradient(180deg, var(--blue-deep), #00727b); }
+.trust-bar .badge { font-weight: 700; font-size: .96rem; color: #eafdff; }
+
+/* ---- Foto-Rahmen im Hero: feiner & hochwertiger ---- */
+.hero-team img { border-width: 6px; box-shadow: 0 30px 70px rgba(0,30,40,.45); }
+
+/* ---- „Unser Versprechen"-Block (ersetzt frühere Bewertungs-Kachel) ---- */
+.promise-ic {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 96px; height: 96px; border-radius: 26px; color: #fff;
+  background: linear-gradient(140deg, var(--blue) 0%, var(--navy) 100%);
+  box-shadow: 0 14px 30px rgba(0,131,140,.28), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.rating-text .eyebrow { justify-content: flex-start; }
+.hero-badge .check { color: var(--teal); font-weight: 900; }
+
+/* ---- Anklickbare Leistungs-Karten (klare Handlungsaufforderung) ---- */
+a.card-link { display: flex; flex-direction: column; color: inherit; text-decoration: none; }
+a.card-link:hover { text-decoration: none; }
+a.card-link p { flex: 1 1 auto; }
+.card-go {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 16px;
+  font-weight: 800; color: var(--teal-dark); font-size: 1rem;
+}
+.card-go span { transition: transform .25s ease; }
+a.card-link:hover .card-go span { transform: translateX(4px); }
+a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+/* =========================================================
+   NAVIGATION v2 — fehlerfreie, saubere Breakpoints
+   (Hamburger für Tablet/Mobil, kompakte Desktop-Leiste)
+   ========================================================= */
+/* Desktop ab 1025px: kompakter, damit nichts überlappt */
+@media (min-width: 1025px) {
+  .nav-links { gap: 2px; }
+  .nav-links a { padding: 9px 12px; font-size: .98rem; }
+  .nav-a11y { display: inline-flex; }
+}
+/* Marken-Zusatz „Nauroz & Ramazani" erst ab genug Platz */
+@media (max-width: 1199px) { .brand-sub { display: none; } }
+
+/* Tablet & kleiner: Hamburger-Menü */
+@media (max-width: 1024px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: fixed; top: var(--header-h); left: 0; right: 0;
+    flex-direction: column; align-items: stretch;
+    background: var(--blue-deep); padding: 14px 18px 24px; gap: 2px;
+    transform: translateY(-140%); transition: transform .35s ease;
+    box-shadow: 0 16px 30px rgba(0,0,0,.28);
+    max-height: calc(100vh - var(--header-h)); overflow-y: auto;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-links a { padding: 13px 12px; font-size: 1.05rem; border-radius: 10px; }
+  .nav-links a.active::after { display: none; }
+  .nav-cta { margin: 10px 0 0; }
+  .nav-cta a { display: block; text-align: center; }
+  .nav-a11y { display: flex; margin: 12px 0 0; justify-content: center; }
+  .call-bar { display: block; }
+  .whatsapp-float { bottom: 78px; }
+  .back-to-top { bottom: 138px; }
+}
+
+/* =========================================================
+   RESPONSIVE-FIXES — fehlerfreies Layout auf allen Geräten
+   ========================================================= */
+/* Zweispaltige Bereiche (z. B. Kontaktformular + Infos) früher stapeln */
+@media (max-width: 880px) { .grid-2 { grid-template-columns: 1fr; } }
+/* Dreispaltige Karten auf Tablet 2-spaltig, auf klein 1-spaltig */
+@media (max-width: 980px) and (min-width: 621px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .grid-3 { grid-template-columns: 1fr; } }
+
+/* Formularfelder dürfen schrumpfen (kein Intrinsic-Width-Overflow) */
+.form-grid, .field { min-width: 0; }
+.field input, .field select, .field textarea { width: 100%; max-width: 100%; min-width: 0; }
+/* Grid-/Flex-Kinder generell schrumpffähig */
+.grid > *, .hero-grid > *, .about-intro > * { min-width: 0; }
+/* Lange Wörter/Links nie überlaufen lassen */
+.contact-info a, .footer-links a, .breadcrumb { overflow-wrap: anywhere; }
+
+/* Auf sehr kleinen Geräten Form-Innenabstand reduzieren */
+@media (max-width: 420px) {
+  .form-wrap { padding: 22px 18px; }
+  .container { padding: 0 16px; }
 }
