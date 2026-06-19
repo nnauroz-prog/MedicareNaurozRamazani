@@ -6,6 +6,9 @@
 (function () {
   "use strict";
 
+  // Markiert, dass JS aktiv ist – erst dann werden Reveal-Elemente versteckt
+  document.documentElement.classList.add("js");
+
   document.addEventListener("DOMContentLoaded", function () {
     initMobileNav();
     initFAQ();
@@ -14,8 +17,57 @@
     initBackToTop();
     initCookieBanner();
     initAvatarFallback();
+    initWhatsAppChooser();
     setYear();
   });
+
+  /* ---- WhatsApp: erst Person wählen (Nadim/Farhad), dann Chat öffnen ---- */
+  function initWhatsAppChooser() {
+    var float = document.querySelector(".whatsapp-float");
+    if (!float) return;
+
+    var people = [
+      { name: "Nadim Nauroz", area: "Eilbek & Umgebung", num: "491607621876" },
+      { name: "Farhad Ramazani", area: "Wilhelmsburg, Harburg & Umgebung", num: "4917631730827" }
+    ];
+
+    var pop = document.createElement("div");
+    pop.className = "wa-pop";
+    pop.setAttribute("role", "dialog");
+    pop.setAttribute("aria-label", "WhatsApp – Ansprechpartner wählen");
+    pop.innerHTML =
+      '<div class="wa-pop-head">Wen möchten Sie anschreiben?</div>' +
+      people.map(function (p) {
+        return '<a class="wa-pop-item" href="https://wa.me/' + p.num +
+          '" target="_blank" rel="noopener">' +
+          '<span class="wa-pop-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg></span>' +
+          '<span class="wa-pop-txt"><strong>' + p.name + '</strong><span>' + p.area + '</span></span></a>';
+      }).join("") ;
+    document.body.appendChild(pop);
+
+    var open = false;
+    var setOpen = function (v) {
+      open = v;
+      pop.classList.toggle("show", v);
+      float.setAttribute("aria-expanded", v ? "true" : "false");
+    };
+
+    float.setAttribute("role", "button");
+    float.setAttribute("aria-haspopup", "dialog");
+    float.addEventListener("click", function (e) {
+      e.preventDefault();
+      setOpen(!open);
+    });
+    pop.querySelectorAll(".wa-pop-item").forEach(function (a) {
+      a.addEventListener("click", function () { setOpen(false); });
+    });
+    document.addEventListener("click", function (e) {
+      if (open && !pop.contains(e.target) && !float.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && open) setOpen(false);
+    });
+  }
 
   /* ---- Portrait-Fallback: zeigt Initialen, falls Foto fehlt ---- */
   function initAvatarFallback() {
@@ -147,9 +199,14 @@
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
 
     els.forEach(function (el) { obs.observe(el); });
+
+    // Sicherheitsnetz: nichts darf dauerhaft unsichtbar bleiben
+    setTimeout(function () {
+      els.forEach(function (el) { el.classList.add("visible"); });
+    }, 2200);
   }
 
   /* ---- Back to top ---- */
