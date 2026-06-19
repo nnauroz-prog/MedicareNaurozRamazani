@@ -1240,3 +1240,9 @@ table.pg thead th:last-child { border-top-right-radius: 10px; }
 }
 .consent.invalid { color: #c0392b; }
 .consent.invalid .field-error { margin-top: 6px; }
+
+/* vCard-Link in der Kontaktliste */
+.contact-info .vcard-link {
+  display: inline-block; margin-top: 4px; font-size: .9rem; font-weight: 700; color: var(--teal-dark);
+}
+.contact-info .vcard-link:hover { text-decoration: underline; }
