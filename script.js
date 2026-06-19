@@ -152,8 +152,8 @@
     if (!float) return;
 
     var people = [
-      { name: "Nadim Nauroz", area: "Eilbek & Umgebung", num: "491607621876" },
-      { name: "Farhad Ramazani", area: "Wilhelmsburg, Harburg & Umgebung", num: "4917631730827" }
+      { name: "Nadim Nauroz", area: "Wilhelmsburg, Harburg & ganz Hamburg", num: "491607621876" },
+      { name: "Farhad Ramazani", area: "Wilhelmsburg, Harburg & ganz Hamburg", num: "4917631730827" }
     ];
 
     var pop = document.createElement("div");
