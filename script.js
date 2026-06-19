@@ -326,8 +326,15 @@
       var target = parseFloat(el.getAttribute("data-counter"));
       var suffix = el.getAttribute("data-suffix") || "";
       var prefix = el.getAttribute("data-prefix") || "";
+      // Bei reduzierter Bewegung: Endwert direkt anzeigen (steht schon im HTML)
+      try {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          el.textContent = prefix + target + suffix; return;
+        }
+      } catch (e) {}
       var duration = 1600;
       var start = null;
+      el.textContent = prefix + "0" + suffix;   // erst jetzt auf 0 (nur wenn animiert wird)
 
       var step = function (ts) {
         if (!start) start = ts;
