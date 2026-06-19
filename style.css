@@ -267,13 +267,12 @@ section { padding: 72px 0; }
 }
 .hero-person:hover img { transform: translateY(-5px); box-shadow: 0 24px 52px rgba(0,0,0,.4); }
 
-/* Duo-Hero: ein gemeinsames Teamfoto (Hochformat) */
-.hero-team { margin: 0; position: relative; max-width: 440px; width: 100%; justify-self: center; }
+/* Duo-Hero: ein gemeinsames Teamfoto (natürliches Seitenverhältnis) */
+.hero-team { margin: 0; position: relative; max-width: 460px; width: 100%; justify-self: center; }
 .hero-team img {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center 12%;
+  height: auto;
+  display: block;
   border-radius: 24px;
   border: 5px solid rgba(255,255,255,.92);
   box-shadow: 0 24px 60px rgba(0,0,0,.34);
@@ -285,8 +284,14 @@ section { padding: 72px 0; }
   background: rgba(20,63,114,.85);
   color: #fff; font-weight: 700; font-size: .95rem;
   padding: 8px 16px; border-radius: 999px;
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
 }
+
+/* Über uns – Intro (Foto + Text) */
+.about-intro { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 44px; align-items: center; }
+.about-photo { margin: 0; }
+.about-photo img { width: 100%; height: auto; border-radius: var(--radius); box-shadow: var(--shadow); display: block; }
+@media (max-width: 860px) { .about-intro { grid-template-columns: 1fr; gap: 28px; } }
 .hero-person figcaption {
   position: absolute;
   left: 14px;
