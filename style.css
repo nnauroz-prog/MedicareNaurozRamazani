@@ -1664,3 +1664,11 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
   background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.24);
   font-weight: 700;
 }
+
+/* ---- Unterseiten-Kopf an den ruhigen Hero-Ton angleichen (Konsistenz) ---- */
+.page-hero {
+  background:
+    radial-gradient(820px 380px at 86% -20%, rgba(70,170,185,.24), transparent 60%),
+    linear-gradient(158deg, #0a8f99 0%, #06717c 52%, #0b4f63 100%);
+}
+.page-hero::before { opacity: .55; }
