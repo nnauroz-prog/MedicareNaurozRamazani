@@ -1272,3 +1272,26 @@ table.pg thead th:last-child { border-top-right-radius: 10px; }
 @media (prefers-reduced-motion: reduce) {
   .assure:hover { transform: none; }
 }
+
+/* ── Über uns: Organisations-Steckbrief ── */
+.about-org { gap: 44px; }
+.factsheet {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 18px;
+  padding: 30px 30px 14px; box-shadow: 0 12px 30px rgba(20, 63, 114, .06);
+}
+.factsheet h3 { margin: 0 0 8px; font-size: 1.18rem; }
+.factsheet dl { margin: 0; }
+.factsheet dl > div {
+  display: grid; grid-template-columns: 132px 1fr; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.factsheet dl > div:last-child { border-bottom: 0; }
+.factsheet dt {
+  color: var(--blue-deep); font-size: .82rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .04em; align-self: center;
+}
+.factsheet dd { margin: 0; color: var(--ink); font-weight: 600; line-height: 1.5; }
+@media (max-width: 540px) {
+  .factsheet dl > div { grid-template-columns: 1fr; gap: 3px; }
+  .factsheet dt { align-self: start; }
+}
