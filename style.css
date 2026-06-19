@@ -95,7 +95,7 @@ p { margin: 0 0 1rem; }
   padding: 0 20px;
 }
 
-section { padding: 72px 0; }
+section { padding: 88px 0; }
 .section-soft { background: var(--bg-soft); }
 .section-blue-soft { background: var(--bg-blue-soft); }
 
@@ -105,11 +105,14 @@ section { padding: 72px 0; }
 .eyebrow {
   display: inline-block;
   font-size: .8rem;
-  letter-spacing: .14em;
+  letter-spacing: .1em;
   text-transform: uppercase;
-  font-weight: 700;
-  color: var(--teal);
-  margin-bottom: .6rem;
+  font-weight: 800;
+  color: var(--teal-dark);
+  background: rgba(13,148,136,.10);
+  padding: 7px 15px;
+  border-radius: 999px;
+  margin-bottom: 1rem;
 }
 
 /* ---------- Scroll-Fortschrittsleiste ---------- */
@@ -1101,3 +1104,77 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
   .team-cta .btn { width: 100%; justify-content: center; }
   .switch-steps { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   Design-Veredelung (modern & hochwertig, ruhig)
+   ========================================================= */
+
+/* Mehr Luft in Sektions-Köpfen */
+.section-head { margin-bottom: 56px; }
+
+/* Ruhiger Punkte-Hintergrund für dezente Tiefe */
+.section-soft {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0,131,140,.05) 1px, transparent 0);
+  background-size: 24px 24px;
+  background-color: var(--bg-soft);
+}
+
+/* Karten: feiner Akzentstrich oben + weichere Tiefe beim Hover */
+.card { position: relative; overflow: hidden; }
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; right: 0; height: 4px;
+  background: var(--grad-teal); transform: scaleX(0); transform-origin: left;
+  transition: transform .35s ease;
+}
+.card:hover::before { transform: scaleX(1); }
+.card:hover { border-color: rgba(0,175,185,.35); }
+.icon-circle { box-shadow: 0 12px 24px rgba(0,175,185,.28); }
+
+/* Leistungs-/Wert-Karten Icon leicht vergrößert für Klarheit */
+.card h3 { letter-spacing: -.01em; }
+
+/* Hero: zusätzliche weiche Lichtflächen für Tiefe */
+.hero::after {
+  content: ""; position: absolute; left: -140px; bottom: -160px;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.10), transparent 70%);
+  pointer-events: none;
+}
+
+/* Schwebende Info-Badges am Hero-Teamfoto */
+.hero-team { isolation: isolate; }
+.hero-badge {
+  position: absolute; z-index: 2;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.96);
+  color: var(--ink); font-weight: 800; font-size: .92rem;
+  padding: 10px 16px; border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(16,42,67,.22);
+}
+.hero-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); }
+.hero-badge .star { color: var(--star); }
+.hero-badge-tl { top: 16px; left: -14px; }
+.hero-badge-br { bottom: 70px; right: -14px; }
+@media (max-width: 760px) {
+  .hero-badge-tl { left: 6px; }
+  .hero-badge-br { right: 6px; }
+  .hero-badge { font-size: .82rem; padding: 8px 13px; }
+}
+
+/* Trust-Bar moderner: Icons in zarten Kreisen */
+.trust-bar .badge svg {
+  background: rgba(255,255,255,.14);
+  border-radius: 50%; padding: 7px; box-sizing: content-box;
+}
+
+/* Abschnitts-Überleitung: sanfter Verlauf am oberen Rand heller Sektionen */
+.section-soft, .section-blue-soft { position: relative; }
+
+/* Tabellen moderner */
+table.pg thead th:first-child { border-top-left-radius: 10px; }
+table.pg thead th:last-child { border-top-right-radius: 10px; }
+
+/* Listen-Häkchen in Tipps moderner */
+.tip { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.tip:hover { border-color: rgba(0,175,185,.35); }
