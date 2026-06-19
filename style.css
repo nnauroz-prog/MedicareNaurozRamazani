@@ -104,6 +104,13 @@ section { padding: 72px 0; }
   margin-bottom: .6rem;
 }
 
+/* ---------- Scroll-Fortschrittsleiste ---------- */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), var(--teal));
+  z-index: 1300; transition: width .1s linear;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -120,8 +127,15 @@ section { padding: 72px 0; }
   line-height: 1;
 }
 .btn:hover { text-decoration: none; transform: translateY(-2px); }
-.btn-cta { background: var(--teal); color: #fff; box-shadow: 0 8px 20px rgba(13, 148, 136, .35); }
-.btn-cta:hover { background: var(--teal-dark); color: #fff; }
+.btn-cta { background: var(--teal); color: #fff; box-shadow: 0 8px 20px rgba(13, 148, 136, .35); position: relative; overflow: hidden; }
+.btn-cta:hover { background: var(--teal-dark); color: #fff; box-shadow: 0 12px 28px rgba(13,148,136,.45); }
+/* Glanz-Sweep über CTA-Buttons */
+.btn-cta::after {
+  content: ""; position: absolute; top: 0; left: -130%; width: 55%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.5), transparent);
+  transform: skewX(-20deg); transition: left .6s ease; pointer-events: none;
+}
+.btn-cta:hover::after { left: 150%; }
 .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.5); }
 .btn-ghost:hover { background: rgba(255,255,255,.22); color: #fff; }
 .btn-outline { background: transparent; color: var(--blue); border-color: var(--blue); }
@@ -277,7 +291,9 @@ section { padding: 72px 0; }
   border: 5px solid rgba(255,255,255,.92);
   box-shadow: 0 24px 60px rgba(0,0,0,.34);
   background: #d6eef2;
+  animation: floaty 6s ease-in-out infinite;
 }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .hero-team figcaption {
   position: absolute;
   left: 16px; bottom: 16px;

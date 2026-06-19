@@ -21,8 +21,57 @@
     initAvatarFallback();
     initWhatsAppChooser();
     initCallChooser();
+    initScrollProgress();
+    initTilt();
     setYear();
   });
+
+  /* ---- Scroll-Fortschrittsleiste oben ---- */
+  function initScrollProgress() {
+    var bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    document.body.appendChild(bar);
+    var update = function () {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+      bar.style.width = (p * 100).toFixed(2) + "%";
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  /* ---- 3D-Tilt auf Karten (nur Desktop, nicht bei reduzierter Bewegung) ---- */
+  function initTilt() {
+    try {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    } catch (e) { return; }
+
+    var els = document.querySelectorAll(".card, .member, .tip, .team-card, .reason, .switch-step, .step, .contact-pill");
+    els.forEach(function (el) {
+      el.style.transformStyle = "preserve-3d";
+      el.style.willChange = "transform";
+      var raf = null;
+      el.addEventListener("mousemove", function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function () {
+          el.style.transition = "transform .08s ease-out";
+          el.style.transform = "perspective(820px) rotateY(" + (px * 6).toFixed(2) +
+            "deg) rotateX(" + (-py * 6).toFixed(2) + "deg) translateY(-6px)";
+        });
+      });
+      el.addEventListener("mouseleave", function () {
+        if (raf) cancelAnimationFrame(raf);
+        el.style.transition = "transform .35s ease";
+        el.style.transform = "";
+      });
+    });
+  }
 
   /* ---- Anrufen: erst Person wählen (Nadim/Farhad), dann Nummer wählen ---- */
   function initCallChooser() {
