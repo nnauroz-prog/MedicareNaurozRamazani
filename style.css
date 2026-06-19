@@ -473,6 +473,7 @@ section { padding: 72px 0; }
 }
 .chip:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .chip-soft { background: var(--bg-blue-soft); color: var(--muted); font-weight: 600; }
+.chip-focus { background: var(--grad-teal); color: #fff; border-color: transparent; box-shadow: 0 8px 18px rgba(0,175,185,.3); }
 
 /* ---------- Counters ---------- */
 .counters { background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%); color: #fff; }
