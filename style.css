@@ -1,24 +1,27 @@
 /* =========================================================
    Medicare — Nadim Nauroz · Ambulanter Pflegedienst Hamburg
    Globales Stylesheet
-   Farben: Dunkelblau #1e40af · Teal #0d9488 (CTA) · Türkis #06b6d4
+   Farben (CI medicare-hamburg.de): Marken-Teal #3a94a6 · CTA-Teal #0d9488
+   · Türkis-Akzent #06b6d4 · Dunkelblau #1e40af (sekundär)
    ========================================================= */
 
 :root {
-  --blue: #1e40af;
-  --blue-dark: #172e7c;
-  --blue-deep: #0f1f54;
-  --teal: #0d9488;
+  /* Medicare-CI: Türkis/Teal-dominant (angeglichen an medicare-hamburg.de) */
+  --blue: #3a94a6;        /* Marken-Teal (Header/Hero/Footer) */
+  --blue-dark: #2f7e8f;
+  --blue-deep: #266c7b;   /* tiefes Marken-Teal (Verlaufsende) */
+  --teal: #0d9488;        /* CTA-Teal */
   --teal-dark: #0b7d72;
+  --navy: #1e40af;        /* sekundärer dunkelblauer Akzent */
   --cyan: #06b6d4;
-  --cyan-light: #67e8f9;
+  --cyan-light: #a5edf7;
   --ink: #1f2933;
   --text: #374151;
   --muted: #6b7280;
   --line: #e5e7eb;
   --bg: #ffffff;
-  --bg-soft: #f5f8fc;
-  --bg-blue-soft: #eef3fb;
+  --bg-soft: #f4f9fa;
+  --bg-blue-soft: #e9f4f6;
   --white: #ffffff;
   --green: #25d366;
   --star: #f59e0b;
@@ -153,12 +156,12 @@ section { padding: 72px 0; }
 .nav-links a.active { color: var(--cyan-light); }
 .nav-cta { margin-left: 6px; }
 .nav-cta a {
-  background: var(--teal);
-  color: #fff !important;
+  background: #fff;
+  color: var(--teal-dark) !important;
   padding: 9px 18px !important;
   border-radius: 999px;
 }
-.nav-cta a:hover { background: var(--teal-dark); }
+.nav-cta a:hover { background: #e6fffb; }
 
 .nav-toggle {
   display: none;
@@ -228,6 +231,9 @@ section { padding: 72px 0; }
   margin-bottom: 1rem;
 }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+/* Primärer CTA als Weiß-auf-Teal für maximalen Kontrast im Hero */
+.hero .btn-cta { background: #fff; color: var(--teal-dark); box-shadow: 0 8px 22px rgba(0,0,0,.18); }
+.hero .btn-cta:hover { background: #e6fffb; color: var(--teal-dark); }
 
 /* Capacity pulse */
 .capacity {
@@ -460,7 +466,7 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 
 .prose { max-width: 820px; margin: 0 auto; }
 .prose h2 { margin-top: 1.6em; }
-.prose h3 { margin-top: 1.4em; color: var(--blue); }
+.prose h3 { margin-top: 1.4em; color: var(--navy); }
 .prose ul { padding-left: 1.2rem; }
 .prose li { margin-bottom: .5rem; }
 .callout {
