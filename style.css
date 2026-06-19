@@ -1602,3 +1602,37 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
   display: inline-flex; align-items: center; gap: .5em;
 }
 .footer-links a:hover { gap: .5em; }
+
+/* =========================================================
+   WENIGER „APP", MEHR WEBSITE
+   (entfernt App-typische Muster: untere Aktionsleiste,
+    grelle FABs, übertriebene Material-Rundungen)
+   ========================================================= */
+/* 1) Feste „Jetzt anrufen"-Leiste unten entfernen — größtes App-Signal.
+      Die Kopfzeile hält „Anrufen" ohnehin dauerhaft sichtbar. */
+.call-bar { display: none !important; }
+
+/* 2) Schwebende Buttons dezent & kleiner statt grelle App-FABs */
+.whatsapp-float {
+  width: 50px; height: 50px; right: 20px; bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.16);
+}
+.whatsapp-float svg { width: 26px; height: 26px; }
+.back-to-top {
+  width: 42px; height: 42px; right: 20px; bottom: 80px;
+  background: rgba(20,63,114,.78); backdrop-filter: blur(2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.16);
+}
+@media (max-width: 1024px) { .back-to-top { bottom: 80px; } .whatsapp-float { bottom: 20px; } }
+
+/* 3) Ruhigere, seriösere Rundungen (keine „Bonbon"-Pillen bei Buttons/Karten) */
+.btn { border-radius: 12px; }
+.card, a.card-link { border-radius: 12px; }
+.form-wrap, .factsheet, .assure, .rating-highlight, .table-wrap { border-radius: 14px; }
+.icon-circle { border-radius: 13px; }
+
+/* 4) Icon-Kacheln weniger „App-Icon": ruhiger, solider Markenfarbton */
+.icon-circle {
+  background: linear-gradient(150deg, var(--blue-deep) 0%, var(--navy) 120%);
+  box-shadow: none;
+}
