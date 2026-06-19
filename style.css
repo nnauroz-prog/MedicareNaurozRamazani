@@ -853,3 +853,21 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
   .hero, .page-hero, .counters { background: none !important; color: #000 !important; border-radius: 0 !important; }
   section { padding: 16px 0; }
 }
+
+/* =========================================================
+   Responsive-Overrides für neue Komponenten
+   (stehen bewusst am Dateiende, damit sie die Basisregeln
+   der neuen Sektionen sicher überschreiben)
+   ========================================================= */
+@media (max-width: 980px) {
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .step:not(:last-child)::after { display: none; }
+}
+@media (max-width: 760px) {
+  .members { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .member-actions { flex-direction: column; align-items: stretch; }
+  .member-actions .btn { width: 100%; }
+  .team-cta { flex-direction: column; }
+  .team-cta .btn { width: 100%; justify-content: center; }
+}
