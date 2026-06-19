@@ -1574,3 +1574,22 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
 }
 .empathy-sign { font-weight: 800; color: var(--blue-deep); font-size: 1.02rem; margin: 0; }
 @media (max-width: 760px) { .empathy { padding-top: 64px; padding-bottom: 64px; } }
+
+/* ---- Footer-Veredelung (premium, ruhig) ---- */
+.site-footer {
+  position: relative;
+  background: linear-gradient(180deg, #17436f 0%, var(--navy-deep) 100%);
+  padding-top: 62px;
+}
+.site-footer::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), var(--teal));
+}
+.footer-brand strong { font-size: 1.24rem; letter-spacing: -.01em; }
+.site-footer h4 { position: relative; padding-bottom: 10px; }
+.site-footer h4::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 26px; height: 2px;
+  border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--teal));
+}
+.footer-links a { transition: color .2s, padding-left .2s; }
+.footer-links a:hover { padding-left: 4px; }
