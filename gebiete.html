@@ -4,15 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#00afb9" />
-  <title>Digitalisierung in der Pflege · Nauroz & Ramazani Hamburg</title>
-  <meta name="description" content="Wie Digitalisierung die ambulante Pflege verbessert: digitale Dokumentation, Telematik, Apps für Angehörige. Unser Ansatz – Technik im Dienst des Menschen." />
+  <title>Einsatzgebiete in Hamburg · Nauroz & Ramazani Pflege</title>
+  <meta name="description" content="Wir sind in ganz Hamburg aktiv – Schwerpunkt Eilbek, Wilhelmsburg und Harburg. Prüfen Sie in Sekunden, ob wir auch zu Ihnen kommen. Ein Anruf genügt." />
   <meta name="author" content="Nadim Nauroz, Farhad Ramazani" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Digitalisierung in der Pflege · Nauroz & Ramazani Hamburg" />
-  <meta property="og:description" content="Digitale Dokumentation, Telematik und Apps – Technik im Dienst des Menschen." />
-  <meta property="og:image" content="IMG_7363.jpeg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -20,7 +16,7 @@
 
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Startseite Medicare Nauroz & Ramazani">
+      <a class="brand" href="index.html" aria-label="Startseite Medicare – Nauroz & Ramazani">
         <img class="brand-logo" src="logo-white.png" alt="Medicare – Hamburgs Gesundheits- und Seniorenpflege" />
         <span class="brand-sub">Nauroz &amp; Ramazani</span>
       </a>
@@ -29,7 +25,7 @@
           <li><a href="index.html">Start</a></li>
           <li><a href="ueber-uns.html">Über uns</a></li>
           <li><a href="leistungen.html">Leistungen</a></li>
-          <li><a href="gebiete.html">Gebiete</a></li>
+          <li><a href="gebiete.html" class="active">Gebiete</a></li>
           <li><a href="praevention.html">Prävention</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
@@ -43,43 +39,76 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <div class="breadcrumb"><a href="index.html">Start</a> / Digitalisierung</div>
-        <h1>Digitalisierung in der Pflege</h1>
-        <p>Technik soll Pflege erleichtern – nicht ersetzen. Wir nutzen digitale Werkzeuge, damit mehr Zeit für das Wesentliche bleibt: den Menschen.</p>
+        <div class="breadcrumb"><a href="index.html">Start</a> / Gebiete</div>
+        <h1>In ganz Hamburg für Sie da</h1>
+        <p>Wir kommen zu Ihnen – mit Schwerpunkt in Eilbek, Wilhelmsburg und Harburg. Sagen Sie uns einfach, wo Sie wohnen. Den Rest klären wir.</p>
       </div>
     </section>
 
+    <!-- CHECKER -->
     <section>
       <div class="container">
-        <div class="grid grid-3">
-          <article class="card reveal"><div class="icon-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Digitale Dokumentation</h3><p>Pflegedokumentation in Echtzeit – lückenlos, lesbar und jederzeit nachvollziehbar. Das schafft Sicherheit für alle Beteiligten.</p></article>
-          <article class="card reveal"><div class="icon-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.17L4 17.17z"/><path d="M8 9h8M8 12h5"/></svg></div><h3>Telematik & Vernetzung</h3><p>Sichere Vernetzung mit Ärzten und Apotheken über die Telematikinfrastruktur – für reibungslose Abläufe und schnelle Abstimmung.</p></article>
-          <article class="card reveal"><div class="icon-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><h3>Transparenz für Angehörige</h3><p>Auf Wunsch halten wir Angehörige digital auf dem Laufenden – passend zum Friedemann-Gedanken, der die Familie einbezieht.</p></article>
+        <div class="checker reveal">
+          <h2>Kommen wir zu Ihnen?</h2>
+          <p>Geben Sie Ihren Stadtteil ein – wir sagen Ihnen sofort Bescheid.</p>
+          <form class="checker-form" id="areaForm">
+            <input type="text" id="areaInput" placeholder="z. B. Eilbek, Wilhelmsburg, Harburg…" aria-label="Ihr Stadtteil" autocomplete="off" />
+            <button class="btn btn-cta" type="submit">Prüfen</button>
+          </form>
+          <div class="checker-result" id="areaResult" role="status" aria-live="polite"></div>
         </div>
       </div>
     </section>
 
+    <!-- SCHWERPUNKTE -->
     <section class="section-soft">
-      <div class="container prose reveal">
-        <h2>Unser Ansatz: Technik im Dienst des Menschen</h2>
-        <p>Digitalisierung ist kein Selbstzweck. Sie ist gut, wenn sie Pflege sicherer, schneller und persönlicher macht – und schlecht, wenn sie zwischen uns und Sie tritt. Deshalb gilt für uns:</p>
-        <ul>
-          <li><strong>Mehr Zeit am Bett:</strong> Weniger Papierkram durch digitale Dokumentation bedeutet mehr Zeit für Sie.</li>
-          <li><strong>Weniger Fehler:</strong> Digitale Medikamenten- und Wunddokumentation reduziert Risiken.</li>
-          <li><strong>Bessere Abstimmung:</strong> Schnellere Kommunikation mit Ärzten und Apotheken.</li>
-          <li><strong>Datenschutz zuerst:</strong> Sensible Gesundheitsdaten behandeln wir nach den geltenden Datenschutzvorgaben (DSGVO).</li>
-        </ul>
-        <div class="callout"><strong>Wichtig bleibt:</strong> Kein Bildschirm ersetzt das persönliche Gespräch, die Hand, die hält, und das vertraute Gesicht an der Tür. Digitalisierung schafft bei uns Freiraum für genau das.</div>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Unsere Schwerpunkte</span>
+          <h2>Hier sind wir besonders oft unterwegs</h2>
+          <p>Diese Stadtteile decken wir regelmäßig ab – und das Umland natürlich ebenso.</p>
+        </div>
+        <div class="chips reveal">
+          <span class="chip">Eilbek</span>
+          <span class="chip">Hohenfelde</span>
+          <span class="chip">Barmbek</span>
+          <span class="chip">Wandsbek</span>
+          <span class="chip">Marienthal</span>
+          <span class="chip">Wilhelmsburg</span>
+          <span class="chip">Harburg</span>
+          <span class="chip chip-soft">… und Umgebung</span>
+        </div>
+        <p class="area-note reveal">Nadim und Farhad sind die Teamleiter dieser Bereiche – und für Sie persönlich da.</p>
+      </div>
+    </section>
+
+    <!-- KONTAKT-PILLEN -->
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Direkt durchwählen</span>
+          <h2>Ein Anruf genügt</h2>
+        </div>
+        <div class="contacts-row reveal">
+          <a class="contact-pill" href="tel:+491607621876" data-direct>
+            <span class="contact-pill-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <span><strong>Nadim Nauroz</strong><span>0160 762 18 76</span></span>
+          </a>
+          <a class="contact-pill" href="tel:+4917631730827" data-direct>
+            <span class="contact-pill-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <span><strong>Farhad Ramazani</strong><span>0176 317 308 27</span></span>
+          </a>
+        </div>
       </div>
     </section>
 
     <section class="cta-band">
       <div class="container reveal">
-        <h2>Fragen zur modernen Pflege?</h2>
-        <p>Wir erklären Ihnen gern, wie wir digitale Werkzeuge zu Ihrem Vorteil einsetzen.</p>
+        <h2>Nicht sicher, ob wir zu Ihnen kommen?</h2>
+        <p>Rufen Sie einfach an – wir finden fast immer eine Lösung. Kostenlos und unverbindlich.</p>
         <div class="hero-cta" style="justify-content:center;">
-          <a class="btn btn-cta btn-lg" href="tel:+491607621876">📞 Anrufen</a>
-          <a class="btn btn-ghost btn-lg" href="kontakt.html">Kontakt aufnehmen</a>
+          <a class="btn btn-cta btn-lg" href="tel:+491607621876">📞 Jetzt anrufen</a>
+          <a class="btn btn-ghost btn-lg" href="kontakt.html">Online anfragen</a>
         </div>
       </div>
     </section>
@@ -97,10 +126,10 @@
         <div><h4>Navigation</h4>
           <ul class="footer-links">
             <li><a href="index.html">Start</a></li>
+            <li><a href="ueber-uns.html">Über uns</a></li>
             <li><a href="leistungen.html">Leistungen</a></li>
+            <li><a href="gebiete.html">Gebiete</a></li>
             <li><a href="praevention.html">Prävention</a></li>
-            <li><a href="pflegepolitik.html">Pflegepolitik</a></li>
-            <li><a href="digitalisierung.html">Digitalisierung</a></li>
             <li><a href="kontakt.html">Kontakt</a></li>
           </ul>
         </div>

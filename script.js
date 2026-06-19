@@ -13,6 +13,7 @@
     initMobileNav();
     initFAQ();
     initFaqSearch();
+    initAreaChecker();
     initCounters();
     initReveal();
     initBackToTop();
@@ -146,6 +147,39 @@
         toggle.classList.remove("open");
         toggle.setAttribute("aria-expanded", "false");
       });
+    });
+  }
+
+  /* ---- Gebiets-Checker (Stadtteil eingeben) ---- */
+  function initAreaChecker() {
+    var form = document.getElementById("areaForm");
+    var input = document.getElementById("areaInput");
+    var out = document.getElementById("areaResult");
+    if (!form || !input || !out) return;
+
+    var core = ["eilbek", "hohenfelde", "barmbek", "wandsbek", "marienthal", "wilhelmsburg", "harburg"];
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var q = input.value.trim().toLowerCase();
+      out.classList.remove("ok", "maybe");
+      if (!q) {
+        out.classList.add("maybe");
+        out.innerHTML = "Bitte geben Sie kurz Ihren Stadtteil ein.";
+        return;
+      }
+      var hit = core.some(function (c) { return q.indexOf(c) !== -1 || c.indexOf(q) !== -1; });
+      var hamburg = q.indexOf("hamburg") !== -1;
+      if (hit) {
+        out.classList.add("ok");
+        out.innerHTML = "✓ Wunderbar – hier sind wir regelmäßig für Sie unterwegs. <a href='kontakt.html'>Jetzt anfragen</a> oder <a href='tel:+491607621876'>anrufen</a>.";
+      } else if (hamburg) {
+        out.classList.add("ok");
+        out.innerHTML = "✓ Wir sind in ganz Hamburg aktiv – sehr wahrscheinlich auch bei Ihnen. <a href='tel:+491607621876'>Kurz anrufen</a>, dann ist es sicher.";
+      } else {
+        out.classList.add("maybe");
+        out.innerHTML = "Wir sind in ganz Hamburg und Umgebung aktiv. <a href='tel:+491607621876'>Rufen Sie kurz an</a> – wir finden fast immer eine Lösung.";
+      }
     });
   }
 
