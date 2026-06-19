@@ -61,9 +61,9 @@ h1, h2, h3, h4 {
   font-weight: 700;
 }
 
-h1 { font-size: clamp(2rem, 4.5vw, 3rem); }
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.25rem); }
-h3 { font-size: 1.25rem; }
+h1 { font-size: clamp(2rem, 4.5vw, 3rem); letter-spacing: -.02em; }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.25rem); letter-spacing: -.018em; }
+h3 { font-size: 1.25rem; letter-spacing: -.01em; }
 
 p { margin: 0 0 1rem; }
 
@@ -189,8 +189,10 @@ section { padding: 72px 0; }
     radial-gradient(1200px 500px at 80% -10%, rgba(6,182,212,.25), transparent 60%),
     linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%);
   color: #fff;
-  padding: 64px 0 72px;
+  padding: 64px 0 84px;
   position: relative;
+  border-bottom-left-radius: 50% 34px;
+  border-bottom-right-radius: 50% 34px;
 }
 .hero-grid {
   display: grid;
@@ -215,7 +217,34 @@ section { padding: 72px 0; }
   position: absolute;
   inset: -14px;
   border-radius: 50%;
-  border: 2px dashed rgba(103,232,249,.6);
+  border: 2px dashed rgba(165,237,247,.6);
+}
+
+/* Duo-Hero: zwei Portraits nebeneinander */
+.hero-photos {
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero-person { margin: 0; text-align: center; }
+.hero-person img {
+  width: 158px;
+  height: 158px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid rgba(255,255,255,.9);
+  box-shadow: 0 16px 38px rgba(0,0,0,.32);
+  background: #d6eef2;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.hero-person:hover img { transform: translateY(-6px) scale(1.02); box-shadow: 0 22px 48px rgba(0,0,0,.4); }
+.hero-person figcaption {
+  margin-top: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: .2px;
 }
 .hero h1 { color: #fff; margin-bottom: .35em; }
 .hero h1 .accent { color: var(--cyan-light); }
@@ -455,9 +484,13 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 
 /* ---------- Content prose (sub pages) ---------- */
 .page-hero {
-  background: linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%);
+  background:
+    radial-gradient(900px 360px at 85% -20%, rgba(6,182,212,.28), transparent 60%),
+    linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%);
   color: #fff;
-  padding: 56px 0;
+  padding: 56px 0 64px;
+  border-bottom-left-radius: 50% 30px;
+  border-bottom-right-radius: 50% 30px;
 }
 .page-hero h1 { color: #fff; }
 .page-hero p { color: #dbe6ff; max-width: 680px; margin: 0; }

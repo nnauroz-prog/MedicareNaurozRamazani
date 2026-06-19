@@ -13,8 +13,25 @@
     initReveal();
     initBackToTop();
     initCookieBanner();
+    initAvatarFallback();
     setYear();
   });
+
+  /* ---- Portrait-Fallback: zeigt Initialen, falls Foto fehlt ---- */
+  function initAvatarFallback() {
+    document.querySelectorAll("img[data-initials]").forEach(function (img) {
+      img.addEventListener("error", function handle() {
+        img.removeEventListener("error", handle);
+        var letters = (img.getAttribute("data-initials") || "?").trim();
+        var svg =
+          "<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'>" +
+          "<rect width='160' height='160' rx='80' fill='%233a94a6'/>" +
+          "<text x='80' y='104' font-size='58' font-weight='700' fill='%23ffffff' " +
+          "text-anchor='middle' font-family='Segoe UI, Arial, sans-serif'>" + letters + "</text></svg>";
+        img.src = "data:image/svg+xml;utf8," + svg.replace(/ /g, "%20");
+      });
+    });
+  }
 
   /* ---- Mobile Navigation ---- */
   function initMobileNav() {
