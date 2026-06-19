@@ -6,10 +6,10 @@
    ========================================================= */
 
 :root {
-  /* Medicare-CI: Anker-Logo, Teal + Navy (medicare-hamburg.de) */
-  --blue: #16a3b4;        /* Marken-Teal (Header/Hero) */
-  --blue-dark: #138f9e;
-  --blue-deep: #0f7e8c;   /* tiefes Marken-Teal (Verlaufsende) */
+  /* Medicare-CI: Anker-Logo, offizielles Teal #00afb9 + Navy (medicare-hamburg.de) */
+  --blue: #00afb9;        /* offizielles Marken-Teal (Header/Hero) */
+  --blue-dark: #009aa3;
+  --blue-deep: #00838c;   /* tiefes Marken-Teal (Verlaufsende) */
   --teal: #0d9488;        /* CTA-Teal */
   --teal-dark: #0b7d72;
   --navy: #1a4f8a;        /* CI-Navy (Logo "care", Akzente) */
@@ -133,9 +133,21 @@ section { padding: 72px 0; }
 }
 .brand { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
 .brand:hover { text-decoration: none; }
-.brand img { width: 38px; height: 38px; }
+.brand-logo { height: 38px; width: auto; display: block; }
+.brand-sub {
+  color: #d7f3f6;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255,255,255,.45);
+}
+/* Alt-Stile (Fallback, falls Text-Lockup verwendet wird) */
+.brand img { height: 38px; width: auto; }
 .brand-text strong { display: block; font-size: 1.12rem; letter-spacing: .3px; }
 .brand-text span { display: block; font-size: .72rem; color: var(--cyan-light); letter-spacing: .08em; text-transform: uppercase; }
+@media (max-width: 480px) { .brand-sub { display: none; } .brand-logo { height: 34px; } }
 
 .nav-links {
   display: flex;
