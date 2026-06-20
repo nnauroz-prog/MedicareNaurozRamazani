@@ -1702,3 +1702,14 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
   margin: 18px 0 0; color: #d8fbff; font-weight: 600; font-size: .92rem;
   letter-spacing: .01em;
 }
+
+/* =========================================================
+   A11y: Text-Kontraste auf WCAG-AA (≥4,5:1) anheben
+   ========================================================= */
+/* Inline-Links auf Weiß: #0d9488 (3,74) -> teal-dark #0b7d72 (5,01) */
+a { color: var(--teal-dark); }
+.contact-info a:not(.btn) { color: var(--teal-dark); }
+/* CTA-Bestätigung auf Teal: helleres Cyan (3,42) -> Weiß */
+.cta-band .cta-reassure { color: #ffffff; }
+/* Hero-Rollen-Label: dunklere Pille, damit weißer Text klar kontrastiert */
+.hero .role { background: rgba(0,40,46,.32); border-color: rgba(255,255,255,.30); }
