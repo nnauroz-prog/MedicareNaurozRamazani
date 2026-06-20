@@ -1779,3 +1779,8 @@ section { padding: 118px 0; }
 .hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.25rem); letter-spacing: -.032em; line-height: 1.1; }
 .hero .lead { font-size: 1.18rem; max-width: 540px; }
 .hero .role { font-size: .86rem; }
+
+/* ---- Buttons solide & seriös (kein Verlaufs-„Bonbon") ---- */
+.btn-cta { background: var(--teal); box-shadow: 0 4px 14px rgba(13,148,136,.20); }
+.btn-cta:hover { background: var(--teal-dark); box-shadow: 0 8px 20px rgba(13,148,136,.26); }
+.hero .btn-cta { background: #fff; box-shadow: 0 6px 18px rgba(0,30,40,.16); }

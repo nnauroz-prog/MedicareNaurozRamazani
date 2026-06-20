@@ -331,10 +331,16 @@
     });
   }
 
-  /* ---- Animated Counters ---- */
+  /* ---- Counters (statisch & souverän – keine hochzählende Animation) ---- */
   function initCounters() {
     var counters = document.querySelectorAll("[data-counter]");
     if (!counters.length) return;
+
+    counters.forEach(function (el) {
+      var t = parseFloat(el.getAttribute("data-counter"));
+      el.textContent = (el.getAttribute("data-prefix") || "") + t + (el.getAttribute("data-suffix") || "");
+    });
+    return;
 
     var run = function (el) {
       var target = parseFloat(el.getAttribute("data-counter"));
