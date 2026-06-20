@@ -1797,3 +1797,7 @@ section { padding: 118px 0; }
 .assure::before { background: linear-gradient(180deg, var(--blue), var(--navy)); }
 a:hover { color: var(--navy); }
 .contact-info a:not(.btn):hover, .footer-links a:hover { color: inherit; }
+
+/* A11y: Pflegegrade-Tabelle – Kopf & Beträge auf WCAG-AA ---- */
+table.pg thead th { background: var(--blue-deep); }   /* Weiß auf #00838c = 4,55 */
+table.pg td.amount { color: var(--teal-dark); }       /* #0b7d72 = 5,01 */
