@@ -1804,3 +1804,6 @@ table.pg td.amount { color: var(--teal-dark); }       /* #0b7d72 = 5,01 */
 
 /* Formularfelder seniorengerechter: klarere, definiertere Ränder ---- */
 .field input, .field select, .field textarea { border: 1.5px solid #cdd3da; }
+
+/* Tipp-Karten an flachen Marken-Stil angleichen (kein abweichender Cyan-Streifen) */
+.tip { border-top: 1px solid #e6e9ee; }
