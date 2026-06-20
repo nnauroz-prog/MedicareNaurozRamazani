@@ -1784,3 +1784,6 @@ section { padding: 118px 0; }
 .btn-cta { background: var(--teal); box-shadow: 0 4px 14px rgba(13,148,136,.20); }
 .btn-cta:hover { background: var(--teal-dark); box-shadow: 0 8px 20px rgba(13,148,136,.26); }
 .hero .btn-cta { background: #fff; box-shadow: 0 6px 18px rgba(0,30,40,.16); }
+
+/* Klartext-Erläuterung in Fach-Überschriften (laienverständlich) */
+.h-plain { font-weight: 600; color: var(--muted); font-size: .8em; letter-spacing: 0; }
