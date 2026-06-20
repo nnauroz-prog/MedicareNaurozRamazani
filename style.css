@@ -1787,3 +1787,13 @@ section { padding: 118px 0; }
 
 /* Klartext-Erläuterung in Fach-Überschriften (laienverständlich) */
 .h-plain { font-weight: 600; color: var(--muted); font-size: .8em; letter-spacing: 0; }
+
+/* =========================================================
+   MARKEN-ECHO Teal → Blau auf hellem Grund (fein dosiert)
+   spiegelt den Logo-Verlauf „Medi"(Teal) → „care"(Blau)
+   ========================================================= */
+.eyebrow::before { background: linear-gradient(90deg, var(--blue), var(--navy)); }
+.site-footer h4::after { background: linear-gradient(90deg, var(--blue), #2f86c0); }
+.assure::before { background: linear-gradient(180deg, var(--blue), var(--navy)); }
+a:hover { color: var(--navy); }
+.contact-info a:not(.btn):hover, .footer-links a:hover { color: inherit; }
