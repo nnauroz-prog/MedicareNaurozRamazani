@@ -238,10 +238,15 @@
     else setLang(code);
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
+  // i18n.js wird mit "defer" geladen und läuft daher in der Phase "interactive"
+  // – also VOR DOMContentLoaded. script.js (ohne defer) registriert seinen
+  // DOMContentLoaded-Handler bereits beim Parsen, also vor uns. Wir warten
+  // deshalb ebenfalls auf DOMContentLoaded: so existieren die per JS erzeugten
+  // Elemente (Anruf-/WhatsApp-Auswahl) bereits, wenn wir sie einsammeln.
+  if (document.readyState === "complete") {
     init();
+  } else {
+    document.addEventListener("DOMContentLoaded", init);
   }
 
   // Für die Wörterbuch-Erzeugung (Build/QA) nutzbar:
