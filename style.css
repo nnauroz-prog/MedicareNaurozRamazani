@@ -1801,3 +1801,6 @@ a:hover { color: var(--navy); }
 /* A11y: Pflegegrade-Tabelle – Kopf & Beträge auf WCAG-AA ---- */
 table.pg thead th { background: var(--blue-deep); }   /* Weiß auf #00838c = 4,55 */
 table.pg td.amount { color: var(--teal-dark); }       /* #0b7d72 = 5,01 */
+
+/* Formularfelder seniorengerechter: klarere, definiertere Ränder ---- */
+.field input, .field select, .field textarea { border: 1.5px solid #cdd3da; }
