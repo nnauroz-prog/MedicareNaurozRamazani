@@ -1713,3 +1713,40 @@ a { color: var(--teal-dark); }
 .cta-band .cta-reassure { color: #ffffff; }
 /* Hero-Rollen-Label: dunklere Pille, damit weißer Text klar kontrastiert */
 .hero .role { background: rgba(0,40,46,.32); border-color: rgba(255,255,255,.30); }
+
+/* =========================================================
+   PREMIUM-RESTRAINT — seriöser, ruhiger, weniger „App"
+   (keine Farbänderung; nur Form, Tiefe, Ruhe, Hierarchie)
+   ========================================================= */
+/* 1) Karten flach & editorial: feine Linie, minimale Tiefe, kein „Hüpfen" */
+.card, a.card-link, .assure, .factsheet, .tip, .team-card, .reason, .compare-col {
+  box-shadow: 0 1px 2px rgba(17,40,75,.04);
+  border: 1px solid #e6e9ee;
+}
+.card:hover, a.card-link:hover, .assure:hover, .team-card:hover, .contact-pill:hover, .chip:hover {
+  transform: none;
+  box-shadow: 0 8px 24px rgba(17,40,75,.07);
+  border-color: #d6dde7;
+}
+.card::before { display: none !important; }     /* Akzentstrich oben raus */
+.assure::before { opacity: .5; }                /* Assure-Strich dezenter */
+
+/* 2) Dekor-Raster, Glows & Anker-Deko entfernen → ruhige Flächen */
+.hero::before, .page-hero::before, .counters::before, .cta-band::before,
+.hero::after, .hero .anchor-deco { display: none !important; }
+.section-soft { background-image: none; background-color: var(--bg-soft); }
+
+/* 3) App-typische Bewegung raus */
+.scroll-progress { display: none; }
+.pulse-dot { animation: none; }
+
+/* 4) Icon-Kacheln dezenter & kleiner (weniger „Template") */
+.icon-circle { width: 46px; height: 46px; border-radius: 11px; box-shadow: none; margin-bottom: 16px; }
+.icon-circle svg { width: 22px; height: 22px; }
+.assure-ic { width: 44px; height: 44px; border-radius: 11px; box-shadow: none; }
+
+/* 5) Typografie ruhiger & edler (weniger „laut") */
+h1 { font-weight: 720; letter-spacing: -.033em; }
+h2 { font-weight: 720; letter-spacing: -.028em; }
+h3 { font-weight: 700; }
+.section-head p { color: var(--muted); }
