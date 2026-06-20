@@ -1777,3 +1777,53 @@ html[dir="rtl"] .back-to-top { right: auto; left: 22px; }
 html[dir="rtl"] table.pg th,
 html[dir="rtl"] table.pg td { text-align: right; }
 html[dir="rtl"] .footer-bottom { text-align: center; }
+
+/* =========================================================
+   ICON-STIL v4 — redaktionell statt „App-Icon"
+   Weiche, runde Markenflächen mit Linien-Icons in Markenfarbe:
+   kein Verlauf, kein Glanz, keine abgerundeten Quadrate.
+   (Medicare-Farben bleiben unverändert.)
+   ========================================================= */
+:root { --ic-teal-wash: rgba(0,175,185,.10); --ic-navy-wash: rgba(10,108,169,.10); }
+
+/* Leistungs-Kacheln: Linien-Icon in Teal-Blau auf zarter Teal-Fläche */
+.icon-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--ic-teal-wash);
+  box-shadow: inset 0 0 0 1px rgba(0,131,140,.16);
+  color: var(--blue-deep);
+  margin-bottom: 18px;
+}
+.icon-circle svg { stroke: var(--blue-deep); width: 25px; height: 25px; }
+
+/* „Versorgungssicherheit"-Kacheln: Navy-Icon auf zarter Navy-Fläche */
+.assure-ic {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--ic-navy-wash);
+  box-shadow: inset 0 0 0 1px rgba(10,79,126,.16);
+  color: var(--navy);
+}
+.assure-ic svg { stroke: currentColor; }
+
+/* „Unser Versprechen"-Schild: großer, ruhiger Marken-Kreis */
+.promise-ic {
+  width: 92px; height: 92px;
+  border-radius: 50%;
+  background: var(--ic-navy-wash);
+  box-shadow: inset 0 0 0 1px rgba(10,79,126,.14);
+  color: var(--navy);
+}
+
+/* Kontakt-Icons einheitlich im selben ruhigen Stil */
+.contact-pill-ic, .contact-info .ic {
+  border-radius: 50%;
+  background: var(--ic-navy-wash);
+  box-shadow: inset 0 0 0 1px rgba(10,79,126,.16);
+  color: var(--navy);
+}
+.contact-pill-ic svg, .contact-info .ic svg { stroke: var(--navy); }
+
+/* Prozess-Schritte: flacher, solider Marken-Kreis statt Verlauf + Glanz */
+.step-num { background: var(--navy); box-shadow: none; }
