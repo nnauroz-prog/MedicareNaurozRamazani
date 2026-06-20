@@ -714,7 +714,8 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
   transform: translateY(12px) scale(.97); transition: transform .22s ease;
 }
 .call-modal.show .call-card { transform: none; }
-.call-close { position: absolute; top: 8px; right: 14px; background: none; border: 0; font-size: 1.9rem; line-height: 1; color: var(--muted); cursor: pointer; }
+.call-close { position: absolute; top: 6px; right: 8px; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; background: none; border: 0; font-size: 1.9rem; line-height: 1; color: var(--muted); cursor: pointer; border-radius: 10px; }
+.call-close:hover { background: var(--bg-soft); color: var(--ink); }
 .call-title { font-weight: 800; font-size: 1.18rem; color: var(--ink); margin: 0 0 16px; padding-right: 24px; }
 .call-opt {
   display: flex; align-items: center; gap: 14px;
@@ -1827,3 +1828,19 @@ html[dir="rtl"] .footer-bottom { text-align: center; }
 
 /* Prozess-Schritte: flacher, solider Marken-Kreis statt Verlauf + Glanz */
 .step-num { background: var(--navy); box-shadow: none; }
+
+/* =========================================================
+   Sprachmenü mobil: in den Fluss legen (muss NACH den Basis-
+   .lang-menu-Regeln stehen, sonst gewinnt position:absolute und
+   der scrollbare Menü-Container schneidet die unteren Sprachen ab).
+   ========================================================= */
+@media (max-width: 860px) {
+  .nav-lang, .lang-switch { width: 100%; }
+  .lang-menu {
+    position: static; transform: none;
+    opacity: 1; visibility: visible; display: none;
+    width: 100%; min-width: 0; right: auto; top: auto;
+    margin: 6px 0 2px; box-shadow: none;
+  }
+  .lang-switch.open .lang-menu { display: block; }
+}
