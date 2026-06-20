@@ -11,6 +11,22 @@ Alle Inhaltsseiten sind aktuell durch ein **Zugangs-Gate** geschützt.
 bleiben frei erreichbar. Das Gate ist ein Inline-Script im `<head>` jeder Seite.
 **Zum Live-Gang muss es entfernt werden** (sage Bescheid – ich entferne es per Skript).
 
+## Mehrsprachige Lese-Ansicht (Sprach-Umschalter)
+Im Header gibt es einen **Sprach-Umschalter** (Globus-Symbol). Verfügbar:
+**Deutsch (Standard) · English · Türkçe · Русский · فارسی (Persisch/Dari, rechts-nach-links).**
+- Technik: `i18n.js` übersetzt zur Laufzeit Textknoten und Attribute (Platzhalter,
+  `aria-label`, `alt`, `title`, Seitentitel, Meta-Description) anhand des deutschen
+  Quelltextes. Schlüssel = normalisierter deutscher String → Übersetzung in `i18n/<code>.json`.
+- **Fehlt eine Übersetzung, bleibt automatisch der deutsche Text stehen** (kein Bruch).
+- Markennamen, Eigennamen, Orte, Telefon/E-Mail bleiben unübersetzt.
+- Persisch schaltet das Layout per `dir="rtl"` auf rechts-nach-links.
+- Auswahl wird im Browser gemerkt (`localStorage` `medicare_lang`); Erstbesucher
+  bekommen – falls passend – ihre Browsersprache vorgeschlagen, sonst Deutsch.
+- **Rechtstexte (Impressum/Datenschutz) bleiben bewusst deutsch** (rechtlich verbindlich).
+- **Übersetzungen pflegen/erweitern:** deutsche Strings stehen in `i18n/_strings.de.json`,
+  die Übersetzungen index-gleich in `i18n/<code>.array.json`. Nach Änderungen
+  `python3 i18n/_build.py` ausführen – das erzeugt die geladenen `i18n/<code>.json`.
+
 ## Markenfarben (exakt aus dem Logo)
 - **Teal `#00afb9`** – „Medi", Anker, Header/Hero, Akzente
 - **„care"-Blau `#0a6ca9`** – Bänder (Counter/Wechsel), Footer, Icon-Kacheln, Zwischentitel
@@ -36,11 +52,13 @@ Mobile-Navigation · FAQ-Akkordeon + Live-Suche · statische Kennzahlen · Scrol
 (Nadim/Farhad) · WhatsApp-Auswahl · Stadtteil-Checker · Schriftgrößen-Schalter A+/A−
 (gespeichert) · Live-Formularvalidierung · **Formular-Fallback** (leitet auf Telefon/
 WhatsApp, solange Formspree nicht eingerichtet ist) · CTA-Bestätigungszeile.
+**Sprach-Umschalter** (`i18n.js`, DE/EN/TR/RU/FA, inkl. RTL) – siehe oben.
 
 ## Assets
 - `logo-white.png` (Header, optimiert), `favicon.svg`, `apple-touch-icon.png`
 - `og-image.jpg` – Vorschaubild fürs Teilen (1200×630, ohne Bewertungs-Angabe)
 - `foto-team.jpg` (Hero), `IMG_7363.jpeg` (Nadim), `IMG_0631.jpeg` (Farhad) – optimiert
+- `i18n/` – Wörterbücher (`en/tr/ru/fa.json`), Quell-Strings & Build-Skript (`_build.py`)
 - `fonts/inter-latin.woff2` – selbst gehostete Schrift (DSGVO, kein Google-CDN)
 - `nadim-nauroz.vcf`, `farhad-ramazani.vcf` – Visitenkarten zum Speichern
 - `IMG_0376–0381`, `logo-color.png`, `logo-white-full.png` – Referenzdateien (nicht eingebunden;
