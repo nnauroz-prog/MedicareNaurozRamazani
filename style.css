@@ -1774,3 +1774,8 @@ section { padding: 118px 0; }
 
 /* Fließtext-Sektionen schmaler = bessere Lesbarkeit (Premium-Maß) */
 .prose { max-width: 760px; }
+
+/* ---- Hero souveräner: ruhigere Headline-Größe, mehr Gelassenheit ---- */
+.hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.25rem); letter-spacing: -.032em; line-height: 1.1; }
+.hero .lead { font-size: 1.18rem; max-width: 540px; }
+.hero .role { font-size: .86rem; }
