@@ -88,37 +88,6 @@
     update();
   }
 
-  /* ---- 3D-Tilt auf Karten (nur Desktop, nicht bei reduzierter Bewegung) ---- */
-  function initTilt() {
-    try {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    } catch (e) { return; }
-
-    var els = document.querySelectorAll(".card, .member, .tip, .team-card, .reason, .switch-step, .step, .contact-pill");
-    els.forEach(function (el) {
-      el.style.transformStyle = "preserve-3d";
-      el.style.willChange = "transform";
-      var raf = null;
-      el.addEventListener("mousemove", function (e) {
-        var r = el.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width - 0.5;
-        var py = (e.clientY - r.top) / r.height - 0.5;
-        if (raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(function () {
-          el.style.transition = "transform .08s ease-out";
-          el.style.transform = "perspective(820px) rotateY(" + (px * 6).toFixed(2) +
-            "deg) rotateX(" + (-py * 6).toFixed(2) + "deg) translateY(-6px)";
-        });
-      });
-      el.addEventListener("mouseleave", function () {
-        if (raf) cancelAnimationFrame(raf);
-        el.style.transition = "transform .35s ease";
-        el.style.transform = "";
-      });
-    });
-  }
-
   /* ---- Anrufen: erst Person wählen (Nadim/Farhad), dann Nummer wählen ---- */
   function initCallChooser() {
     // Alle generischen "Anrufen"-Buttons (Standardnummer) öffnen die Auswahl.
@@ -340,50 +309,6 @@
       var t = parseFloat(el.getAttribute("data-counter"));
       el.textContent = (el.getAttribute("data-prefix") || "") + t + (el.getAttribute("data-suffix") || "");
     });
-    return;
-
-    var run = function (el) {
-      var target = parseFloat(el.getAttribute("data-counter"));
-      var suffix = el.getAttribute("data-suffix") || "";
-      var prefix = el.getAttribute("data-prefix") || "";
-      // Bei reduzierter Bewegung: Endwert direkt anzeigen (steht schon im HTML)
-      try {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          el.textContent = prefix + target + suffix; return;
-        }
-      } catch (e) {}
-      var duration = 1600;
-      var start = null;
-      el.textContent = prefix + "0" + suffix;   // erst jetzt auf 0 (nur wenn animiert wird)
-
-      var step = function (ts) {
-        if (!start) start = ts;
-        var progress = Math.min((ts - start) / duration, 1);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        var value = target * eased;
-        var display = Number.isInteger(target) ? Math.round(value) : value.toFixed(0);
-        el.textContent = prefix + display + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-        else el.textContent = prefix + target + suffix;
-      };
-      requestAnimationFrame(step);
-    };
-
-    if (!("IntersectionObserver" in window)) {
-      counters.forEach(run);
-      return;
-    }
-
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          run(entry.target);
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-
-    counters.forEach(function (c) { obs.observe(c); });
   }
 
   /* ---- Reveal on scroll ---- */
