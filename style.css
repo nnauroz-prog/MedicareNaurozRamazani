@@ -19,8 +19,8 @@
   --blue-deep: #00838c;   /* tiefes Marken-Teal (Verlaufsende) */
   --teal: #0d9488;        /* CTA-Teal */
   --teal-dark: #0b7d72;
-  --navy: #1a4f8a;        /* CI-Navy (Logo "care", Akzente) */
-  --navy-deep: #143f72;   /* tiefes Navy (Footer) */
+  --navy: #0a6ca9;        /* Medicare-Blau "care" (exakt aus Logo) */
+  --navy-deep: #0a4f7e;   /* tiefes Medicare-Blau (Footer/Bänder) */
   --cyan: #06b6d4;
   --cyan-light: #b8eef5;
   --ink: #1f2933;
@@ -43,7 +43,7 @@
   --header-h: 76px;
   --font: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --grad-teal: linear-gradient(135deg, #00afb9 0%, #0a7d8a 100%);
-  --grad-navy: linear-gradient(135deg, #1f5a9c 0%, #143f72 100%);
+  --grad-navy: linear-gradient(135deg, #0a6ca9 0%, #0a4f7e 100%);
 }
 
 * { box-sizing: border-box; }
@@ -717,7 +717,7 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
   padding-top: 20px;
   text-align: center;
   font-size: .85rem;
-  color: #9fb0e6;
+  color: #bcc8ef;
 }
 
 /* ---------- Floating buttons ---------- */
@@ -1576,7 +1576,7 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
 /* ---- Footer-Veredelung (premium, ruhig) ---- */
 .site-footer {
   position: relative;
-  background: linear-gradient(180deg, #17436f 0%, var(--navy-deep) 100%);
+  background: linear-gradient(180deg, #0c5f93 0%, var(--navy-deep) 100%);
   padding-top: 62px;
 }
 .site-footer::before {
