@@ -1,0 +1,19 @@
+{
+  "name": "Medicare – Ambulanter Pflegedienst Hamburg",
+  "short_name": "Medicare",
+  "description": "Persönliche ambulante Pflege in Hamburg – feste Gesichter, 24/7 erreichbar, alle Kassen & privat.",
+  "lang": "de",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#0a7a82",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
