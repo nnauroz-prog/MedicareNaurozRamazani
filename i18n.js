@@ -197,19 +197,50 @@
       menu.appendChild(item);
     });
 
-    function setOpen(v) {
+    function opts() { return Array.prototype.slice.call(menu.querySelectorAll(".lang-opt")); }
+    function focusOpt(i) {
+      var o = opts();
+      if (!o.length) return;
+      i = (i + o.length) % o.length;
+      o[i].focus();
+    }
+    function setOpen(v, focusList) {
       wrap.classList.toggle("open", v);
       btn.setAttribute("aria-expanded", v ? "true" : "false");
+      if (v && focusList) {
+        // Fokus auf aktuell gewählte Option (ARIA-Listbox-Muster);
+        // rAF, damit visibility:visible vor focus() angewandt ist
+        requestAnimationFrame(function () {
+          var o = opts();
+          var sel = o.filter(function (x) { return x.getAttribute("aria-selected") === "true"; })[0];
+          (sel || o[0]) && (sel || o[0]).focus();
+        });
+      }
     }
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
       setOpen(!wrap.classList.contains("open"));
     });
+    // Tastatur: Pfeiltasten öffnen Menü & fokussieren Optionen
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Enter" || e.key === " ") {
+        if (!wrap.classList.contains("open")) { e.preventDefault(); setOpen(true, true); }
+      }
+    });
+    // Tastatur-Navigation innerhalb der Listbox
+    menu.addEventListener("keydown", function (e) {
+      var o = opts(), idx = o.indexOf(document.activeElement);
+      if (e.key === "ArrowDown") { e.preventDefault(); focusOpt(idx + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); focusOpt(idx - 1); }
+      else if (e.key === "Home") { e.preventDefault(); focusOpt(0); }
+      else if (e.key === "End") { e.preventDefault(); focusOpt(o.length - 1); }
+      else if (e.key === "Tab") { setOpen(false); }
+    });
     document.addEventListener("click", function (e) {
       if (!wrap.contains(e.target)) setOpen(false);
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape" && wrap.classList.contains("open")) { setOpen(false); btn.focus(); }
     });
 
     wrap.appendChild(btn);
