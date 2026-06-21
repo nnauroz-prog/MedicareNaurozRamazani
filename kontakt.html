@@ -70,6 +70,14 @@
           inp.value = ""; inp.focus();
         }
       });
+      g.addEventListener("keydown", function (ev) {
+        if (ev.key !== "Tab") return;
+        var f = g.querySelectorAll("input,button,a[href]");
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+        else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+      });
       try { inp.focus(); } catch (e) {}
     }
     if (d.body) build(); else d.addEventListener("DOMContentLoaded", build);
