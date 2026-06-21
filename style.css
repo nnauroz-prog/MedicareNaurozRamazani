@@ -1890,3 +1890,49 @@ html[dir="rtl"] .footer-bottom { text-align: center; }
 
 /* Sektions-Trenner: feine Haarlinie für klare, redaktionelle Gliederung */
 .section-soft { border-top: 1px solid #eef2f5; }
+
+/* =========================================================
+   EDITORIAL v6 — ruhiger, edler, weniger „bunt" & „Template"
+   (auf Wunsch: seriösere Typo · mehr Weißraum · zurückhaltender)
+   ========================================================= */
+
+/* 1) Typografie ruhiger & editorialer (weniger „laut") */
+h1 { font-weight: 680; letter-spacing: -.028em; line-height: 1.12; }
+h2 { font-weight: 680; letter-spacing: -.022em; line-height: 1.2; }
+h3 { font-weight: 680; letter-spacing: -.012em; }
+.hero h1 { font-weight: 700; }                 /* auf Dunkel etwas kräftiger */
+.section-head h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }  /* selbstbewusst, nicht schreiend */
+.lead, .section-head p { font-weight: 400; }
+
+/* 2) Mehr Weiß: getönte Soft-Sektionen neutral & ohne Punkt-Raster */
+.section-soft {
+  background: #fafbfc;
+  background-image: none;
+  border-top: 1px solid #eef1f4;
+}
+.section-soft + .section-soft { border-top: 0; }
+
+/* 3) Karten edler: feine Linie, ruhige Fläche, mehr Innenraum */
+.card, a.card-link, .assure, .factsheet, .tip {
+  border-color: #e8ebef;
+}
+.card, a.card-link { padding: 30px 30px 32px; }
+
+/* 4) Eyebrow zurückhaltender (weniger Marketing-Signal) */
+.eyebrow {
+  font-size: .76rem; letter-spacing: .19em; font-weight: 700; color: var(--navy);
+  margin-bottom: 16px;
+}
+.eyebrow::before { background: var(--navy); opacity: .45; width: 22px; }
+
+/* 5) Mehr Luft & klare Hierarchie in den Sektionsköpfen */
+.section-head { margin-bottom: 58px; }
+.section-head p { font-size: 1.1rem; color: var(--muted); }
+
+/* Lange Wörter (z. B. Russisch/zusammengesetzte Begriffe) sauber umbrechen
+   statt 1–2 px Overflow zu erzeugen */
+h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word; }
+
+/* Flex-Überschriften mit Icon: Textspalte darf schrumpfen (sonst sprengen
+   lange Wörter, z. B. im Russischen, den Container) */
+.h-plain { min-width: 0; }
