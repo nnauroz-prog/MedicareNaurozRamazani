@@ -1009,11 +1009,53 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 
 /* ---------- Druck ---------- */
 @media print {
-  .site-header, .nav, .whatsapp-float, .back-to-top, .call-bar, .cookie-banner, .hero-cta, .cta-band { display: none !important; }
-  body { color: #000; }
-  a { color: #000; text-decoration: underline; }
-  .hero, .page-hero, .counters { background: none !important; color: #000 !important; border-radius: 0 !important; }
-  section { padding: 16px 0; }
+  /* Interaktive & dekorative Chrome ausblenden */
+  .site-header, .nav, .lang-switch, .whatsapp-float, .wa-pop, .back-to-top,
+  .call-bar, .call-modal, .cookie-banner, .cta-band, .scroll-progress,
+  .skip-link, #mc-gate, .hero-cta, .btn, .btn-cta, .btn-outline, .btn-ghost,
+  .a11y-btn, .nav-toggle, .cta-reassure, video, iframe { display: none !important; }
+
+  html, body { background: #fff !important; }
+  body { color: #111 !important; font-size: 11.5pt; line-height: 1.45; }
+  @page { margin: 1.6cm; }
+
+  /* Reveal-Animationen zwingend & sofort sichtbar – sonst fehlt ungescrollter Inhalt im Druck */
+  .reveal, [class*="reveal"] { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+  /* Farbflächen → Tinte sparen */
+  .hero, .page-hero, .counters, .trust-bar, .assure, .factsheet,
+  section[class*="band"], .ribbon, .empathy-band {
+    background: none !important; color: #111 !important; border-radius: 0 !important;
+  }
+  * { box-shadow: none !important; text-shadow: none !important; }
+
+  a { color: #111 !important; text-decoration: underline; }
+  /* Sekundärtext im Druck dunkel genug für gute Lesbarkeit */
+  .hero p, .page-hero p, .lead, .sub, .muted, .eyebrow, .breadcrumb, .empathy-sign,
+  p, li, td, th, figcaption { color: #222 !important; }
+  /* Sichtbare Ziele: Inhalts-/Footer-Links als URL, Telefon/Mail ausgeschrieben */
+  main a[href^="http"]::after, .site-footer a[href^="http"]::after { content: " (" attr(href) ")"; }
+  a[href^="tel:"]::after { content: " (" attr(href) ")"; }
+  a[href^="mailto:"]::after { content: " (" attr(href) ")"; }
+  main a[href^="http"]::after, .site-footer a[href^="http"]::after,
+  a[href^="tel:"]::after, a[href^="mailto:"]::after { font-size: .85em; color: #444; word-break: break-all; }
+
+  /* Seitenumbrüche kontrollieren */
+  h1, h2, h3 { break-after: avoid; color: #111 !important; }
+  .card, .tip, .member, .callout, figure, table, .faq-q, .step, tr, picture { break-inside: avoid; }
+  section { padding: 10px 0 !important; }
+
+  /* Bilder zähmen (Tinte/Platz) */
+  img, picture img { max-width: 62mm !important; height: auto !important; }
+
+  /* Footer schlicht in Tinte – enthält Kontakt & Impressum, im Druck wertvoll */
+  .site-footer { background: none !important; color: #111 !important; padding: 12px 0 !important; border-top: 1px solid #999; }
+  .site-footer a, .site-footer h2 { color: #111 !important; }
+  .site-footer::before, .site-footer h2::after { display: none !important; }
+
+  /* Pflegegrad-Tabelle klar lesbar */
+  table.pg, table.pg th, table.pg td { border: 1px solid #999 !important; color: #111 !important; background: none !important; }
+  table.pg thead th { background: #eee !important; }
 }
 
 /* =========================================================
