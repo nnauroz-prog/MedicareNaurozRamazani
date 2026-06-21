@@ -325,6 +325,8 @@ p a:not(.btn):not(.btn-cta):not(.btn-outline):not(.btn-ghost), .consent a, .cook
 .hero .btn-cta { background: #fff; color: var(--teal-dark); box-shadow: 0 8px 22px rgba(0,0,0,.18); }
 .hero .btn-cta:hover { background: #e6fffb; color: var(--teal-dark); }
 
+.hero-call { margin: 16px 0 0; font-size: 1.02rem; color: rgba(255,255,255,.9); }
+.hero-call a { color: #fff; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; white-space: nowrap; }
 .hero-trust { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-top: 24px; }
 .rating {
   display: inline-flex; align-items: center; gap: 8px;
