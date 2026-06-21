@@ -1844,3 +1844,49 @@ html[dir="rtl"] .footer-bottom { text-align: center; }
   }
   .lang-switch.open .lang-menu { display: block; }
 }
+
+/* =========================================================
+   SERIOSITÄT v5 — tiefer, ruhiger, institutioneller
+   Marken-Teal & -Navy bleiben – aber tiefer & disziplinierter,
+   damit die Seite seriös/etabliert statt „Consumer-App" wirkt.
+   (Teal bleibt der Akzent in CTA, Eyebrow-Linien & Icons.)
+   ========================================================= */
+
+/* Header: sober-tiefes Marken-Teal statt hellem Türkis */
+.site-header {
+  background: linear-gradient(180deg, #0a7a82 0%, #065c64 100%);
+  box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 4px 18px rgba(0,30,34,.26);
+}
+
+/* Hero: tiefes, ruhiges Marken-Blaugrün, dezenter Teal-Lichtakzent */
+.hero {
+  background:
+    radial-gradient(820px 420px at 88% -16%, rgba(0,175,185,.15), transparent 60%),
+    linear-gradient(166deg, #0a6276 0%, #064d61 46%, #06303f 100%);
+  padding: 94px 0 102px;
+}
+.hero .anchor-deco { opacity: .035; }
+.page-hero {
+  background:
+    radial-gradient(760px 340px at 88% -22%, rgba(0,175,185,.14), transparent 60%),
+    linear-gradient(166deg, #0a6276 0%, #064d61 48%, #06303f 100%);
+}
+
+/* Hero-Typografie: konzentrierter, editorialer Auftritt */
+.hero h1 { letter-spacing: -.035em; line-height: 1.07; font-weight: 740; }
+.hero .lead { color: #cfe1e6; font-size: 1.16rem; }
+.hero .role {
+  background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.22);
+  letter-spacing: .02em; text-transform: none;
+}
+
+/* Trust-Bar & CTA-Band an die ruhigere Tiefe angleichen */
+.trust-bar { background: linear-gradient(180deg, #065c64 0%, #054b54 100%); }
+.cta-band {
+  background:
+    radial-gradient(820px 360px at 22% 122%, rgba(0,175,185,.16), transparent 60%),
+    linear-gradient(162deg, #0b7268 0%, #075b53 100%);
+}
+
+/* Sektions-Trenner: feine Haarlinie für klare, redaktionelle Gliederung */
+.section-soft { border-top: 1px solid #eef2f5; }
