@@ -25,9 +25,23 @@
     initFontControl();
     initFormValidation();
     initCtaReassure();
+    initScrollableTables();
     // 3D-Tilt bewusst deaktiviert: ruhiger & seniorenfreundlicher
     setYear();
   });
+
+  /* ---- Horizontal scrollbare Tabellen per Tastatur bedienbar (WCAG 2.1.1) ---- */
+  function initScrollableTables() {
+    document.querySelectorAll(".table-wrap").forEach(function (el) {
+      if (el.scrollWidth <= el.clientWidth) return; // nur wenn wirklich scrollbar
+      el.setAttribute("tabindex", "0");
+      el.setAttribute("role", "region");
+      if (!el.getAttribute("aria-label")) {
+        var cap = el.querySelector("caption, th");
+        el.setAttribute("aria-label", (cap ? cap.textContent.trim() + " – " : "") + "Tabelle, horizontal scrollbar");
+      }
+    });
+  }
 
   /* ---- Reibung senken: kurze Bestätigung direkt unter den CTA-Buttons ---- */
   function initCtaReassure() {

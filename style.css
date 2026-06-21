@@ -16,9 +16,9 @@
   /* Medicare-CI: Anker-Logo, offizielles Teal #00afb9 + Navy (medicare-hamburg.de) */
   --blue: #00afb9;        /* offizielles Marken-Teal (Header/Hero) */
   --blue-dark: #009aa3;
-  --blue-deep: #00838c;   /* tiefes Marken-Teal (Verlaufsende) */
-  --teal: #0d9488;        /* CTA-Teal */
-  --teal-dark: #0b7d72;
+  --blue-deep: #00727b;   /* tiefes Marken-Teal; Text auf Weiss 5,69:1 (WCAG AA) */
+  --teal: #0b7d72;        /* CTA-Teal; weisser Text 5,01:1 (WCAG AA, alle Groessen) */
+  --teal-dark: #096258;   /* Hover/Text; weisser Text 7,24:1 */
   --navy: #0a6ca9;        /* Medicare-Blau "care" (exakt aus Logo) */
   --navy-deep: #0a4f7e;   /* tiefes Medicare-Blau (Footer/Bänder) */
   --cyan: #06b6d4;
@@ -142,8 +142,18 @@ section { padding: 88px 0; }
 .btn-cta:hover { background: var(--teal-dark); color: #fff; box-shadow: 0 10px 24px rgba(13,148,136,.36); }
 .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.5); }
 .btn-ghost:hover { background: rgba(255,255,255,.22); color: #fff; }
-.btn-outline { background: transparent; color: var(--blue); border-color: var(--blue); }
-.btn-outline:hover { background: var(--blue); color: #fff; }
+.btn-outline { background: transparent; color: var(--blue-deep); border-color: var(--blue-deep); }
+.btn-outline:hover { background: var(--blue-deep); color: #fff; }
+/* In-Text-Links: zusätzlich zur Farbe per Unterstrich erkennbar (WCAG 1.4.1) */
+p a:not(.btn):not(.btn-cta):not(.btn-outline):not(.btn-ghost), .consent a, .cookie-banner a, .mc-legal a, .callout a {
+  text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px;
+}
+/* Karten-Ueberschriften auf Top-Level-Sektionen als h2 – optisch wie h3 (saubere Heading-Hierarchie) */
+.card h2 { font-size: 1.3rem; font-weight: 750; letter-spacing: -.01em; line-height: 1.25; margin-bottom: .4em; }
+.tip h2 { font-size: 1.15rem; font-weight: 750; display: flex; align-items: center; gap: 10px; }
+.tip h2 .ic { color: var(--teal); flex: none; }
+/* Horizontal scrollbare Tabellen per Tastatur erreichbar (WCAG 2.1.1) */
+.table-wrap:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 2px; }
 .btn-lg { padding: 18px 40px; font-size: 1.18rem; }
 
 /* ---------- Header / Nav ---------- */
@@ -577,7 +587,7 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
   padding: 18px 22px;
   margin: 22px 0;
 }
-.callout strong { color: var(--blue); }
+.callout strong { color: var(--blue-deep); } /* 5,07:1 auf hellem Callout-Bg (WCAG AA) */
 
 /* ---------- Contact form ---------- */
 .form-wrap {
@@ -630,7 +640,7 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
   grid-template-columns: 1.4fr 1fr 1fr;
   gap: 36px;
 }
-.site-footer h4 { color: #fff; font-size: 1rem; margin-bottom: 16px; }
+.site-footer h2 { color: #fff; font-size: 1rem; margin-bottom: 16px; }
 .site-footer a { color: #c7d2fe; }
 .site-footer a:hover { color: #fff; }
 .footer-links { list-style: none; padding: 0; margin: 0; }
@@ -808,15 +818,16 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 .lead { font-size: 1.22rem; }
 .skip-link {
   position: absolute;
-  left: -999px;
-  top: 0;
+  left: 8px;
+  top: -60px; /* richtungsneutral ausgeblendet (funktioniert auch in RTL) */
   background: #fff;
-  color: var(--blue);
+  color: var(--blue-deep); /* 5,69:1 auf Weiss (WCAG AA) */
   padding: 10px 16px;
   z-index: 2000;
   border-radius: 0 0 8px 0;
+  transition: top .15s ease;
 }
-.skip-link:focus { left: 0; }
+.skip-link:focus { top: 8px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
@@ -882,7 +893,7 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 .member .role-chip {
   display: inline-block;
   background: var(--bg-blue-soft);
-  color: var(--blue-dark);
+  color: var(--blue-deep); /* 5,07:1 auf hellem Chip-Bg (WCAG AA) */
   font-size: .8rem;
   font-weight: 700;
   padding: 5px 12px;
@@ -1488,8 +1499,8 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
   background: linear-gradient(90deg, var(--cyan), var(--blue), var(--teal));
 }
 .footer-brand strong { font-size: 1.24rem; letter-spacing: -.01em; }
-.site-footer h4 { position: relative; padding-bottom: 10px; }
-.site-footer h4::after {
+.site-footer h2 { position: relative; padding-bottom: 10px; }
+.site-footer h2::after {
   content: ""; position: absolute; left: 0; bottom: 0; width: 26px; height: 2px;
   border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--teal));
 }
@@ -1696,7 +1707,7 @@ section { padding: 118px 0; }
    spiegelt den Logo-Verlauf „Medi"(Teal) → „care"(Blau)
    ========================================================= */
 .eyebrow::before { background: linear-gradient(90deg, var(--blue), var(--navy)); }
-.site-footer h4::after { background: linear-gradient(90deg, var(--blue), #2f86c0); }
+.site-footer h2::after { background: linear-gradient(90deg, var(--blue), #2f86c0); }
 .assure::before { background: linear-gradient(180deg, var(--blue), var(--navy)); }
 a:hover { color: var(--navy); }
 .contact-info a:not(.btn):hover, .footer-links a:hover { color: inherit; }
