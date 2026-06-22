@@ -2042,3 +2042,11 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 .cta-band .btn-cta:hover { background: var(--teal-dark) !important; }
 .cta-band .btn-ghost, .cta-band .btn-outline { background: transparent !important; color: #0a4f7e !important; border-color: #0a4f7e !important; }
 .cta-band .btn-ghost:hover, .cta-band .btn-outline:hover { background: #0a4f7e !important; color: #fff !important; }
+
+/* ---- Logo-Kombi: Unterseiten-Hero hell ---- */
+.page-hero { background: linear-gradient(170deg,#f3fbfc 0%,#ffffff 100%) !important; color: var(--ink) !important; border-bottom: 1px solid #e8eef0; }
+.page-hero::before { display: none !important; }
+.page-hero h1 { color: var(--ink) !important; }
+.page-hero p { color: var(--muted) !important; }
+.breadcrumb { color: var(--muted) !important; }
+.breadcrumb a { color: #00727b !important; }
