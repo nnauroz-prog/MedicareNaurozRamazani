@@ -2085,3 +2085,8 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
   .nav-links { background: #ffffff !important; border: 1px solid #e7eef0 !important; box-shadow: 0 14px 32px rgba(16,42,67,.14) !important; }
   .nav-links a.active { background: rgba(10,91,158,.08) !important; }
 }
+
+/* ---- Logo-Kombi: heller Trust-Streifen (Hell & luftig) ---- */
+.trust-bar { background: #f1f8f9 !important; color: #1f2933 !important; border-top: 1px solid #e3eef0 !important; border-bottom: 1px solid #e3eef0 !important; }
+.trust-bar .badge { color: #1f2933 !important; }
+.trust-bar .badge svg { background: #16A3B4 !important; color: #ffffff !important; }
