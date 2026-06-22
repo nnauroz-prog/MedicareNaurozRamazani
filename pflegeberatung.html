@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Wartungsmodus / Zugangs-Gate (Code-geschützt) -->
+  <script>
+  (function () {
+    var KEY = "medicare_gate_v1", CODE = "MEDICARE";
+    try { if (localStorage.getItem(KEY) === "1") return; } catch (e) {}
+    var d = document, root = d.documentElement;
+    root.classList.add("mc-locked");
+    var st = d.createElement("style");
+    st.textContent =
+      "html.mc-locked{overflow:hidden}" +
+      "html.mc-locked body>*:not(#mc-gate){display:none!important}" +
+      "#mc-gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;" +
+      "font-family:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#fff;" +
+      "background:radial-gradient(1100px 520px at 78% -12%,rgba(120,225,235,.30),transparent 62%),radial-gradient(760px 420px at 8% 8%,rgba(26,79,138,.42),transparent 60%),linear-gradient(157deg,#04b3bd 0%,#007781 52%,#0a5f73 100%)}" +
+      "#mc-gate .mc-card{width:100%;max-width:420px;background:#fff;color:#1f2933;border-radius:22px;padding:38px 32px 30px;text-align:center;box-shadow:0 30px 80px rgba(0,30,40,.40);animation:mcIn .5s cubic-bezier(.2,.7,.3,1)}" +
+      "@keyframes mcIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}" +
+      "#mc-gate .mc-brand{font-size:1.7rem;font-weight:800;letter-spacing:-.02em;color:#00838c}" +
+      "#mc-gate .mc-sub{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#51606e;margin-top:2px}" +
+      "#mc-gate .mc-lock{width:62px;height:62px;border-radius:50%;margin:22px auto 14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#00afb9,#00838c);color:#fff}" +
+      "#mc-gate h1{font-size:1.5rem;margin:0 0 8px;color:#1a4f8a;font-weight:800}" +
+      "#mc-gate p{font-size:1rem;line-height:1.6;color:#51606e;margin:0 0 22px}" +
+      "#mc-gate form{display:flex;flex-direction:column;gap:12px}" +
+      "#mc-gate input{width:100%;padding:15px 18px;font-size:1.05rem;text-align:center;letter-spacing:.18em;border:2px solid #e5e7eb;border-radius:14px;outline:none;transition:border-color .2s,box-shadow .2s}" +
+      "#mc-gate input:focus{border-color:#00afb9;box-shadow:0 0 0 4px rgba(0,175,185,.16)}" +
+      "#mc-gate button{width:100%;padding:15px 18px;font-size:1.08rem;font-weight:800;color:#fff;border:0;border-radius:14px;cursor:pointer;background:linear-gradient(180deg,#11a394,#0d9488);box-shadow:0 8px 20px rgba(13,148,136,.30);transition:transform .15s,box-shadow .2s}" +
+      "#mc-gate button:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(13,148,136,.38)}" +
+      "#mc-gate .mc-err{display:none;color:#c0392b;font-weight:700;font-size:.95rem;margin-top:2px}" +
+      "#mc-gate.shake .mc-card{animation:mcShake .4s}" +
+      "@keyframes mcShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}" +
+      "#mc-gate .mc-legal{margin-top:22px;font-size:.82rem;color:#8a97a6}" +
+      "#mc-gate .mc-legal a{color:#0b7d72;font-weight:700;text-decoration:none}" +
+      "#mc-gate .mc-legal a:hover{text-decoration:underline}";
+    d.head.appendChild(st);
+    function build() {
+      if (d.getElementById("mc-gate")) return;
+      var g = d.createElement("div");
+      g.id = "mc-gate";
+      g.setAttribute("role", "dialog");
+      g.setAttribute("aria-modal", "true");
+      g.setAttribute("aria-label", "Wartungsmodus \u2013 Zugangscode erforderlich");
+      g.innerHTML =
+        '<div class="mc-card">' +
+          '<div class="mc-brand">Medicare</div>' +
+          '<div class="mc-sub">Nauroz &amp; Ramazani \u00b7 Hamburg</div>' +
+          '<div class="mc-lock"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>' +
+          '<h1>Wartungsmodus</h1>' +
+          '<p>Unsere neue Website wird gerade mit Sorgfalt fertiggestellt. Bitte geben Sie Ihren Zugangscode ein.</p>' +
+          '<form novalidate>' +
+            '<input type="password" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Zugangscode" aria-label="Zugangscode" />' +
+            '<button type="submit">Eintreten</button>' +
+            '<div class="mc-err" role="alert">Code nicht korrekt \u2013 bitte erneut versuchen.</div>' +
+          '</form>' +
+          '<div class="mc-legal"><a href="impressum.html">Impressum</a> \u00b7 <a href="datenschutz.html">Datenschutz</a></div>' +
+        '</div>';
+      d.body.appendChild(g);
+      var form = g.querySelector("form"), inp = g.querySelector("input"), err = g.querySelector(".mc-err");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (inp.value.trim().toUpperCase() === CODE) {
+          try { localStorage.setItem(KEY, "1"); } catch (e) {}
+          g.parentNode && g.parentNode.removeChild(g);
+          root.classList.remove("mc-locked");
+        } else {
+          err.style.display = "block";
+          g.classList.remove("shake"); void g.offsetWidth; g.classList.add("shake");
+          inp.value = ""; inp.focus();
+        }
+      });
+      g.addEventListener("keydown", function (ev) {
+        if (ev.key !== "Tab") return;
+        var f = g.querySelectorAll("input,button,a[href]");
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+        else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+      });
+      try { inp.focus(); } catch (e) {}
+    }
+    if (d.body) build(); else d.addEventListener("DOMContentLoaded", build);
+  })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="color-scheme" content="light" />
+  <title>Pflegeberatung § 37.3 · Nauroz & Ramazani Hamburg</title>
+  <meta name="description" content="Pflegeberatung nach § 37 Abs. 3 SGB XI in Hamburg: Pflichtberatungsbesuche für Pflegegeld-Empfänger – kompetent durchgeführt und dokumentiert." />
+  <meta name="author" content="Nadim Nauroz, Farhad Ramazani" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="style.css?v=35" />
+  <!-- SEO / Social -->
+  <link rel="canonical" href="https://nnauroz-prog.github.io/medicarenaurozramazani/pflegeberatung.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://nnauroz-prog.github.io/medicarenaurozramazani/pflegeberatung.html" />
+  <meta property="og:title" content="Pflegeberatung § 37.3 · Nauroz & Ramazani Hamburg" />
+  <meta property="og:description" content="Pflegeberatung nach § 37 Abs. 3 SGB XI in Hamburg: Pflichtberatungsbesuche für Pflegegeld-Empfänger – kompetent durchgeführt und dokumentiert." />
+  <meta property="og:image" content="https://nnauroz-prog.github.io/medicarenaurozramazani/og-image.jpg?v=6" />
+  <meta property="og:locale" content="de_DE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pflegeberatung § 37.3 · Nauroz & Ramazani Hamburg" />
+  <meta name="twitter:description" content="Pflegeberatung nach § 37 Abs. 3 SGB XI in Hamburg: Pflichtberatungsbesuche für Pflegegeld-Empfänger – kompetent durchgeführt und dokumentiert." />
+  <meta name="twitter:image" content="https://nnauroz-prog.github.io/medicarenaurozramazani/og-image.jpg?v=6" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Start",
+      "item": "https://nnauroz-prog.github.io/medicarenaurozramazani/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Leistungen",
+      "item": "https://nnauroz-prog.github.io/medicarenaurozramazani/leistungen.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Pflegeberatung § 37.3",
+      "item": "https://nnauroz-prog.github.io/medicarenaurozramazani/pflegeberatung.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Startseite Medicare Nauroz & Ramazani">
+        <img decoding="async" class="brand-logo" src="logo-color-header.png" width="1823" height="311" alt="Medicare – Hamburgs Gesundheits- und Seniorenpflege" />
+        <span class="brand-sub">Nauroz &amp; Ramazani</span>
+      </a>
+      <nav aria-label="Hauptnavigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Start</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="leistungen.html" class="active">Leistungen</a></li>
+          <li><a href="gebiete.html">Gebiete</a></li>
+          <li><a href="praevention.html">Prävention</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li class="nav-a11y"><span role="group" aria-label="Schriftgröße ändern"><button type="button" class="a11y-btn" data-font="dec" aria-label="Schrift verkleinern">A−</button><button type="button" class="a11y-btn" data-font="inc" aria-label="Schrift vergrößern">A+</button></span></li>
+          <li class="nav-cta"><a href="tel:+491607621876"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Anrufen</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Start</a> / <a href="leistungen.html">Leistungen</a> / Pflegeberatung § 37.3</div>
+        <h1>Pflegeberatung § 37.3</h1>
+        <p>Pflichtberatung für Pflegegeld-Empfänger – kompetent und auf Augenhöhe.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container prose reveal service-lead">
+        <h2>Der Pflichtberatungsbesuch – einfach und kompetent</h2>
+        <p>Wer Pflegegeld bezieht, muss regelmäßig einen Beratungsbesuch nach § 37 Abs. 3 SGB XI nachweisen. Wir führen diesen Besuch kompetent und in angenehmer Atmosphäre durch, geben praktische Tipps und übernehmen die Dokumentation gegenüber Ihrer Pflegekasse.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="grid grid-2 service-cards">
+          <article class="card reveal"><div class="icon-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h2>Pflichtberatungsbesuch</h2><p>Regelmäßiger Beratungsbesuch nach § 37.3 – fachkundig und in angenehmer Atmosphäre.</p></article>
+          <article class="card reveal"><div class="icon-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><h2>Tipps für Angehörige</h2><p>Praktische Hinweise zu Pflege, Hilfsmitteln und Entlastung – verständlich erklärt.</p></article>
+          <article class="card reveal"><div class="icon-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg></div><h2>Dokumentation für die Kasse</h2><p>Wir dokumentieren den Besuch korrekt und übermitteln den Nachweis an Ihre Pflegekasse.</p></article>
+        </div>
+        <div class="hero-cta reveal" style="margin-top:28px;">
+          <a class="btn btn-cta btn-lg" href="kontakt.html">Zur Beratung</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft">
+      <div class="container">
+        <div class="grid grid-2" style="align-items:center;">
+          <div class="service-summary reveal">
+            <h2>Unsere Leistungen im Überblick</h2>
+            <p>Pflegeberatung § 37.3 bei Nauroz &amp; Ramazani:</p>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Pflichtberatungsbesuche nach § 37 Abs. 3 SGB XI</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Praktische Tipps für pflegende Angehörige</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Korrekte Dokumentation für die Pflegekasse</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Fester, vertrauter Ansprechpartner</li>
+            </ul>
+          </div>
+          <figure class="about-photo reveal" style="margin:0;">
+            <picture><source type="image/webp" srcset="foto-team-560.webp 560w, foto-team-800.webp 800w" sizes="(max-width: 700px) 92vw, 46vw" /><img decoding="async" src="foto-team-800.jpg" srcset="foto-team-560.jpg 560w, foto-team-800.jpg 800w" sizes="(max-width: 700px) 92vw, 46vw" alt="Nadim Nauroz und Farhad Ramazani – Ihr Pflegeteam in Hamburg" width="800" height="818" loading="lazy" /></picture>
+            <figcaption style="margin-top:10px;color:var(--muted);font-size:.92rem;">Ihr persönliches Pflegeteam: Nadim &amp; Farhad</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container reveal">
+        <h2>Beratungsbesuch fällig?</h2>
+        <p>Vereinbaren Sie Ihren Termin – wir kümmern uns um den Rest.</p>
+        <div class="hero-cta" style="justify-content:center;">
+          <a class="btn btn-cta btn-lg" href="tel:+491607621876"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Anrufen · 24/7</a>
+          <a class="btn btn-ghost btn-lg" href="kontakt.html">Kontakt aufnehmen</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong>Nadim Nauroz &amp; Farhad Ramazani</strong>
+          <span class="tag">Ihre Pflegefachkräfte in Hamburg</span>
+          <p style="margin-top:14px;max-width:320px;">Medicare – persönliche ambulante Pflege, die sich Zeit nimmt. Kassenzugelassen, alle Kassen & privat.</p>
+          <p style="margin-top:10px;font-size:.82rem;"><a href="https://www.medicare-hamburg.de/" target="_blank" rel="noopener">Teil von Medicare Hamburg ↗</a></p>
+          <p style="margin-top:12px;font-size:.78rem;color:#8fa0cf;line-height:1.55;">Zugelassener ambulanter Pflegedienst nach § 72 SGB XI · innerhalb der MBD Medicare Brigitte Dornia GmbH &amp; Co. KG, Hamburg</p>
+        </div>
+        <div><h2>Navigation</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Start</a></li>
+            <li><a href="ueber-uns.html">Über uns</a></li>
+            <li><a href="leistungen.html">Leistungen</a></li>
+            <li><a href="gebiete.html">Gebiete</a></li>
+            <li><a href="praevention.html">Prävention</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="pflegepolitik.html">Pflegepolitik</a></li>
+            <li><a href="digitalisierung.html">Digitalisierung</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div><h2>Kontakt & Recht</h2>
+          <ul class="footer-links">
+            <li><a href="tel:+491607621876"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Anrufen (24/7)</a></li>
+            <li><a href="mailto:nnauroz@live.de"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg> nnauroz@live.de</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+            <li><a href="barrierefreiheit.html">Barrierefreiheit</a></li>
+            <li><a href="https://www.medicare-hamburg.de/" target="_blank" rel="noopener">Zur Hauptseite ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© <span data-year>2026</span> Nadim Nauroz & Farhad Ramazani · Medicare Hamburg — Ihre Pflegefachkräfte in Hamburg.</div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/491607621876" target="_blank" rel="noopener" aria-label="WhatsApp Chat starten">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
+  <button class="back-to-top" aria-label="Nach oben scrollen"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
+  <div class="call-bar"><a href="tel:+491607621876"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Jetzt anrufen</a></div>
+  <div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
+    <p>Diese Website verwendet nur technisch notwendige Speicherung (localStorage) für diesen Hinweis. Es werden keine Tracking-Cookies gesetzt. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    <div class="actions"><button class="btn btn-cta" data-cookie-accept>Verstanden</button></div>
+  </div>
+  <script src="script.js?v=20"></script>
+  <script src="i18n.js?v=2" defer></script>
+</body>
+</html>
