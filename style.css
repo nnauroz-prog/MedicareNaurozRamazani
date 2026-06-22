@@ -1991,3 +1991,33 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 /* Flex-Überschriften mit Icon: Textspalte darf schrumpfen (sonst sprengen
    lange Wörter, z. B. im Russischen, den Container) */
 .h-plain { min-width: 0; }
+
+/* ============================================================
+   Logo-Kombi: heller Hero (Tuerkis + Blau auf Weiss)
+   Finaler Override – weniger grosse dunkle Flaeche, mehr Weiss.
+   ============================================================ */
+.hero {
+  background:
+    radial-gradient(900px 440px at 88% -18%, rgba(0,175,185,.10), transparent 60%),
+    #ffffff !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid #e8eef0;
+}
+.hero::after { display: none !important; }
+.hero h1 { color: var(--ink) !important; }
+.hero h1 .accent { color: #00838c !important; }      /* Logo-Tuerkis, AA auf Weiss */
+.hero .lead { color: var(--muted) !important; }
+.hero .role {
+  background: rgba(0,131,140,.10) !important;
+  border-color: rgba(0,131,140,.28) !important;
+  color: #016b73 !important;
+}
+.hero .btn-cta { background: var(--teal) !important; color: #fff !important; box-shadow: 0 8px 20px rgba(11,125,114,.22) !important; }
+.hero .btn-cta:hover { background: var(--teal-dark) !important; color: #fff !important; }
+.hero .btn-ghost { background: transparent !important; color: #0a4f7e !important; border-color: #0a4f7e !important; }  /* Logo-Blau als Sekundaer-Akzent */
+.hero .btn-ghost:hover { background: #0a4f7e !important; color: #fff !important; }
+.hero-call { color: var(--muted) !important; }
+.hero-call a { color: #00727b !important; }
+.rating { color: var(--ink) !important; }
+.rating .stars { color: var(--teal) !important; }
+.hero .anchor-deco { opacity: .05 !important; color: #00838c !important; }
