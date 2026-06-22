@@ -2098,3 +2098,19 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 .trust-bar { background: #f1f8f9 !important; color: #1f2933 !important; border-top: 1px solid #e3eef0 !important; border-bottom: 1px solid #e3eef0 !important; }
 .trust-bar .badge { color: #1f2933 !important; }
 .trust-bar .badge svg { background: var(--brand-teal) !important; color: #ffffff !important; }
+
+/* ---- Leistungs-Detailseiten: "Leistungen im Überblick"-Box ---- */
+.service-summary { background: var(--blue-deep); color: #fff; border-radius: var(--radius); padding: 30px 30px 32px; box-shadow: var(--shadow); }
+.service-summary h2 { color: #fff; margin: 0 0 6px; }
+.service-summary > p { color: #d7f3f6; margin: 0 0 18px; }
+.service-summary ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+.service-summary li { display: flex; align-items: flex-start; gap: 12px; font-weight: 600; line-height: 1.4; }
+.service-summary li svg { flex: none; width: 22px; height: 22px; margin-top: 1px; color: #8fe3ec; }
+.service-cards .card h2 { font-size: 1.18rem; }
+.service-lead { max-width: 760px; }
+
+/* ---- Leistungs-Karte: "Mehr erfahren"-Link ---- */
+.card-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-weight: 700; color: var(--brand-blue); text-decoration: none; }
+.card-more span { transition: transform .2s; }
+.card-more:hover { color: var(--brand-blue-hover); text-decoration: none; }
+.card-more:hover span { transform: translateX(4px); }
