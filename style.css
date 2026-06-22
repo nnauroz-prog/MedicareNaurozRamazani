@@ -2050,3 +2050,38 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 .page-hero p { color: var(--muted) !important; }
 .breadcrumb { color: var(--muted) !important; }
 .breadcrumb a { color: #00727b !important; }
+
+/* ---- Logo-Kombi: heller Footer (Hell & luftig) ---- */
+.site-footer { background: #f6fbfc !important; color: var(--ink) !important; border-top: 1px solid #e3eaec !important; }
+.site-footer::before { display: none !important; }
+.site-footer h2 { color: var(--ink) !important; }
+.site-footer h2::after { background: #16A3B4 !important; }
+.site-footer a { color: #0A5B9E !important; }
+.site-footer a:hover { color: #084a82 !important; }
+.footer-brand strong { color: var(--ink) !important; }
+.footer-brand .tag { color: var(--muted) !important; }
+.site-footer p, .footer-brand p, .footer-bottom { color: var(--muted) !important; }
+.footer-bottom { border-top-color: #e3eaec !important; }
+
+/* ---- Logo-Kombi: weisser Header (Hell & luftig) ---- */
+.site-header { background: #ffffff !important; color: var(--ink) !important; box-shadow: inset 0 -1px 0 #e7eef0, 0 6px 18px rgba(16,42,67,.06) !important; }
+.brand, .brand:hover { color: var(--ink) !important; }
+.brand-sub { color: var(--muted) !important; border-left-color: #d7dee1 !important; }
+.nav-links a { color: #1f2933 !important; }
+.nav-links a:hover { background: rgba(22,163,180,.10) !important; color: #0a5b9e !important; }
+.nav-links a.active { color: #0a5b9e !important; background: rgba(10,91,158,.08) !important; }
+.nav-cta a { background: #0A5B9E !important; color: #fff !important; }
+.nav-cta a:hover { background: #084a82 !important; }
+.lang-btn { background: #f1f6f7 !important; border-color: #d7dee1 !important; color: #1f2933 !important; }
+.lang-btn:hover { background: #e7eef0 !important; border-color: #c3ccd0 !important; }
+.lang-btn .lang-cur, .lang-btn .ico { color: #1f2933 !important; }
+.a11y-btn { color: #1f2933 !important; border-color: #d7dee1 !important; }
+.a11y-btn:hover { background: #eef3f4 !important; }
+.nav-toggle { color: #1f2933 !important; }
+.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { background: #1f2933 !important; }
+
+/* Mobiles Menü-Panel weiss (passend zum hellen Header) */
+@media (max-width: 1024px) {
+  .nav-links { background: #ffffff !important; border: 1px solid #e7eef0 !important; box-shadow: 0 14px 32px rgba(16,42,67,.14) !important; }
+  .nav-links a.active { background: rgba(10,91,158,.08) !important; }
+}
