@@ -161,7 +161,7 @@
     if (!float) return;
 
     var people = [
-      { name: "Nadim Nauroz", area: "Wilhelmsburg, Harburg & ganz Hamburg", num: "491607621876" },
+      { name: "Nadim Nauroz", area: "Team Leiter Eilbek, Harburg und Wilhelmsburg", num: "491607621876" },
       { name: "Farhad Ramazani", area: "Wilhelmsburg, Harburg & ganz Hamburg", num: "4917631730827" }
     ];
 
