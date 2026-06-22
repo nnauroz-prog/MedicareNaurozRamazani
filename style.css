@@ -2021,3 +2021,24 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 .rating { color: var(--ink) !important; }
 .rating .stars { color: var(--teal) !important; }
 .hero .anchor-deco { opacity: .05 !important; color: #00838c !important; }
+
+/* ---- Logo-Kombi: helle Inhaltssektionen (weniger Blau) ---- */
+.switch-band { background: linear-gradient(170deg,#f3fbfc 0%,#ffffff 100%) !important; color: var(--ink) !important; }
+.switch-band h2, .switch-step h3 { color: var(--ink) !important; }
+.switch-step p, .switch-cta .switch-note { color: var(--muted) !important; }
+.switch-band .eyebrow { color: #016b73 !important; }
+.switch-num { color: #00838c !important; }
+.switch-band .btn-cta { background: var(--teal) !important; color: #fff !important; }
+.switch-band .btn-cta:hover { background: var(--teal-dark) !important; }
+
+.counters { background: linear-gradient(170deg,#f3fbfc 0%,#ffffff 100%) !important; color: var(--ink) !important; border-top:1px solid #e8eef0; border-bottom:1px solid #e8eef0; }
+.counter-num { color: #00838c !important; }
+.counter-label { color: var(--muted) !important; }
+
+.cta-band { background: linear-gradient(170deg,#eef7f8 0%,#f6fbfc 100%) !important; color: var(--ink) !important; }
+.cta-band h2 { color: var(--ink) !important; }
+.cta-band p, .cta-band .cta-reassure { color: var(--muted) !important; }
+.cta-band .btn-cta { background: var(--teal) !important; color: #fff !important; }
+.cta-band .btn-cta:hover { background: var(--teal-dark) !important; }
+.cta-band .btn-ghost, .cta-band .btn-outline { background: transparent !important; color: #0a4f7e !important; border-color: #0a4f7e !important; }
+.cta-band .btn-ghost:hover, .cta-band .btn-outline:hover { background: #0a4f7e !important; color: #fff !important; }
