@@ -27,10 +27,21 @@ Im Header gibt es einen **Sprach-Umschalter** (Globus-Symbol). Verfügbar:
   die Übersetzungen index-gleich in `i18n/<code>.array.json`. Nach Änderungen
   `python3 i18n/_build.py` ausführen – das erzeugt die geladenen `i18n/<code>.json`.
 
-## Markenfarben (exakt aus dem Logo)
-- **Teal `#00afb9`** – „Medi", Anker, Header/Hero, Akzente
-- **„care"-Blau `#0a6ca9`** – Bänder (Counter/Wechsel), Footer, Icon-Kacheln, Zwischentitel
-- CTA-Teal `#0d9488` (solide) · Icon-Kacheln laufen Teal→Blau wie der Schriftzug
+## Design-System & Markenfarben (zentrale Tokens in `style.css :root`)
+Helles „Logo-auf-Weiß"-Design (Hell & luftig): **weißer Header mit Farb-Logo**,
+weiße Inhaltssektionen, **heller Footer**, helles Trust-Band. Akzente exakt aus
+dem Logo, als **CSS-Custom-Properties zentral gepflegt** – eine Quelle der
+Wahrheit, Markenfarbe ändern = nur hier:
+- `--brand-teal: #16A3B4` – Logo-Türkis · große Headlines, Zahlen, Icons, Dekor (Großtext/UI ≥ 3:1)
+- `--brand-blue: #0068A7` – Logo-Blau · Text, Links, Buttons (WCAG-AA 5,94:1)
+- `--brand-blue-hover: #00527f` – Hover/aktiv (Blau)
+
+> Hinweis CI ↔ Barrierefreiheit: Das **pixelgenaue** Logo-Türkis `#00A8B9` erreicht
+> nur 2,88:1 und ist für Text **nicht** WCAG-AA-konform; `#16A3B4` ist der
+> nächstliegende lesbare Ton. `#0068A7` ist das pixelgenaue Logo-Blau (AA-tauglich).
+
+Die Theme-/Light-Regeln liegen als dokumentierter Override-Block am Ende von
+`style.css` und nutzen durchgängig die obigen Tokens.
 
 ## Seiten (Tabs)
 - `index.html` – Start: Hero · Empathie · Wechsel · „Was uns unterscheidet" · Leistungen ·
@@ -54,8 +65,15 @@ Mobile-Navigation · FAQ-Akkordeon + Live-Suche · statische Kennzahlen · Scrol
 WhatsApp, solange Formspree nicht eingerichtet ist) · CTA-Bestätigungszeile.
 **Sprach-Umschalter** (`i18n.js`, DE/EN/TR/RU/FA, inkl. RTL) – siehe oben.
 
+**Fehlertoleranz (Hardening):** Jedes Modul läuft isoliert (`safe()`-Wrapper) –
+ein Fehler in einem Modul stoppt die anderen nicht (keine dauerhaft unsichtbaren
+Inhalte/„leeren Boxen"). `initReveal` registriert seine Sichtbarkeits-Failsafes
+zuerst. Formularversand per `fetch` mit Graceful-Fallback (nie eine Fehlerseite)
+und Doppelklick-Schutz. Defekte Bilder: `<picture>`-WebP/JPEG-Fallback +
+Initialen-Fallback für Portraits.
+
 ## Assets
-- `logo-white.png` (Header, optimiert), `favicon.svg`, `apple-touch-icon.png`
+- `logo-color-header.png` (Header-Farb-Logo, aus `logo-color.png` ohne Tagline zugeschnitten), `favicon.svg`, `apple-touch-icon.png` · (`logo-white.png` ist seit dem hellen Header ungenutzt)
 - `og-image.jpg` – Vorschaubild fürs Teilen (1200×630, ohne Bewertungs-Angabe)
 - `foto-team.jpg` (Hero), `IMG_7363.jpeg` (Nadim), `IMG_0631.jpeg` (Farhad) – optimiert
 - `i18n/` – Wörterbücher (`en/tr/ru/fa.json`), Quell-Strings & Build-Skript (`_build.py`)
