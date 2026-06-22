@@ -2114,3 +2114,17 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 .card-more span { transition: transform .2s; }
 .card-more:hover { color: var(--brand-blue-hover); text-decoration: none; }
 .card-more:hover span { transform: translateX(4px); }
+
+/* ---- Hero: dekorative Marken-Form hinter dem Team-Foto (Agentur-Look) ---- */
+.hero-photos { position: relative; }
+.hero-photos::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -7% -8% -10% -8%;
+  background: linear-gradient(150deg, rgba(var(--brand-teal-rgb), .22) 0%, rgba(var(--brand-blue-rgb), .15) 100%);
+  border-radius: 44% 56% 57% 43% / 54% 45% 55% 46%;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+.hero-photos > * { position: relative; z-index: 1; }
