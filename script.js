@@ -491,10 +491,36 @@
         if (first && first.focus) first.focus();
         return;
       }
-      if ((form.getAttribute("action") || "").indexOf("YOUR_FORM_ID") !== -1) {
+      var action = form.getAttribute("action") || "";
+
+      // Platzhalter noch aktiv: keine Anfrage ins Leere – freundlicher Fallback.
+      if (action.indexOf("YOUR_FORM_ID") !== -1) {
         e.preventDefault();
         showFallback();
+        return;
       }
+
+      // Echtes Endpoint: per fetch absenden. Ein Fehler (Formspree/Netz down)
+      // endet so NIE auf einer Browser-Fehlerseite, sondern im Fallback.
+      if (window.fetch && window.FormData) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var label = btn ? btn.textContent : "";
+        if (btn) { btn.disabled = true; btn.textContent = "Wird gesendet…"; } // Doppelklick-Schutz
+        fetch(action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+        }).then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          var nextEl = form.querySelector('input[name="_next"]');
+          window.location.href = (nextEl && nextEl.value) || "danke.html";
+        }).catch(function () {
+          if (btn) { btn.disabled = false; btn.textContent = label; }
+          showFallback();
+        });
+      }
+      // Ältere Browser ohne fetch: nativer POST greift unverändert.
     });
   }
 
