@@ -9,25 +9,37 @@
   // Markiert, dass JS aktiv ist – erst dann werden Reveal-Elemente versteckt
   document.documentElement.classList.add("js");
 
+  // Jede Init isoliert ausführen: ein Fehler in EINEM Modul darf die anderen
+  // niemals stoppen (sonst blieben z. B. Reveal-Inhalte unsichtbar = leere Boxen).
+  function safe(name, fn) {
+    try {
+      fn();
+    } catch (e) {
+      if (window.console && console.warn) {
+        console.warn("Medicare: Modul '" + name + "' übersprungen –", e && e.message);
+      }
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
-    initMobileNav();
-    initFAQ();
-    initFaqSearch();
-    initAreaChecker();
-    initCounters();
-    initReveal();
-    initBackToTop();
-    initCookieBanner();
-    initAvatarFallback();
-    initWhatsAppChooser();
-    initCallChooser();
-    initScrollProgress();
-    initFontControl();
-    initFormValidation();
-    initCtaReassure();
-    initScrollableTables();
+    safe("MobileNav", initMobileNav);
+    safe("FAQ", initFAQ);
+    safe("FaqSearch", initFaqSearch);
+    safe("AreaChecker", initAreaChecker);
+    safe("Counters", initCounters);
+    safe("Reveal", initReveal);
+    safe("BackToTop", initBackToTop);
+    safe("CookieBanner", initCookieBanner);
+    safe("AvatarFallback", initAvatarFallback);
+    safe("WhatsAppChooser", initWhatsAppChooser);
+    safe("CallChooser", initCallChooser);
+    safe("ScrollProgress", initScrollProgress);
+    safe("FontControl", initFontControl);
+    safe("FormValidation", initFormValidation);
+    safe("CtaReassure", initCtaReassure);
+    safe("ScrollableTables", initScrollableTables);
     // 3D-Tilt bewusst deaktiviert: ruhiger & seniorenfreundlicher
-    setYear();
+    safe("Year", setYear);
   });
 
   /* ---- Horizontal scrollbare Tabellen per Tastatur bedienbar (WCAG 2.1.1) ---- */
@@ -339,22 +351,27 @@
       els.forEach(function (el) { el.classList.add("visible"); });
     };
 
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-
-    els.forEach(function (el) { obs.observe(el); });
-
-    // Sicherheitsnetz: spätestens wenn die Seite fertig geladen ist, wird alles
-    // sichtbar – so bleibt nie etwas unsichtbar (z. B. ohne Scrollen / Screenshots)
+    // Sicherheitsnetz ZUERST registrieren: spätestens beim Laden / nach 1,5 s
+    // wird alles sichtbar – so bleibt nie etwas unsichtbar, selbst wenn die
+    // Observer-Erstellung unten fehlschlägt (kein Inhalt = keine leere Box).
     if (document.readyState === "complete") setTimeout(revealAll, 200);
     else window.addEventListener("load", function () { setTimeout(revealAll, 200); });
     setTimeout(revealAll, 1500);
+
+    try {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+      els.forEach(function (el) { obs.observe(el); });
+    } catch (e) {
+      revealAll();
+    }
   }
 
   /* ---- Back to top ---- */
