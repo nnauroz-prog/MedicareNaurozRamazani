@@ -48,7 +48,13 @@ Die Theme-/Light-Regeln liegen als dokumentierter Override-Block am Ende von
   Über-uns-Teaser · Gebiet · Kennzahlen · Qualität & Sicherheit · Ablauf · Versprechen · FAQ-Teaser · CTA
 - `ueber-uns.html` – Intro · Profile · „Auf einen Blick" · Pflegekonzepte/Fachstandards · Werte · Kennzahlen
 - `leistungen.html` – Leistungen · Versorgungssicherheit · „So arbeiten wir" · Spektrum ·
-  Pflegegeld/Sachleistung · Pflegegrade 2026 · Rechte
+  Pflegegeld/Sachleistung · Pflegegrade 2026 · Rechte (Karten verlinken auf die Detailseiten)
+- **Leistungs-Detailseiten** (Aufbau: Hero · Intro · Sub-Leistungs-Karten · „Zur Beratung" ·
+  Box „Leistungen im Überblick" + Foto · CTA; je Service-/BreadcrumbList-Schema):
+  `grundpflege.html` · `behandlungspflege.html` · `hauswirtschaft.html` ·
+  `verhinderungspflege.html` · `beratung.html` · `pflegeberatung.html`.
+  Erreichbar über die Startseiten-Karten („Mehr erfahren →"), die Leistungsseite und die
+  Footer-Spalte „Dienstleistungen". Neue Service generativ aus der Vorlage (eine `.card`-Struktur).
 - `gebiete.html` – Stadtteil-Checker · „Mitten in Hamburg" · Schwerpunkte (Wilhelmsburg/Harburg)
 - `praevention.html` – Vorbeugung laienverständlich (Sturz, Schmerz, Dekubitus, Pneumonie, Kinästhetik, Kontrakturen)
 - `faq.html` – Häufige Fragen mit Live-Suche (+ FAQPage-Schema)
