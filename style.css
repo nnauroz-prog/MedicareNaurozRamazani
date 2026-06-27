@@ -2140,3 +2140,64 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
     transform: rotate(-3deg);
   }
 }
+
+/* =========================================================
+   SYSTEM-KONSOLIDIERUNG v7 — EIN durchgängiges, professionelles
+   Layout-System über ALLE Seiten (Start + Unterseiten):
+   · klarer Vertikalrhythmus (gleiche Sektions-Abstände überall)
+   · saubere, sichtbare Trennung der Flächen („das Weiß trennen")
+   · drei klar unterscheidbare, aber ruhige Flächen-Ebenen
+   · einheitliche, etwas definiertere Karten (mehr Tiefe, weniger „flach")
+   Ziel: geschlossener, hochwertiger Gesamteindruck statt „zu einfach".
+   Dieser Block steht bewusst am Ende und ist die maßgebliche Quelle
+   für Rhythmus & Trennung – frühere, verstreute Regeln werden hier
+   gezielt zu einem konsistenten System zusammengeführt.
+   ========================================================= */
+
+:root {
+  --section-line: #dfe7ee;     /* ruhige, klar sichtbare Haarlinie zwischen Sektionen */
+  --tint-soft:  #eef3f7;       /* spürbarer, kühler Grundton (statt fast-weiß) */
+  --tint-blue:  #e4eef1;       /* zarte Teal-Bank für hervorgehobene Sektionen */
+}
+
+/* 1) Durchgängiger Rhythmus: identische Sektions-Höhe auf allen Seiten */
+section { padding: 96px 0; }
+@media (max-width: 760px) { section { padding: 64px 0; } }
+
+/* 2) Klare Trennung JEDER Sektion von der nächsten – auch Weiß-auf-Weiß.
+      Greift nur dort, wo keine eigene (stärkere) Trennlinie gesetzt ist. */
+main > section + section { border-top: 1px solid var(--section-line); }
+
+/* 3) Drei ruhige, klar unterscheidbare Flächen-Ebenen (Rhythmus wird sichtbar) */
+.section-soft       { background: var(--tint-soft); }
+.section-blue-soft  { background: var(--tint-blue); }
+/* Zwei gleiche Soft-Sektionen hintereinander trotzdem sauber trennen */
+.section-soft + .section-soft { border-top: 1px solid var(--section-line); }
+
+/* 4) Karten einheitlich & etwas definierter: feine Linie + ruhige, geschichtete
+      Tiefe (hebt sie sauber von der Fläche ab → wirkt wertiger, nicht „flach") */
+.card, a.card-link, .assure, .factsheet, .tip, .checker, .form-wrap, .reason, .contact-pill {
+  border: 1px solid #e3e9f0;
+  box-shadow: 0 1px 2px rgba(16,42,67,.04), 0 8px 22px rgba(16,42,67,.05);
+}
+.card:hover, a.card-link:hover, .assure:hover, .contact-pill:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(16,42,67,.11);
+  border-color: #cfdae6;
+}
+
+/* 5) Sektionsköpfe: ruhiger, klar gegliederter Auftakt (überall gleich) */
+.section-head { margin-bottom: 56px; }
+.section-head h2 { margin-bottom: .35em; }
+
+/* 6) Intro-/Lead-Sektionen der Detailseiten zentriert & ausbalanciert –
+      kein „leer schwebender" Text mehr am linken Rand */
+.service-lead { text-align: center; max-width: 760px; }
+.service-lead h2 { margin-bottom: .45em; }
+.service-lead p { font-size: 1.18rem; line-height: 1.72; color: var(--muted); }
+
+/* 7) Unterseiten-Kopf & Hero sauber zur ersten Inhaltssektion abgrenzen */
+.page-hero, .hero { border-bottom: 1px solid var(--section-line); }
+
+/* 8) „Leistungen im Überblick"-Box: zur ruhigen Tiefe passend rahmen */
+.service-summary { box-shadow: 0 10px 30px rgba(10,79,126,.16); }
