@@ -2232,3 +2232,43 @@ main > section + section { border-top: 1px solid var(--section-line); }
 
 /* Eyebrow-/Rollen-Label im Hero etwas klarer abgesetzt */
 .hero .role { box-shadow: 0 1px 2px rgba(0,131,140,.06); }
+
+/* =========================================================
+   KONTAKT v9 — ausbalancierte Zwei-Spalten-Komposition
+   Die „Direkt erreichen"-Spalte wird zu einem eigenständigen,
+   ruhigen Panel → gleiches visuelles Gewicht wie die Formular-Karte
+   (kein „nackter", leer wirkender Text mehr).
+   ========================================================= */
+.contact-aside {
+  background: linear-gradient(170deg, #eef7f8 0%, #f8fcfd 100%);
+  border: 1px solid #d9e7ea;
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: 0 1px 2px rgba(16,42,67,.04), 0 8px 22px rgba(16,42,67,.05);
+}
+.contact-aside-lead { color: var(--muted); margin: 0 0 22px; }
+
+/* Kontaktzeilen sauber gegliedert mit feinen Trennern */
+.contact-aside .contact-info li {
+  margin: 0; padding: 16px 0; border-top: 1px solid #dfeaec;
+}
+.contact-aside .contact-info li:first-child { border-top: 0; padding-top: 0; }
+.contact-aside .contact-info li:last-child { padding-bottom: 4px; }
+
+/* Vertrauens-Abschluss füllt den Raum sinnvoll & seriös */
+.contact-assure {
+  list-style: none; margin: 22px 0 0; padding: 20px 0 0;
+  border-top: 1px solid #dfeaec; display: grid; gap: 12px;
+}
+.contact-assure li {
+  display: flex; align-items: flex-start; gap: 11px;
+  font-weight: 600; color: var(--ink); line-height: 1.4;
+}
+.contact-assure svg { flex: none; width: 20px; height: 20px; margin-top: 2px; color: var(--teal); }
+
+/* Telefonnummer prominent, „speichern"-Link sauber auf eigener Zeile */
+.contact-aside .contact-info a[href^="tel"] { display: block; font-size: 1.05rem; font-weight: 700; }
+.contact-aside .contact-info .vcard-link {
+  display: inline-flex; margin-top: 5px; font-size: .85rem; font-weight: 600; color: var(--muted);
+}
+.contact-aside .contact-info .vcard-link:hover { color: var(--teal-dark); }
