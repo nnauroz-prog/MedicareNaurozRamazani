@@ -2201,3 +2201,34 @@ main > section + section { border-top: 1px solid var(--section-line); }
 
 /* 8) „Leistungen im Überblick"-Box: zur ruhigen Tiefe passend rahmen */
 .service-summary { box-shadow: 0 10px 30px rgba(10,79,126,.16); }
+
+/* =========================================================
+   HERO-PRÄSENZ v8 — der erste Eindruck soll souverän wirken,
+   nicht „leer/weiß". Dezente Marken-Tiefe (heller Teal-Verlauf),
+   identisch auf Start- & Unterseiten-Kopf (Konsistenz).
+   ========================================================= */
+
+/* Start-Hero: heller, mehrschichtiger Marken-Wash mit ruhiger Tiefe */
+.hero {
+  background:
+    radial-gradient(1150px 540px at 88% -22%, rgba(0,175,185,.16), transparent 58%),
+    radial-gradient(680px 420px at -8% 4%, rgba(0,104,167,.07), transparent 55%),
+    linear-gradient(168deg, #ecf6f8 0%, #f6fbfc 44%, #ffffff 100%) !important;
+  border-bottom: 1px solid var(--section-line) !important;
+}
+
+/* Unterseiten-Kopf im exakt gleichen Ton (nur kompakter) → durchgängiger Look */
+.page-hero {
+  background:
+    radial-gradient(820px 360px at 88% -26%, rgba(0,175,185,.15), transparent 58%),
+    linear-gradient(168deg, #ecf6f8 0%, #f6fbfc 56%, #ffffff 100%) !important;
+  border-bottom: 1px solid var(--section-line) !important;
+}
+
+/* Etwas konzentrierter: Inhalt sitzt souveräner, weniger Leerraum oben */
+.hero { padding: 76px 0 88px; }
+.page-hero { padding: 70px 0 76px; }
+@media (max-width: 760px) { .hero { padding: 52px 0 60px; } .page-hero { padding: 48px 0 52px; } }
+
+/* Eyebrow-/Rollen-Label im Hero etwas klarer abgesetzt */
+.hero .role { box-shadow: 0 1px 2px rgba(0,131,140,.06); }
