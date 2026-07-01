@@ -501,9 +501,9 @@
             '<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg> Per Videoanruf oder vor Ort</span>' +
           '</p>' +
         '</div>' +
-        '<div class="bcal-modes">' +
-          '<button type="button" data-mode="Per Videoanruf" class="is-active">Per Videoanruf</button>' +
-          '<button type="button" data-mode="Bei Ihnen vor Ort">Bei Ihnen vor Ort</button>' +
+        '<div class="bcal-modes" role="group" aria-label="Beratungsart wählen">' +
+          '<button type="button" data-mode="Per Videoanruf" class="is-active" aria-pressed="true">Per Videoanruf</button>' +
+          '<button type="button" data-mode="Bei Ihnen vor Ort" aria-pressed="false">Bei Ihnen vor Ort</button>' +
         '</div>' +
         '<div class="bcal-head">' +
           '<button type="button" class="bcal-nav" data-nav="-1" aria-label="Vorheriger Monat">‹</button>' +
@@ -528,8 +528,8 @@
     box.querySelectorAll(".bcal-modes button").forEach(function (b) {
       b.addEventListener("click", function () {
         mode = b.getAttribute("data-mode");
-        box.querySelectorAll(".bcal-modes button").forEach(function (x) { x.classList.remove("is-active"); });
-        b.classList.add("is-active");
+        box.querySelectorAll(".bcal-modes button").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
+        b.classList.add("is-active"); b.setAttribute("aria-pressed", "true");
         if (selSlot) renderConfirm();
       });
     });
@@ -560,11 +560,12 @@
         if (date < today || date.getDay() === 0) {
           btn.disabled = true;
         } else {
+          btn.setAttribute("aria-pressed", "false");
           btn.addEventListener("click", (function (dt, el) {
             return function () {
               selDay = dt; selSlot = null;
-              elDays.querySelectorAll("button").forEach(function (x) { x.classList.remove("is-selected"); });
-              el.classList.add("is-selected");
+              elDays.querySelectorAll("button").forEach(function (x) { x.classList.remove("is-selected"); if (!x.disabled) x.setAttribute("aria-pressed", "false"); });
+              el.classList.add("is-selected"); el.setAttribute("aria-pressed", "true");
               elConfirm.hidden = true;
               renderSlots();
             };
@@ -578,10 +579,11 @@
       elSlots.innerHTML = "";
       slots.forEach(function (s) {
         var b = document.createElement("button"); b.type = "button"; b.textContent = s;
+        b.setAttribute("aria-pressed", "false");
         b.addEventListener("click", function () {
           selSlot = s;
-          elSlots.querySelectorAll("button").forEach(function (x) { x.classList.remove("is-selected"); });
-          b.classList.add("is-selected");
+          elSlots.querySelectorAll("button").forEach(function (x) { x.classList.remove("is-selected"); x.setAttribute("aria-pressed", "false"); });
+          b.classList.add("is-selected"); b.setAttribute("aria-pressed", "true");
           renderConfirm();
         });
         elSlots.appendChild(b);
