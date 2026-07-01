@@ -2520,3 +2520,14 @@ main > section + section { border-top: 1px solid var(--section-line); }
 @media (prefers-reduced-motion: reduce) {
   .page-hero .container > * { animation: none !important; }
 }
+
+/* =========================================================
+   AUTO-DARK-SCHUTZ — Browser mit automatischem Dunkelmodus
+   (Chrome „Force Dark", In-App-Browser) dürfen unser helles,
+   geprüftes Design nicht umfärben. Offizieller Opt-out:
+   ========================================================= */
+:root { color-scheme: only light; }
+html, body { background-color: #ffffff; }
+/* Solide helle Grundfläche als Fallback, falls Verläufe gestrippt werden */
+.hero { background-color: #eef6f8 !important; }
+.page-hero { background-color: #eef6f8 !important; }
