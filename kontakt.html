@@ -93,7 +93,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
 <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="style.css?v=42" />
+  <link rel="stylesheet" href="style.css?v=43" />
   <!-- SEO / Social -->
   <link rel="canonical" href="https://nnauroz-prog.github.io/medicarenaurozramazani/kontakt.html" />
   <meta property="og:type" content="website" />
@@ -209,6 +209,18 @@
                       <option>Beratung allgemein</option>
                     </select>
                   </div>
+                  <div class="field">
+                    <label for="modus">Beratung: per Videoanruf oder vor Ort?</label>
+                    <select id="modus" name="Beratungsart">
+                      <option value="">Egal / bitte beraten Sie mich</option>
+                      <option>Per Videoanruf</option>
+                      <option>Bei mir vor Ort</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="termin">Wunschtermin (optional)</label>
+                    <input id="termin" name="Wunschtermin" type="text" autocomplete="off" placeholder="z. B. Mo–Fr vormittags" />
+                  </div>
                   <div class="field full">
                     <label for="message">Ihre Nachricht</label>
                     <textarea id="message" name="Nachricht" placeholder="Schildern Sie uns kurz Ihre Situation…"></textarea>
@@ -323,7 +335,7 @@
     <p>Diese Website verwendet nur technisch notwendige Speicherung (localStorage) für diesen Hinweis. Es werden keine Tracking-Cookies gesetzt. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
     <div class="actions"><button class="btn btn-cta" data-cookie-accept>Verstanden</button></div>
   </div>
-  <script src="script.js?v=20"></script>
+  <script src="script.js?v=21"></script>
   <script src="i18n.js?v=2" defer></script>
 </body>
 </html>

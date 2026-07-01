@@ -35,6 +35,7 @@
     safe("CallChooser", initCallChooser);
     safe("ScrollProgress", initScrollProgress);
     safe("FontControl", initFontControl);
+    safe("FormPrefill", initFormPrefill);
     safe("FormValidation", initFormValidation);
     safe("CtaReassure", initCtaReassure);
     safe("ScrollableTables", initScrollableTables);
@@ -407,6 +408,42 @@
         try { localStorage.setItem(KEY, "1"); } catch (e) {}
         banner.classList.remove("show");
       });
+    }
+  }
+
+  /* ---- Kontaktformular: Vorbelegung per URL (z. B. § 37.3 Videoanruf) ----
+     Deep-Links wie kontakt.html?leistung=pflegeberatung&modus=video wählen
+     die passende Leistung und die Beratungsart automatisch aus. */
+  function initFormPrefill() {
+    var form = document.getElementById("careForm");
+    if (!form || !window.URLSearchParams) return;
+    var params = new URLSearchParams(window.location.search);
+    if (!params.toString()) return;
+
+    // Wählt in einem <select> die Option, deren Text den Suchbegriff enthält
+    var selectByText = function (id, needle) {
+      var sel = document.getElementById(id);
+      if (!sel || !needle) return;
+      var want = needle.toLowerCase();
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.toLowerCase().indexOf(want) !== -1) { sel.selectedIndex = i; break; }
+      }
+    };
+
+    var leistung = (params.get("leistung") || "").toLowerCase();
+    if (leistung.indexOf("pfleg") !== -1 || leistung.indexOf("37") !== -1) {
+      selectByText("leistung", "37.3");
+    } else if (leistung) {
+      selectByText("leistung", leistung);
+    }
+
+    var modus = (params.get("modus") || "").toLowerCase();
+    if (modus === "video" || modus.indexOf("video") !== -1) selectByText("modus", "videoanruf");
+    else if (modus === "vorort" || modus.indexOf("ort") !== -1) selectByText("modus", "vor ort");
+
+    // Formular sanft in den Blick rücken (falls kein #-Anker greift)
+    if ((leistung || modus) && !window.location.hash) {
+      try { form.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
     }
   }
 
