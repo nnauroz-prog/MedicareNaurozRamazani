@@ -494,6 +494,13 @@
 
     box.innerHTML =
       '<div class="bcal">' +
+        '<div class="bcal-card-head">' +
+          '<h3 class="bcal-card-title">Beratungsbesuch § 37.3</h3>' +
+          '<p class="bcal-card-meta">' +
+            '<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 30 Minuten</span>' +
+            '<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg> Per Videoanruf oder vor Ort</span>' +
+          '</p>' +
+        '</div>' +
         '<div class="bcal-modes">' +
           '<button type="button" data-mode="Per Videoanruf" class="is-active">Per Videoanruf</button>' +
           '<button type="button" data-mode="Bei Ihnen vor Ort">Bei Ihnen vor Ort</button>' +
@@ -549,6 +556,7 @@
         var date = new Date(view.getFullYear(), view.getMonth(), d);
         var btn = document.createElement("button");
         btn.type = "button"; btn.textContent = d;
+        btn.setAttribute("aria-label", fmtDay(date));
         if (date < today || date.getDay() === 0) {
           btn.disabled = true;
         } else {
@@ -581,24 +589,37 @@
       elSlotsWrap.hidden = false;
     }
     function fmtDay(dt) { return wdLong[dt.getDay()] + ", " + dt.getDate() + ". " + months[dt.getMonth()] + " " + dt.getFullYear(); }
+    function curName() { var el = elConfirm.querySelector(".bcal-name"); return el ? el.value.trim() : ""; }
     function waHref() {
-      var nameEl = elConfirm.querySelector(".bcal-name");
-      var name = nameEl ? nameEl.value.trim() : "";
+      var name = curName();
       var msg = "Hallo, ich möchte einen Beratungsbesuch nach § 37.3 vereinbaren.\n" +
         "Wunschtermin: " + fmtDay(selDay) + " um " + selSlot + " Uhr\n" +
         "Art: " + mode + (name ? "\nName: " + name : "");
       return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
     }
+    function mailHref() {
+      var name = curName();
+      var subject = "Terminanfrage – Beratungsbesuch § 37.3";
+      var body = "Hallo,\n\nich möchte einen Beratungsbesuch nach § 37.3 vereinbaren.\n\n" +
+        "Wunschtermin: " + fmtDay(selDay) + " um " + selSlot + " Uhr\n" +
+        "Art: " + mode + (name ? "\nName: " + name : "") +
+        "\n\nBitte bestätigen Sie mir den Termin. Vielen Dank!";
+      return "mailto:nnauroz@live.de?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    }
     function renderConfirm() {
       elConfirm.innerHTML =
         '<p class="bcal-summary">Ihr Wunschtermin: <strong>' + fmtDay(selDay) + ' · ' + selSlot + ' Uhr · ' + mode + '</strong></p>' +
         '<input type="text" class="bcal-name" placeholder="Ihr Name (optional)" autocomplete="name">' +
-        '<a class="btn btn-cta btn-lg bcal-wa" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg> Termin per WhatsApp anfragen</a>' +
-        '<p class="bcal-alt">oder <a href="tel:+491607621876">anrufen</a> · <a href="kontakt.html?leistung=pflegeberatung#careForm">per Formular</a></p>' +
+        '<div class="bcal-actions">' +
+          '<a class="btn btn-cta btn-lg bcal-wa" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg> Per WhatsApp anfragen</a>' +
+          '<a class="btn btn-outline btn-lg bcal-mail"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg> Per E-Mail anfragen</a>' +
+        '</div>' +
+        '<p class="bcal-alt">oder <a href="tel:+491607621876">anrufen · 24/7</a></p>' +
         '<p class="bcal-note">Sie wählen Ihren Wunschtermin – wir bestätigen ihn Ihnen persönlich. Kostenlos &amp; unverbindlich.</p>';
       var wa = elConfirm.querySelector(".bcal-wa");
-      wa.href = waHref();
-      elConfirm.querySelector(".bcal-name").addEventListener("input", function () { wa.href = waHref(); });
+      var mail = elConfirm.querySelector(".bcal-mail");
+      wa.href = waHref(); mail.href = mailHref();
+      elConfirm.querySelector(".bcal-name").addEventListener("input", function () { wa.href = waHref(); mail.href = mailHref(); });
       elConfirm.hidden = false;
     }
     renderMonth();

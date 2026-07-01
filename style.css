@@ -2344,6 +2344,11 @@ main > section + section { border-top: 1px solid var(--section-line); }
 
 /* Eigener interaktiver Kalender (Level-3-Optik, ohne externes Konto lauffähig) */
 .bcal { max-width: 580px; margin: 0 auto; }
+.bcal-card-head { text-align: center; padding-bottom: 20px; margin-bottom: 22px; border-bottom: 1px solid #e3e9ee; }
+.bcal-card-title { font-size: 1.25rem; margin: 0 0 8px; color: var(--ink); }
+.bcal-card-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin: 0; color: var(--muted); font-weight: 600; font-size: .95rem; }
+.bcal-card-meta span { display: inline-flex; align-items: center; gap: 7px; }
+.bcal-card-meta svg { width: 17px; height: 17px; flex: none; color: var(--teal); }
 .bcal-modes { display: flex; gap: 10px; margin-bottom: 22px; }
 .bcal-modes button {
   flex: 1; padding: 13px 10px; border: 1.5px solid #dbe7ea; border-radius: 12px;
@@ -2385,7 +2390,8 @@ main > section + section { border-top: 1px solid var(--section-line); }
 .bcal-summary strong { color: var(--ink); }
 .bcal-name { width: 100%; max-width: 340px; padding: 13px 16px; border: 1.5px solid #cdd3da; border-radius: 11px; font: inherit; margin: 14px 0; }
 .bcal-name:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,148,136,.15); }
-.bcal-wa { width: 100%; max-width: 380px; justify-content: center; }
+.bcal-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.bcal-actions .btn { flex: 1 1 210px; justify-content: center; }
 .bcal-alt { font-size: .92rem; color: var(--muted); margin: 14px 0 0; }
 .bcal-alt a { font-weight: 700; }
 .bcal-note { font-size: .85rem; color: var(--muted); margin: 12px 0 0; }
