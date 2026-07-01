@@ -456,7 +456,7 @@
     var box = document.getElementById("booking-embed");
     if (!box) return;
     var url = (box.getAttribute("data-booking-url") || "").trim();
-    if (!url) return; // kein Kalender hinterlegt -> Fallback bleibt
+    if (!url) { initBookingCalendar(box); return; } // kein externer Link -> eigener Kalender
 
     box.innerHTML =
       '<div class="booking-load">' +
@@ -475,6 +475,133 @@
       box.innerHTML = "";
       box.appendChild(frame);
     });
+  }
+
+  /* ---- Eigener interaktiver Buchungskalender (läuft ohne externes Konto):
+     Tag + Uhrzeit wählen -> Wunschtermin geht per WhatsApp/Anruf an das Team,
+     das den Termin persönlich bestätigt. Sobald ein Cal.com-/Calendly-Link unter
+     data-booking-url steht, wird stattdessen dieser echte Kalender geladen. */
+  function initBookingCalendar(box) {
+    var WA = "491607621876";
+    var months = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+    var wdShort = ["Mo","Di","Mi","Do","Fr","Sa","So"];
+    var wdLong = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+    var slots = ["09:00","10:00","11:00","13:00","14:00","15:00","16:00","17:00"];
+    var today = new Date(); today.setHours(0,0,0,0);
+    var view = new Date(today.getFullYear(), today.getMonth(), 1);
+    var mode = "Per Videoanruf";
+    var selDay = null, selSlot = null;
+
+    box.innerHTML =
+      '<div class="bcal">' +
+        '<div class="bcal-modes">' +
+          '<button type="button" data-mode="Per Videoanruf" class="is-active">Per Videoanruf</button>' +
+          '<button type="button" data-mode="Bei Ihnen vor Ort">Bei Ihnen vor Ort</button>' +
+        '</div>' +
+        '<div class="bcal-head">' +
+          '<button type="button" class="bcal-nav" data-nav="-1" aria-label="Vorheriger Monat">‹</button>' +
+          '<span class="bcal-title"></span>' +
+          '<button type="button" class="bcal-nav" data-nav="1" aria-label="Nächster Monat">›</button>' +
+        '</div>' +
+        '<div class="bcal-grid bcal-wd"></div>' +
+        '<div class="bcal-grid bcal-days"></div>' +
+        '<div class="bcal-slots-wrap" hidden><p class="bcal-slots-label">Uhrzeit wählen</p><div class="bcal-slots"></div></div>' +
+        '<div class="bcal-confirm" hidden></div>' +
+      '</div>';
+
+    var elTitle = box.querySelector(".bcal-title");
+    var elWd = box.querySelector(".bcal-wd");
+    var elDays = box.querySelector(".bcal-days");
+    var elSlotsWrap = box.querySelector(".bcal-slots-wrap");
+    var elSlots = box.querySelector(".bcal-slots");
+    var elConfirm = box.querySelector(".bcal-confirm");
+
+    wdShort.forEach(function (w) { var s = document.createElement("span"); s.textContent = w; elWd.appendChild(s); });
+
+    box.querySelectorAll(".bcal-modes button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        mode = b.getAttribute("data-mode");
+        box.querySelectorAll(".bcal-modes button").forEach(function (x) { x.classList.remove("is-active"); });
+        b.classList.add("is-active");
+        if (selSlot) renderConfirm();
+      });
+    });
+    box.querySelectorAll(".bcal-nav").forEach(function (b) {
+      b.addEventListener("click", function () {
+        view.setMonth(view.getMonth() + parseInt(b.getAttribute("data-nav"), 10));
+        selDay = null; selSlot = null;
+        elSlotsWrap.hidden = true; elConfirm.hidden = true;
+        renderMonth();
+      });
+    });
+
+    function renderMonth() {
+      elTitle.textContent = months[view.getMonth()] + " " + view.getFullYear();
+      var prevBtn = box.querySelector('.bcal-nav[data-nav="-1"]');
+      prevBtn.disabled = (view.getFullYear() === today.getFullYear() && view.getMonth() === today.getMonth());
+      elDays.innerHTML = "";
+      var first = new Date(view.getFullYear(), view.getMonth(), 1);
+      var offset = (first.getDay() + 6) % 7; // Woche startet Montag
+      var i;
+      for (i = 0; i < offset; i++) { var e = document.createElement("span"); e.className = "bcal-empty"; elDays.appendChild(e); }
+      var dim = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+      for (var d = 1; d <= dim; d++) {
+        var date = new Date(view.getFullYear(), view.getMonth(), d);
+        var btn = document.createElement("button");
+        btn.type = "button"; btn.textContent = d;
+        if (date < today || date.getDay() === 0) {
+          btn.disabled = true;
+        } else {
+          btn.addEventListener("click", (function (dt, el) {
+            return function () {
+              selDay = dt; selSlot = null;
+              elDays.querySelectorAll("button").forEach(function (x) { x.classList.remove("is-selected"); });
+              el.classList.add("is-selected");
+              elConfirm.hidden = true;
+              renderSlots();
+            };
+          })(date, btn));
+        }
+        if (selDay && date.getTime() === selDay.getTime()) btn.classList.add("is-selected");
+        elDays.appendChild(btn);
+      }
+    }
+    function renderSlots() {
+      elSlots.innerHTML = "";
+      slots.forEach(function (s) {
+        var b = document.createElement("button"); b.type = "button"; b.textContent = s;
+        b.addEventListener("click", function () {
+          selSlot = s;
+          elSlots.querySelectorAll("button").forEach(function (x) { x.classList.remove("is-selected"); });
+          b.classList.add("is-selected");
+          renderConfirm();
+        });
+        elSlots.appendChild(b);
+      });
+      elSlotsWrap.hidden = false;
+    }
+    function fmtDay(dt) { return wdLong[dt.getDay()] + ", " + dt.getDate() + ". " + months[dt.getMonth()] + " " + dt.getFullYear(); }
+    function waHref() {
+      var nameEl = elConfirm.querySelector(".bcal-name");
+      var name = nameEl ? nameEl.value.trim() : "";
+      var msg = "Hallo, ich möchte einen Beratungsbesuch nach § 37.3 vereinbaren.\n" +
+        "Wunschtermin: " + fmtDay(selDay) + " um " + selSlot + " Uhr\n" +
+        "Art: " + mode + (name ? "\nName: " + name : "");
+      return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
+    }
+    function renderConfirm() {
+      elConfirm.innerHTML =
+        '<p class="bcal-summary">Ihr Wunschtermin: <strong>' + fmtDay(selDay) + ' · ' + selSlot + ' Uhr · ' + mode + '</strong></p>' +
+        '<input type="text" class="bcal-name" placeholder="Ihr Name (optional)" autocomplete="name">' +
+        '<a class="btn btn-cta btn-lg bcal-wa" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg> Termin per WhatsApp anfragen</a>' +
+        '<p class="bcal-alt">oder <a href="tel:+491607621876">anrufen</a> · <a href="kontakt.html?leistung=pflegeberatung#careForm">per Formular</a></p>' +
+        '<p class="bcal-note">Sie wählen Ihren Wunschtermin – wir bestätigen ihn Ihnen persönlich. Kostenlos &amp; unverbindlich.</p>';
+      var wa = elConfirm.querySelector(".bcal-wa");
+      wa.href = waHref();
+      elConfirm.querySelector(".bcal-name").addEventListener("input", function () { wa.href = waHref(); });
+      elConfirm.hidden = false;
+    }
+    renderMonth();
   }
 
   /* ---- Kontaktformular: freundliche Live-Validierung ---- */
