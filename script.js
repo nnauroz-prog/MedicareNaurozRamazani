@@ -247,32 +247,98 @@
     var form = document.getElementById("areaForm");
     var input = document.getElementById("areaInput");
     var out = document.getElementById("areaResult");
+    var list = document.getElementById("areaSuggest");
     if (!form || !input || !out) return;
 
+    // Schwerpunkt-Stadtteile (dort regelmäßig unterwegs)
     var core = ["eilbek", "hohenfelde", "barmbek", "wandsbek", "marienthal", "wilhelmsburg", "harburg"];
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var q = input.value.trim().toLowerCase();
+    // Alle 104 Stadtteile Hamburgs (für Vorschläge & Erkennung)
+    var DISTRICTS = [
+      "Hamburg-Altstadt","HafenCity","Neustadt","St. Pauli","St. Georg","Hammerbrook","Borgfelde","Hamm","Horn","Billstedt","Billbrook","Rothenburgsort","Veddel","Wilhelmsburg","Kleiner Grasbrook","Steinwerder","Waltershof","Finkenwerder","Neuwerk",
+      "Altona-Altstadt","Sternschanze","Altona-Nord","Ottensen","Bahrenfeld","Groß Flottbek","Othmarschen","Lurup","Osdorf","Nienstedten","Blankenese","Iserbrook","Sülldorf","Rissen",
+      "Eimsbüttel","Rotherbaum","Harvestehude","Hoheluft-West","Lokstedt","Niendorf","Schnelsen","Eidelstedt","Stellingen",
+      "Hoheluft-Ost","Eppendorf","Groß Borstel","Alsterdorf","Winterhude","Uhlenhorst","Hohenfelde","Barmbek-Süd","Barmbek-Nord","Dulsberg","Ohlsdorf","Fuhlsbüttel","Langenhorn",
+      "Eilbek","Marienthal","Wandsbek","Hinschenfelde","Tonndorf","Jenfeld","Rahlstedt","Farmsen-Berne","Bramfeld","Steilshoop","Wellingsbüttel","Sasel","Poppenbüttel","Hummelsbüttel","Lemsahl-Mellingstedt","Duvenstedt","Wohldorf-Ohlstedt","Bergstedt","Volksdorf",
+      "Lohbrügge","Bergedorf","Curslack","Altengamme","Neuengamme","Kirchwerder","Ochsenwerder","Reitbrook","Allermöhe","Billwerder","Moorfleet","Tatenberg","Spadenland","Neuallermöhe",
+      "Harburg","Neuland","Gut Moor","Wilstorf","Rönneburg","Langenbek","Sinstorf","Marmstorf","Eißendorf","Heimfeld","Moorburg","Altenwerder","Hausbruch","Neugraben-Fischbek","Francop","Cranz"
+    ];
+    function norm(s) { return s.toLowerCase().replace(/ä/g,"a").replace(/ö/g,"o").replace(/ü/g,"u").replace(/ß/g,"ss"); }
+    var NDIST = DISTRICTS.map(function (d) { return { name: d, n: norm(d) }; });
+
+    function check() {
+      var q = norm(input.value.trim());
       out.classList.remove("ok", "maybe");
-      if (!q) {
-        out.classList.add("maybe");
-        out.innerHTML = "Bitte geben Sie kurz Ihren Stadtteil ein.";
-        return;
-      }
-      var hit = core.some(function (c) { return q.indexOf(c) !== -1 || c.indexOf(q) !== -1; });
-      var hamburg = q.indexOf("hamburg") !== -1;
-      if (hit) {
+      if (!q) { out.classList.add("maybe"); out.innerHTML = "Bitte geben Sie kurz Ihren Stadtteil ein."; return; }
+      var isCore = core.some(function (c) { return q.indexOf(c) !== -1; });
+      var isDistrict = NDIST.some(function (d) { return d.n === q || q.indexOf(d.n) !== -1 || d.n.indexOf(q) !== -1; });
+      var isHamburg = q.indexOf("hamburg") !== -1;
+      if (isCore) {
         out.classList.add("ok");
         out.innerHTML = "✓ Wunderbar – hier sind wir regelmäßig für Sie unterwegs. <a href='kontakt.html'>Jetzt anfragen</a> oder <a href='tel:+491607621876'>anrufen</a>.";
-      } else if (hamburg) {
+      } else if (isDistrict || isHamburg) {
         out.classList.add("ok");
         out.innerHTML = "✓ Wir sind in ganz Hamburg aktiv – sehr wahrscheinlich auch bei Ihnen. <a href='tel:+491607621876'>Kurz anrufen</a>, dann ist es sicher.";
       } else {
         out.classList.add("maybe");
         out.innerHTML = "Wir sind in ganz Hamburg und Umgebung aktiv. <a href='tel:+491607621876'>Rufen Sie kurz an</a> – wir finden fast immer eine Lösung.";
       }
-    });
+    }
+
+    // ---- Autocomplete (Stadtteil-Vorschläge) ----
+    var matches = [], active = -1;
+    function closeList() { if (!list) return; list.hidden = true; list.innerHTML = ""; active = -1; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); }
+    function pick(name) { input.value = name; closeList(); check(); input.focus(); }
+    function setActive(i) {
+      var opts = list.querySelectorAll(".ac-item");
+      for (var k = 0; k < opts.length; k++) { opts[k].classList.remove("is-active"); opts[k].setAttribute("aria-selected", "false"); }
+      if (i >= 0 && i < opts.length) { opts[i].classList.add("is-active"); opts[i].setAttribute("aria-selected", "true"); input.setAttribute("aria-activedescendant", opts[i].id); opts[i].scrollIntoView({ block: "nearest" }); }
+      else input.removeAttribute("aria-activedescendant");
+      active = i;
+    }
+    function openList(items) {
+      matches = items; list.innerHTML = ""; active = -1;
+      items.forEach(function (name, i) {
+        var li = document.createElement("li");
+        li.className = "ac-item"; li.id = "ac-opt-" + i; li.setAttribute("role", "option"); li.setAttribute("aria-selected", "false");
+        var pin = document.createElement("span");
+        pin.className = "ac-pin"; pin.setAttribute("aria-hidden", "true");
+        pin.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+        var t = document.createElement("span");
+        t.className = "ac-name"; t.textContent = name;
+        li.appendChild(pin); li.appendChild(t);
+        li.addEventListener("mousedown", function (ev) { ev.preventDefault(); pick(name); });
+        list.appendChild(li);
+      });
+      list.hidden = items.length === 0;
+      input.setAttribute("aria-expanded", items.length ? "true" : "false");
+    }
+
+    form.addEventListener("submit", function (e) { e.preventDefault(); closeList(); check(); });
+
+    if (list) {
+      input.addEventListener("input", function () {
+        var q = norm(input.value.trim());
+        if (q.length < 1) { closeList(); return; }
+        var starts = [], contains = [];
+        NDIST.forEach(function (d) {
+          var idx = d.n.indexOf(q);
+          if (idx === 0) starts.push(d.name);
+          else if (idx > 0) contains.push(d.name);
+        });
+        openList(starts.concat(contains).slice(0, 8));
+      });
+      input.addEventListener("keydown", function (e) {
+        if (list.hidden) return;
+        var opts = list.querySelectorAll(".ac-item");
+        if (e.key === "ArrowDown") { e.preventDefault(); setActive(active + 1 >= opts.length ? 0 : active + 1); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); setActive(active - 1 < 0 ? opts.length - 1 : active - 1); }
+        else if (e.key === "Enter") { if (active >= 0 && matches[active]) { e.preventDefault(); pick(matches[active]); } }
+        else if (e.key === "Escape") { closeList(); }
+      });
+      input.addEventListener("blur", function () { setTimeout(closeList, 120); });
+      document.addEventListener("click", function (e) { if (!form.contains(e.target)) closeList(); });
+    }
   }
 
   /* ---- FAQ Suche/Filter ---- */

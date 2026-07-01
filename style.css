@@ -2487,3 +2487,25 @@ main > section + section { border-top: 1px solid var(--section-line); }
 @media (prefers-reduced-motion: reduce) {
   .hero-text > *, .hero-photos, .hero-float-card { animation: none !important; }
 }
+
+/* =========================================================
+   STADTTEIL-AUTOCOMPLETE (Gebiete-Checker) – barrierefrei
+   ========================================================= */
+.ac-wrap { position: relative; flex: 1 1 auto; min-width: 200px; display: block; }
+.ac-wrap > input { width: 100%; }
+.ac-list {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 40;
+  margin: 0; padding: 6px; list-style: none; text-align: left;
+  background: #fff; border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 20px 44px rgba(16,42,67,.18), 0 2px 6px rgba(16,42,67,.06);
+  max-height: 288px; overflow-y: auto;
+}
+.ac-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px; border-radius: 10px; cursor: pointer;
+  color: var(--ink); font-weight: 600; line-height: 1.2;
+}
+.ac-pin { flex: none; display: inline-flex; color: var(--blue); }
+.ac-pin svg { width: 17px; height: 17px; }
+.ac-item.is-active .ac-pin, .ac-item:hover .ac-pin { color: var(--blue-deep); }
+.ac-item:hover, .ac-item.is-active { background: rgba(0,175,185,.12); color: var(--blue-deep); }
