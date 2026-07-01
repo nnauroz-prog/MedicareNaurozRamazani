@@ -93,7 +93,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
 <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="style.css?v=43" />
+  <link rel="stylesheet" href="style.css?v=45" />
   <!-- SEO / Social -->
   <link rel="canonical" href="https://nnauroz-prog.github.io/medicarenaurozramazani/pflegeberatung.html" />
   <meta property="og:type" content="article" />
@@ -210,12 +210,12 @@
           </div>
           <div class="offer37-actions">
             <p class="offer37-choose">Wie möchten Sie beraten werden?</p>
-            <a class="offer37-mode" href="kontakt.html?leistung=pflegeberatung&amp;modus=video#careForm">
+            <a class="offer37-mode" href="#termin">
               <span class="offer37-mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
               <span class="offer37-mode-txt"><strong>Per Videoanruf</strong><span>Schnell &amp; bequem von zuhause</span></span>
               <span class="offer37-mode-go" aria-hidden="true">→</span>
             </a>
-            <a class="offer37-mode" href="kontakt.html?leistung=pflegeberatung&amp;modus=vorort#careForm">
+            <a class="offer37-mode" href="#termin">
               <span class="offer37-mode-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
               <span class="offer37-mode-txt"><strong>Bei Ihnen vor Ort</strong><span>Persönlicher Besuch zuhause</span></span>
               <span class="offer37-mode-go" aria-hidden="true">→</span>
@@ -223,6 +223,51 @@
             <p class="offer37-direct">Lieber direkt? <a href="tel:+491607621876">Anrufen (24/7)</a> · <a href="https://wa.me/491607621876" target="_blank" rel="noopener">WhatsApp</a></p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- WICHTIGE VORAUSSETZUNG für die Video-Beratung -->
+    <section>
+      <div class="container">
+        <div class="notice reveal">
+          <span class="notice-ic" aria-hidden="true">!</span>
+          <div>
+            <strong>Wichtig für die Beratung per Video</strong>
+            <p>Der <strong>erste</strong> Beratungseinsatz muss gesetzlich <strong>vor Ort</strong> durch einen Pflegedienst stattfinden (ein Besuch des Medizinischen Dienstes zählt dabei nicht). Ab dem zweiten Einsatz kann jeder <strong>zweite</strong> Beratungsbesuch bequem per Video erfolgen – befristet bis 31.03.2027. Unsicher, was für Sie gilt? <a href="tel:+491607621876">Rufen Sie uns an</a> – wir klären das in einer Minute.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WER MUSS WANN? Häufigkeit nach Pflegegrad -->
+    <section class="section-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Wer muss wann?</span>
+          <h2>Beratungsbesuch nach Pflegegrad</h2>
+          <p>Wie oft der Beratungseinsatz nötig ist, hängt von Ihrem Pflegegrad ab. Fehlt der Nachweis, kann die Pflegekasse das Pflegegeld kürzen.</p>
+        </div>
+        <div class="grid grid-3 reveal">
+          <article class="card pg-card">
+            <span class="pg-badge pg-badge-soft">Freiwillig</span>
+            <h3>Pflegegrad 1</h3>
+            <p class="pg-freq">Halbjährlich möglich</p>
+            <p>Kein Muss – aber wertvolle Tipps für Ihren Pflegealltag. Sie können den Beratungseinsatz auf Wunsch nutzen.</p>
+          </article>
+          <article class="card pg-card">
+            <span class="pg-badge pg-badge-req">Verpflichtend</span>
+            <h3>Pflegegrad 2 &amp; 3</h3>
+            <p class="pg-freq">Alle 6 Monate</p>
+            <p>Halbjährlich nachzuweisen (z. B. Januar &amp; Juli) – so bleibt Ihr Anspruch auf Pflegegeld gesichert.</p>
+          </article>
+          <article class="card pg-card">
+            <span class="pg-badge pg-badge-req">Verpflichtend</span>
+            <h3>Pflegegrad 4 &amp; 5</h3>
+            <p class="pg-freq">Alle 6 Monate</p>
+            <p>Seit 2026 ebenfalls halbjährlich; bei Bedarf ist ein vierteljährlicher Turnus weiterhin möglich.</p>
+          </article>
+        </div>
+        <p class="area-note reveal">Stand 2026. Ihren genauen Turnus nennt Ihnen Ihre Pflegekasse – oder fragen Sie einfach uns.</p>
       </div>
     </section>
 
@@ -257,7 +302,39 @@
           </div>
         </div>
         <div class="text-center reveal" style="margin-top:36px;">
-          <a class="btn btn-cta btn-lg" href="kontakt.html?leistung=pflegeberatung#careForm">Jetzt Formular ausfüllen</a>
+          <a class="btn btn-cta btn-lg" href="#termin">Jetzt Termin auswählen</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMIN AUSWÄHLEN – Buchungskalender -->
+    <section class="section-soft" id="termin">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Termin sichern</span>
+          <h2>Wählen Sie Ihren Wunschtermin</h2>
+          <p>Suchen Sie sich einen freien Termin aus – wir bestätigen ihn Ihnen persönlich. Kostenlos, unverbindlich und jederzeit verschiebbar.</p>
+        </div>
+        <div class="booking reveal">
+          <div class="booking-badges">
+            <span>Kostenlos über die Pflegekasse</span>
+            <span>Unverbindlich – jederzeit absagbar</span>
+            <span>DSGVO-konform</span>
+          </div>
+          <!-- Buchungskalender: einmalig den Cal.com-/Calendly-Link in data-booking-url eintragen.
+               Solange leer, zeigt der Bereich automatisch den Anruf-/WhatsApp-/Formular-Fallback. -->
+          <div id="booking-embed" class="booking-embed" data-booking-url="">
+            <div class="booking-fallback">
+              <p class="booking-fallback-title">So sichern Sie sich Ihren Termin</p>
+              <p>Sagen Sie uns kurz Bescheid – wir finden gemeinsam einen passenden Termin, per Videoanruf oder bei Ihnen vor Ort, und bestätigen ihn Ihnen persönlich.</p>
+              <div class="booking-fallback-actions">
+                <a class="btn btn-cta btn-lg" href="tel:+491607621876"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Anrufen · 24/7</a>
+                <a class="btn btn-outline btn-lg" href="https://wa.me/491607621876" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="btn btn-outline btn-lg" href="kontakt.html?leistung=pflegeberatung#careForm">Formular ausfüllen</a>
+              </div>
+            </div>
+          </div>
+          <p class="booking-note">Ihre Daten werden ausschließlich zur Terminvereinbarung genutzt und nicht an Dritte weitergegeben.</p>
         </div>
       </div>
     </section>
@@ -365,7 +442,7 @@
     <p>Diese Website verwendet nur technisch notwendige Speicherung (localStorage) für diesen Hinweis. Es werden keine Tracking-Cookies gesetzt. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
     <div class="actions"><button class="btn btn-cta" data-cookie-accept>Verstanden</button></div>
   </div>
-  <script src="script.js?v=21"></script>
+  <script src="script.js?v=22"></script>
   <script src="i18n.js?v=2" defer></script>
 </body>
 </html>

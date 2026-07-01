@@ -36,6 +36,7 @@
     safe("ScrollProgress", initScrollProgress);
     safe("FontControl", initFontControl);
     safe("FormPrefill", initFormPrefill);
+    safe("Booking", initBooking);
     safe("FormValidation", initFormValidation);
     safe("CtaReassure", initCtaReassure);
     safe("ScrollableTables", initScrollableTables);
@@ -445,6 +446,35 @@
     if ((leistung || modus) && !window.location.hash) {
       try { form.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
     }
+  }
+
+  /* ---- Buchungskalender: externen Kalender (Cal.com/Calendly) datenschutz-
+     freundlich erst auf Klick laden. Den Buchungslink einmalig im HTML unter
+     data-booking-url hinterlegen. Ohne Link bleibt der Anruf-/WhatsApp-Fallback
+     sichtbar, damit die Seite nie „kaputt" wirkt. */
+  function initBooking() {
+    var box = document.getElementById("booking-embed");
+    if (!box) return;
+    var url = (box.getAttribute("data-booking-url") || "").trim();
+    if (!url) return; // kein Kalender hinterlegt -> Fallback bleibt
+
+    box.innerHTML =
+      '<div class="booking-load">' +
+        '<p class="booking-load-title">Freie Termine anzeigen</p>' +
+        '<p class="booking-load-sub">Der Buchungskalender wird von einem externen Dienst geladen. Kostenlos und unverbindlich – Ihre Auswahl bestätigen wir Ihnen persönlich.</p>' +
+        '<button type="button" class="btn btn-cta btn-lg">Kalender öffnen &amp; Termin wählen</button>' +
+      '</div>';
+
+    box.querySelector("button").addEventListener("click", function () {
+      var frame = document.createElement("iframe");
+      frame.src = url;
+      frame.title = "Online-Terminbuchung";
+      frame.loading = "lazy";
+      frame.className = "booking-frame";
+      frame.setAttribute("allow", "camera; microphone; fullscreen");
+      box.innerHTML = "";
+      box.appendChild(frame);
+    });
   }
 
   /* ---- Kontaktformular: freundliche Live-Validierung ---- */
