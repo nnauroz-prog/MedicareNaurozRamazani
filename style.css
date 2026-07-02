@@ -2531,3 +2531,15 @@ html, body { background-color: #ffffff; }
 /* Solide helle Grundfläche als Fallback, falls Verläufe gestrippt werden */
 .hero { background-color: #eef6f8 !important; }
 .page-hero { background-color: #eef6f8 !important; }
+
+/* Lange URLs im Fließtext (z. B. ODR-Link im Impressum) umbrechen lassen –
+   verhindert Mikro-Overflow auf schmalen Geräten in allen Sprachen */
+p a[href^="http"]:not(.btn) { overflow-wrap: anywhere; word-break: break-all; }
+
+/* Buchungskalender auf sehr schmalen Geräten (≤350px): kompakter, kein Overflow */
+@media (max-width: 350px) {
+  .booking-embed { padding: 16px 10px; }
+  .bcal-grid { gap: 4px; }
+  .bcal-days button { border-radius: 8px; font-size: .92rem; }
+  .bcal-slots { gap: 6px; }
+}

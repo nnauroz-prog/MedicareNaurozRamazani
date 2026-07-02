@@ -493,7 +493,10 @@
       if (!sel || !needle) return;
       var want = needle.toLowerCase();
       for (var i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].text.toLowerCase().indexOf(want) !== -1) { sel.selectedIndex = i; break; }
+        var o = sel.options[i];
+        // value zuerst (bleibt deutsch/stabil, auch wenn der sichtbare Text übersetzt ist)
+        if ((o.value && o.value.toLowerCase().indexOf(want) !== -1) ||
+            o.text.toLowerCase().indexOf(want) !== -1) { sel.selectedIndex = i; break; }
       }
     };
 
