@@ -55,21 +55,40 @@ Die Theme-/Light-Regeln liegen als dokumentierter Override-Block am Ende von
   `verhinderungspflege.html` · `beratung.html` · `pflegeberatung.html`.
   Erreichbar über die Startseiten-Karten („Mehr erfahren →"), die Leistungsseite und die
   Footer-Spalte „Dienstleistungen". Neue Service generativ aus der Vorlage (eine `.card`-Struktur).
-- `gebiete.html` – Stadtteil-Checker · „Mitten in Hamburg" · Schwerpunkte (Wilhelmsburg/Harburg)
+  **`pflegeberatung.html` ist zusätzlich eine vollwertige § 37.3-Landingpage:**
+  Kopf mit Termin-CTAs · Trust-Leiste · Angebotsblock (Video/vor Ort) · Wichtig-Hinweis
+  (1. Einsatz vor Ort, ab dem 2. jeder zweite per Video, befristet 31.03.2027) ·
+  Häufigkeit nach Pflegegrad · 4-Schritte-Ablauf · **Buchungskalender** (`#termin`) ·
+  eigene FAQ (+ FAQPage-Schema).
+- `wilhelmsburg.html` · `harburg.html` – **lokale SEO-Landingpages** für die
+  Schwerpunkt-Suchbegriffe („Pflegedienst Wilhelmsburg/Harburg"), verlinkt aus
+  Start-/Gebiete-Seite, mit Service-Schema (`areaServed`).
+- `gebiete.html` – Stadtteil-Checker (mit **Autocomplete aller 104 Hamburger
+  Stadtteile**, umlaut-tolerant, Tastatur-bedienbar) · „Mitten in Hamburg" ·
+  Schwerpunkte (Chips verlinken auf die Stadtteil-Seiten). Der Checker steht
+  zusätzlich auf der Startseite („Wir kommen zu Ihnen").
 - `praevention.html` – Vorbeugung laienverständlich (Sturz, Schmerz, Dekubitus, Pneumonie, Kinästhetik, Kontrakturen)
 - `faq.html` – Häufige Fragen mit Live-Suche (+ FAQPage-Schema)
 - `kontakt.html` – Kontaktformular (Formspree) + Direktkontakt/vCards
 - `danke.html` – Bestätigung nach Versand
 - `pflegepolitik.html`, `digitalisierung.html` – Themenseiten
-- `impressum.html`, `datenschutz.html` – Rechtstexte · `404.html` – Fehlerseite
+- `impressum.html`, `datenschutz.html`, `barrierefreiheit.html` – Rechtstexte · `404.html` – Fehlerseite
 
 ## Funktionen (script.js)
 Mobile-Navigation · FAQ-Akkordeon + Live-Suche · statische Kennzahlen · Scroll-Reveal
 (mit Sichtbarkeits-Fallback) · Back-to-Top · Cookie/DSGVO-Hinweis · Anruf-Auswahl
-(Nadim/Farhad) · WhatsApp-Auswahl · Stadtteil-Checker · Schriftgrößen-Schalter A+/A−
-(gespeichert) · Live-Formularvalidierung · **Formular-Fallback** (leitet auf Telefon/
-WhatsApp, solange Formspree nicht eingerichtet ist) · CTA-Bestätigungszeile.
+(Nadim/Farhad) · WhatsApp-Auswahl · **Stadtteil-Checker mit Autocomplete** (alle 104
+HH-Stadtteile, ARIA-Combobox) · Schriftgrößen-Schalter A+/A− (gespeichert) ·
+Live-Formularvalidierung · **Formular-Fallback** (leitet auf Telefon/WhatsApp,
+solange Formspree nicht eingerichtet ist) · **Formular-Vorbelegung per URL**
+(`kontakt.html?leistung=pflegeberatung&modus=video|vorort` – sprachfest über feste
+`option`-values) · **Buchungskalender** (`initBooking`: eigener Monats-/Slot-Kalender,
+Anfrage per WhatsApp/E-Mail mit vorformulierter Nachricht; sobald in
+`pflegeberatung.html` unter `data-booking-url` ein Cal.com-/Calendly-Link steht,
+lädt stattdessen dieser echte Kalender per Click-to-load) · CTA-Bestätigungszeile.
 **Sprach-Umschalter** (`i18n.js`, DE/EN/TR/RU/FA, inkl. RTL) – siehe oben.
+**Auto-Dark-Schutz:** `color-scheme: only light` (CSS + Meta) verhindert, dass
+Browser mit automatischem Dunkelmodus das helle Design schwarz umfärben.
 
 **Fehlertoleranz (Hardening):** Jedes Modul läuft isoliert (`safe()`-Wrapper) –
 ein Fehler in einem Modul stoppt die anderen nicht (keine dauerhaft unsichtbaren
@@ -88,10 +107,30 @@ Initialen-Fallback für Portraits.
 - `IMG_0376–0381`, `logo-color.png`, `logo-white-full.png` – Referenzdateien (nicht eingebunden;
   können vor Go-Live aus dem Repo entfernt werden)
 
+## 🧪 Qualitätssicherung (`tests/suite.mjs`)
+Automatisierte Regressions-Suite (Playwright) – prüft alle Seiten × 5 Breiten
+(320–1920 px) auf JS-Fehler/Overflow/kaputte Bilder sowie sämtliche Interaktionen
+(Gate, Nav, FAQ, Checker, Kalender, Formular+Prefill, Sprachumschalter inkl. RTL,
+reduced-motion, EN-Automodus). **Nach jeder Änderung laufen lassen:**
+```bash
+python3 -m http.server 8077 &            # im Repo-Root
+NODE_PATH=<node_modules-mit-playwright> CHROME_BIN=<chromium> node tests/suite.mjs
+```
+Meldet nur Fehler; „SUITE: SAUBER – 0 Bugs" = alles grün.
+
+**Cache-Konvention:** Bei Änderungen an `style.css` / `script.js` / `i18n.js` die
+`?v=`-Nummer in **allen** HTML-Dateien bumpen (`sed -i 's/v=ALT/v=NEU/g' *.html`);
+bei Wörterbuch-Änderungen zusätzlich `VER` in `i18n.js`.
+
 ## ✅ Go-Live-Checkliste (nur ihr / GF könnt das)
-1. **Wartungsmodus entfernen** (Gate aus allen Seiten) – sonst sieht niemand die Inhalte.
+1. **Wartungsmodus entfernen** (Gate aus allen Seiten) – sonst sieht niemand die
+   Inhalte **und Google kann nicht indexieren**.
 2. **Formspree-ID:** in `kontakt.html` `YOUR_FORM_ID` durch die echte ID ersetzen
    (formspree.io, Ziel-E-Mail `nnauroz@live.de`). Danach submittet das Formular normal.
+2b. **Cal.com-/Calendly-Link (optional, echtes Online-Booking):** Konto anlegen
+   (Termin „Beratungsbesuch § 37.3", 30 Min) und den Buchungslink in
+   `pflegeberatung.html` bei `data-booking-url=""` eintragen – der eingebaute
+   Kalender wird dann automatisch durch den echten Live-Kalender ersetzt.
 3. **Impressum/Datenschutz:** durch die GF freigeben; `[BITTE ERGÄNZEN]`-Felder ausfüllen
    (USt-IdNr.; ggf. Datenschutzbeauftragte/r).
 4. **Domain:** sobald final, in `canonical`, `og:url`, Schema.org, Sitemap & robots.txt
