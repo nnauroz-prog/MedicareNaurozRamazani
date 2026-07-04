@@ -2534,7 +2534,7 @@ html, body { background-color: #ffffff; }
 
 /* Lange URLs im Fließtext (z. B. ODR-Link im Impressum) umbrechen lassen –
    verhindert Mikro-Overflow auf schmalen Geräten in allen Sprachen */
-p a[href^="http"]:not(.btn) { overflow-wrap: anywhere; word-break: break-all; }
+p a[href^="http"]:not(.btn) { overflow-wrap: anywhere; word-break: normal; }
 
 /* Buchungskalender auf sehr schmalen Geräten (≤350px): kompakter, kein Overflow */
 @media (max-width: 350px) {
@@ -2542,4 +2542,81 @@ p a[href^="http"]:not(.btn) { overflow-wrap: anywhere; word-break: break-all; }
   .bcal-grid { gap: 4px; }
   .bcal-days button { border-radius: 8px; font-size: .92rem; }
   .bcal-slots { gap: 6px; }
+}
+
+/* =========================================================
+   v13 · MARKEN-BAND „Medicare-Familie"
+   Sichtbare Anbindung an die Mutter-Marke medicare-hamburg.de:
+   Navy-Fläche mit Teal-Akzent, Marken-Kennzahlen, Anker-Motiv.
+   ========================================================= */
+.brand-band {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--navy-deep) 0%, #063a5e 55%, #052f4d 100%);
+  color: #eaf4f8;
+}
+.brand-band::before {
+  content: "";
+  position: absolute;
+  right: -140px; top: -140px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,175,185,.28) 0%, rgba(0,175,185,0) 70%);
+  pointer-events: none;
+}
+.brand-band .eyebrow { color: #7fdbe2; }
+.brand-band .section-head { align-items: flex-start; text-align: left; }
+.brand-band .section-head .eyebrow { justify-content: flex-start; }
+.brand-band .eyebrow::before { background: #7fdbe2; opacity: .6; }
+/* Link darf nicht mitten im Wort brechen (hebt globale URL-Umbruch-Regel auf) */
+.brand-src a { word-break: normal; overflow-wrap: normal; white-space: nowrap; }
+.brand-band h2 { color: #fff; }
+.brand-band .brand-lead { max-width: 62ch; color: #d7e8f0; }
+.brand-band .brand-anchor {
+  position: absolute;
+  left: 26px; bottom: 14px;
+  width: 130px; height: 130px;
+  color: rgba(127,219,226,.14);
+  pointer-events: none;
+}
+.brand-band .brand-anchor svg { width: 100%; height: 100%; }
+.brand-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 34px;
+}
+.brand-stat {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(127,219,226,.22);
+  border-radius: 14px;
+  padding: 22px 20px;
+  text-align: center;
+}
+.brand-stat .num {
+  display: block;
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #7fdbe2;
+  letter-spacing: -.5px;
+}
+.brand-stat .lbl {
+  display: block;
+  margin-top: 8px;
+  font-size: .92rem;
+  color: #cfe3ec;
+  line-height: 1.45;
+}
+.brand-src {
+  margin-top: 22px;
+  font-size: .82rem;
+  color: #9fc2d2;
+}
+.brand-src a { color: #7fdbe2; text-decoration: underline; text-underline-offset: 3px; }
+.brand-src a:hover { color: #fff; }
+@media (max-width: 760px) {
+  .brand-stats { grid-template-columns: 1fr; gap: 12px; }
+  .brand-stat { padding: 18px 16px; }
+  .brand-band .brand-anchor { display: none; }
 }

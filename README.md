@@ -134,9 +134,17 @@ bei Wörterbuch-Änderungen zusätzlich `VER` in `i18n.js`.
 3. **Impressum/Datenschutz:** durch die GF freigeben; `[BITTE ERGÄNZEN]`-Felder ausfüllen
    (USt-IdNr.; ggf. Datenschutzbeauftragte/r).
 4. **Domain:** sobald final, in `canonical`, `og:url`, Schema.org, Sitemap & robots.txt
-   die echte absolute Adresse eintragen (aktuell GitHub-Pages-Platzhalter).
+   die echte absolute Adresse eintragen (aktuell: Vercel-Domain
+   `medicare-nauroz-ramazani.vercel.app` – per Suchen&Ersetzen austauschbar).
 5. **Echte Google-Bewertungen (optional, stärkster Vertrauenshebel):** Rezensionen
    sammeln und als Bewertungs-Sektion einbinden lassen.
+
+## Marken-Kennzahlen (Medicare-Band, Startseite + Über uns)
+Die Zahlen im „Teil von Medicare"-Band stammen von medicare-hamburg.de
+(Stand Juli 2026): Note **1,1** (Medizinischer Dienst), **600+** Kundinnen &
+Kunden, **150+** Mitarbeitende. Bei neuen Zahlen der Zentrale in `index.html`
+(`#medicare-familie`) und `ueber-uns.html` (Absatz „Dahinter steht die Marke…"
++ Factsheet „Marke") aktualisieren – Übersetzungen in `i18n/` mitziehen.
 
 ## Inhalt pflegen (Beträge 2026 – aus euren Unterlagen)
 Pflegegeld/Sachleistung: PG2 347/796 · PG3 599/1.497 · PG4 800/1.859 · PG5 990/2.299 €.
