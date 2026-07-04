@@ -3,4 +3,4 @@ Allow: /
 Disallow: /danke.html
 Disallow: /tests/
 
-Sitemap: https://nnauroz-prog.github.io/medicarenaurozramazani/sitemap.xml
+Sitemap: https://medicare-nauroz-ramazani.vercel.app/sitemap.xml
