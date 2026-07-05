@@ -2417,7 +2417,7 @@ main > section + section { border-top: 1px solid var(--section-line); }
 .pg-card { text-align: center; }
 .pg-badge { display: inline-block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 800; padding: 5px 13px; border-radius: 999px; margin-bottom: 12px; }
 .pg-badge-soft { background: rgba(11,122,59,.12); color: #0b7a3b; }
-.pg-badge-req { background: rgba(224,135,31,.15); color: #a5620f; }
+.pg-badge-req { background: rgba(224,135,31,.15); color: #96570b; } /* 4,97:1 auf #faeddd (WCAG AA) */
 .pg-freq { font-size: 1.5rem; font-weight: 800; color: var(--brand-teal); margin: .1em 0 .45em; line-height: 1.1; }
 .pg-card p:last-child { color: var(--muted); margin-bottom: 0; }
 
