@@ -17,9 +17,9 @@
   --blue: #00afb9;        /* offizielles Marken-Teal (Header/Hero) */
   --blue-dark: #009aa3;
   --blue-deep: #00727b;   /* tiefes Marken-Teal; Text auf Weiss 5,69:1 (WCAG AA) */
-  --teal: #0b7d72;        /* CTA-Teal; weisser Text 5,01:1 (WCAG AA, alle Groessen) */
-  --teal-dark: #096258;   /* Hover/Text; weisser Text 7,24:1 */
-  --navy: #0a6ca9;        /* Medicare-Blau "care" (exakt aus Logo) */
+  --teal: #007a87;        /* CI-CTA-Teal (Familie #00a8b8); weisser Text 5,09:1 (WCAG AA) */
+  --teal-dark: #00636e;   /* Hover/Text; weisser Text 7,02:1 */
+  --navy: #0667a3;        /* Medicare-Blau "care" (exakt von medicare-hamburg.de gemessen) */
   --navy-deep: #0a4f7e;   /* tiefes Medicare-Blau (Footer/Bänder) */
   --cyan: #06b6d4;
   --cyan-light: #b8eef5;
@@ -1385,10 +1385,10 @@ section { padding: 104px 0; }
 /* ---- Buttons: ruhige, hochwertige Tiefe ---- */
 .btn { font-weight: 700; letter-spacing: .005em; }
 .btn-cta {
-  background: linear-gradient(180deg, #11a394 0%, var(--teal) 100%);
-  box-shadow: 0 6px 16px rgba(13,148,136,.30), inset 0 1px 0 rgba(255,255,255,.22);
+  background: var(--teal);
+  box-shadow: 0 6px 16px rgba(0,99,110,.28);
 }
-.btn-cta:hover { box-shadow: 0 12px 26px rgba(13,148,136,.38), inset 0 1px 0 rgba(255,255,255,.22); }
+.btn-cta:hover { background: var(--teal-dark); box-shadow: 0 12px 26px rgba(0,99,110,.34); }
 .btn-cta:active { transform: translateY(0); }
 .hero .btn-cta { background: #fff; color: var(--teal-dark); }
 
@@ -2756,3 +2756,113 @@ p a[href^="http"]:not(.btn) { overflow-wrap: anywhere; word-break: normal; }
 @media (max-width: 480px) {
   .hero .btn, .page-hero .btn { letter-spacing: .07em; padding: 13px 18px; font-size: .92rem; }
 }
+
+/* =========================================================
+   v15 · CI-FEINSCHLIFF + FORMATION (Original-Abgleich, Level 3)
+   Farb-Referenzen aus medicare-hamburg.de gemessen:
+   Fläche #00a8b8 · Headline-Blau #0667a3 · Fließtext-Grau.
+   ========================================================= */
+
+/* Sektions-Überschriften im Marken-Blau (wie „Wir sind für Sie da.“) */
+main h2 { color: var(--navy); }
+.brand-band h2, .cta-band h2, .counters h2, .service-summary h2,
+.switch-band h2, .contact-aside h2 { color: inherit; }
+.cta-band h2 { color: #fff !important; }
+.brand-band h2 { color: #fff; }
+.switch-band h2 { color: var(--navy) !important; }
+
+/* Hero-Typografie: leichter, luftiger (Original wirkt nicht extra-fett) */
+.hero h1, .page-hero h1 { font-weight: 650; letter-spacing: -.02em; }
+
+/* Formation: beide Hero-Buttons nebeneinander – auch mobil (wie Original) */
+.hero-cta { display: flex; flex-direction: row !important; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.hero .btn, .page-hero .btn { white-space: nowrap; }
+@media (max-width: 480px) {
+  .hero .btn, .page-hero .btn { letter-spacing: .06em; padding: 12px 15px; font-size: .84rem; }
+}
+
+/* Scroll-Hinweis am Hero-Boden (Chevron wie Original) */
+.hero-scroll {
+  position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%);
+  z-index: 2; color: #fff; opacity: .85; line-height: 0;
+  animation: heroChevron 2.2s ease-in-out infinite;
+}
+.hero-scroll:hover { opacity: 1; color: #fff; }
+.hero-scroll svg { width: 30px; height: 30px; }
+@keyframes heroChevron {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(7px); }
+}
+@media (prefers-reduced-motion: reduce) { .hero-scroll { animation: none; } }
+@media (max-width: 760px) { .hero-scroll { bottom: 42px; } .hero { padding-bottom: 96px !important; } }
+
+/* Footer-Formation wie Original: zentriertes weißes Logo über dem Inhalt */
+.footer-logo { text-align: center; margin: 0 0 38px; }
+.footer-logo img { height: 52px; width: auto; display: inline-block; }
+.footer-bottom { text-align: center; }
+
+/* =========================================================
+   v16 · ORIGINAL-ABGLEICH II (nach vollständigen Referenzen)
+   Korrekturen: H2 dunkelgrau statt blau · hängender Bogen
+   statt Welle · Start-Hero linksbündig, leichte H1 · Teal-
+   Divider über zentrierten H2 · Siegel im Marken-Blau ·
+   Footer linksbündig · kompakte Outline-Buttons.
+   ========================================================= */
+
+/* Content-H2 wie Original: weiches Dunkelgrau (nicht blau) */
+main h2 { color: #3d4449; }
+
+/* Teal-Divider über Überschriften ohne Eyebrow (wie „Wir beraten Sie gern!“) */
+.section-head > h2:first-child::before {
+  content: ""; display: block; width: 64px; height: 3px; border-radius: 2px;
+  background: var(--blue); margin: 0 auto 20px;
+}
+.brand-band .section-head > h2:first-child::before { margin-left: 0; background: rgba(255,255,255,.75); }
+
+/* Hero-Abschluss: hängender Bogen mit hellem Schimmer (statt Wellenlinie) */
+.hero::after, .page-hero::after {
+  height: 60px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0,14 Q720,54 1440,14 L1440,60 L0,60 Z' fill='%23ffffff' opacity='.30'/%3E%3Cpath d='M0,24 Q720,62 1440,24 L1440,60 L0,60 Z' fill='%23ffffff'/%3E%3C/svg%3E") bottom center / 100% 100% no-repeat;
+}
+@media (max-width: 760px) { .hero::after, .page-hero::after { height: 36px; } }
+
+/* Start-Hero wie Original: linksbündig, leichte Typo */
+.hero-grid { max-width: 900px; margin: 0 auto; text-align: left; }
+.hero-text { text-align: left; }
+.hero h1 { font-weight: 400 !important; letter-spacing: -.015em; }
+.hero h1 .accent { font-weight: 400; }
+.page-hero h1 { font-weight: 400 !important; }
+.hero .lead { margin-left: 0; }
+.hero .role { font-weight: 600; }
+.hero-cta { justify-content: flex-start; }
+.hero .hero-call { text-align: left; }
+.hero .hero-trust { justify-content: flex-start; }
+
+/* Outline-Buttons kompakt wie Original (UNSERE TEAMS / KONTAKT) */
+.hero .btn, .page-hero .btn {
+  font-size: .86rem !important;
+  padding: 11px 22px !important;
+  letter-spacing: .16em;
+  font-weight: 500;
+  border-radius: 3px !important;
+}
+@media (max-width: 480px) {
+  .hero .btn, .page-hero .btn { font-size: .78rem !important; padding: 10px 14px !important; letter-spacing: .1em; }
+}
+
+/* MD-Siegel im helleren Marken-Blau (wie das Original-Siegel) */
+.md-seal {
+  background: var(--navy);
+  box-shadow: 0 10px 26px rgba(6,58,96,.30), inset 0 0 0 5px var(--navy), inset 0 0 0 7px rgba(255,255,255,.9);
+}
+
+/* Footer-Formation wie Original: linksbündig */
+.footer-logo { text-align: left; margin-bottom: 34px; }
+.footer-logo img { height: 58px; }
+.footer-bottom { text-align: left; }
+@media (max-width: 760px) { .footer-logo img { height: 50px; } }
+
+/* Nav-Lesbarkeit auf Marken-Teal maximieren (CI-Farbe bleibt Original) */
+.site-header .nav-links a { font-weight: 700; text-shadow: 0 1px 2px rgba(0,62,68,.28); }
+.brand-sub { text-shadow: 0 1px 2px rgba(0,62,68,.28); }

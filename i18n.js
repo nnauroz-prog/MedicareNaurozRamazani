@@ -10,7 +10,7 @@
 
   var STORE = "medicare_lang";
   var BASE = "i18n/";
-  var VER = "8";
+  var VER = "9";
 
   // Reihenfolge = Reihenfolge im Sprachmenü
   var LANGS = [

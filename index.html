@@ -26,8 +26,8 @@
       "#mc-gate form{display:flex;flex-direction:column;gap:12px}" +
       "#mc-gate input{width:100%;padding:15px 18px;font-size:1.05rem;text-align:center;letter-spacing:.18em;border:2px solid #e5e7eb;border-radius:14px;outline:none;transition:border-color .2s,box-shadow .2s}" +
       "#mc-gate input:focus{border-color:#00afb9;box-shadow:0 0 0 4px rgba(0,175,185,.16)}" +
-      "#mc-gate button{width:100%;padding:15px 18px;font-size:1.08rem;font-weight:800;color:#fff;border:0;border-radius:14px;cursor:pointer;background:linear-gradient(180deg,#11a394,#0d9488);box-shadow:0 8px 20px rgba(13,148,136,.30);transition:transform .15s,box-shadow .2s}" +
-      "#mc-gate button:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(13,148,136,.38)}" +
+      "#mc-gate button{width:100%;padding:15px 18px;font-size:1.08rem;font-weight:800;color:#fff;border:0;border-radius:14px;cursor:pointer;background:linear-gradient(180deg,#00919f,#007a87);box-shadow:0 8px 20px rgba(0,122,135,.30);transition:transform .15s,box-shadow .2s}" +
+      "#mc-gate button:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,122,135,.38)}" +
       "#mc-gate .mc-err{display:none;color:#c0392b;font-weight:700;font-size:.95rem;margin-top:2px}" +
       "#mc-gate.shake .mc-card{animation:mcShake .4s}" +
       "@keyframes mcShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}" +
@@ -97,7 +97,7 @@
   <!-- Open Graph -->
 <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="foto-team-800.webp" />
-  <link rel="stylesheet" href="style.css?v=63" />
+  <link rel="stylesheet" href="style.css?v=64" />
 
   <!-- Schema.org: MedicalBusiness -->
   <script type="application/ld+json">
@@ -163,7 +163,7 @@
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index.html" aria-label="Startseite Medicare – Nauroz & Ramazani">
-        <img decoding="async" class="brand-logo" src="logo-white-full.png" width="1760" height="490" alt="Medicare – Hamburgs Gesundheits- und Seniorenpflege" />
+        <img decoding="async" class="brand-logo" src="logo-white.png" width="800" height="122" alt="Medicare – Hamburgs Gesundheits- und Seniorenpflege" />
         <span class="brand-sub">Nauroz &amp; Ramazani</span>
       </a>
       <nav aria-label="Hauptnavigation">
@@ -197,7 +197,7 @@
           <h1>Pflege, die sich <span class="accent">Zeit nimmt</span></h1>
           <p class="lead">Ständig neue Gesichter, wenig Zeit, niemand der zuhört? So sollte Pflege nicht sein. Wir – <strong>Nadim Nauroz &amp; Farhad Ramazani</strong> – kommen persönlich, nehmen uns Zeit und behandeln Sie wie einen Menschen, nicht wie eine Nummer.</p>
           <div class="hero-cta">
-            <a class="btn btn-cta btn-lg" href="kontakt.html">Kostenlos &amp; unverbindlich anfragen</a>
+            <a class="btn btn-cta btn-lg" href="kontakt.html">Kostenlos anfragen</a>
             <a class="btn btn-ghost btn-lg" href="tel:+491607621876"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Anrufen · 24/7</a>
           </div>
           <p class="hero-call">Lieber direkt sprechen? <a href="tel:+491607621876">0160&nbsp;762&nbsp;18&nbsp;76</a> — rund um die Uhr für Sie da.</p>
@@ -209,10 +209,11 @@
           </div>
         </div>
       </div>
+      <a class="hero-scroll" href="#vertrauen" aria-label="Nach unten zu unseren Qualitätsversprechen scrollen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
     </section>
 
     <!-- TRUST BADGES -->
-    <section class="trust-bar" style="padding:0;">
+    <section id="vertrauen" class="trust-bar" style="padding:0;">
       <div class="container">
         <span class="badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5edf7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Kassenzugelassen</span>
         <span class="badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5edf7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Alle Kassen & Privat</span>
@@ -630,6 +631,7 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
+      <div class="footer-logo"><img decoding="async" loading="lazy" src="logo-white-full.png" width="1760" height="490" alt="Medicare – Hamburgs Gesundheits- und Seniorenpflege" /></div>
       <div class="footer-grid">
         <div class="footer-brand">
           <strong>Nadim Nauroz &amp; Farhad Ramazani</strong>
@@ -704,6 +706,6 @@
   </div>
 
   <script src="script.js?v=29"></script>
-  <script src="i18n.js?v=9" defer></script>
+  <script src="i18n.js?v=10" defer></script>
 </body>
 </html>
