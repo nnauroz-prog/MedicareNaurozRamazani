@@ -28,10 +28,11 @@ Im Header gibt es einen **Sprach-Umschalter** (Globus-Symbol). Verfügbar:
   `python3 i18n/_build.py` ausführen – das erzeugt die geladenen `i18n/<code>.json`.
 
 ## Design-System & Markenfarben (zentrale Tokens in `style.css :root`)
-Helles „Logo-auf-Weiß"-Design (Hell & luftig): **weißer Header mit Farb-Logo**,
-weiße Inhaltssektionen, **heller Footer**, helles Trust-Band. Akzente exakt aus
-dem Logo, als **CSS-Custom-Properties zentral gepflegt** – eine Quelle der
-Wahrheit, Markenfarbe ändern = nur hier:
+**Original-CI wie medicare-hamburg.de** (Block „v14“ am Ende von `style.css`):
+Teal-Header mit **weißem Logo**, Teal-Heros mit zentriertem weißem Text,
+Outline-Buttons in Versalien, **Wellen-Übergang** zum weißen Inhalt, Teal-Footer.
+Akzente exakt aus dem Logo, als **CSS-Custom-Properties zentral gepflegt** –
+eine Quelle der Wahrheit, Markenfarbe ändern = nur hier:
 - `--brand-teal: #16A3B4` – Logo-Türkis · große Headlines, Zahlen, Icons, Dekor (Großtext/UI ≥ 3:1)
 - `--brand-blue: #0068A7` – Logo-Blau · Text, Links, Buttons (WCAG-AA 5,94:1)
 - `--brand-blue-hover: #00527f` – Hover/aktiv (Blau)
@@ -98,13 +99,13 @@ und Doppelklick-Schutz. Defekte Bilder: `<picture>`-WebP/JPEG-Fallback +
 Initialen-Fallback für Portraits.
 
 ## Assets
-- `logo-color-header.png` (Header-Farb-Logo, aus `logo-color.png` ohne Tagline zugeschnitten), `favicon.svg`, `apple-touch-icon.png` · (`logo-white.png` ist seit dem hellen Header ungenutzt)
+- `logo-white-full.png` (weißes Header-Logo auf Teal, Original-CI), `favicon.svg`, `apple-touch-icon.png` · (`logo-color-header.png`/`logo-white.png` aktuell ungenutzt, als Varianten behalten)
 - `og-image.jpg` – Vorschaubild fürs Teilen (1200×630, ohne Bewertungs-Angabe)
 - `foto-team.jpg` (Hero), `IMG_7363.jpeg` (Nadim), `IMG_0631.jpeg` (Farhad) – optimiert
 - `i18n/` – Wörterbücher (`en/tr/ru/fa.json`), Quell-Strings & Build-Skript (`_build.py`)
 - `fonts/inter-latin.woff2` – selbst gehostete Schrift (DSGVO, kein Google-CDN)
 - `nadim-nauroz.vcf`, `farhad-ramazani.vcf` – Visitenkarten zum Speichern
-- `IMG_0376–0381`, `logo-color.png`, `logo-white-full.png` – Referenzdateien (nicht eingebunden;
+- `IMG_0376–0381`, `logo-color.png` – Referenzdateien (nicht eingebunden;
   können vor Go-Live aus dem Repo entfernt werden)
 
 ## 🧪 Qualitätssicherung (`tests/suite.mjs`)
@@ -140,11 +141,20 @@ bei Wörterbuch-Änderungen zusätzlich `VER` in `i18n.js`.
    sammeln und als Bewertungs-Sektion einbinden lassen.
 
 ## Marken-Kennzahlen (Medicare-Band, Startseite + Über uns)
-Die Zahlen im „Teil von Medicare"-Band stammen von medicare-hamburg.de
-(Stand Juli 2026): Note **1,1** (Medizinischer Dienst), **600+** Kundinnen &
-Kunden, **150+** Mitarbeitende. Bei neuen Zahlen der Zentrale in `index.html`
-(`#medicare-familie`) und `ueber-uns.html` (Absatz „Dahinter steht die Marke…"
-+ Factsheet „Marke") aktualisieren – Übersetzungen in `i18n/` mitziehen.
+Quelle ist der **MD-Transparenzbericht vom 24.04.2024** (Träger: MBD Medicare
+Brigitte Dornia GmbH & Co. KG, Heidhorst 4): Gesamtnote **1,1 „sehr gut“**
+(Landesdurchschnitt 1,4), Befragung der Versorgten **1,0**, **419** versorgte
+Menschen. Nach der nächsten MD-Prüfung in `index.html` (`#medicare-familie`,
+Siegel + Kacheln), `pflegeberatung.html` (Trust-Badge) und `ueber-uns.html`
+aktualisieren – Übersetzungen in `i18n/` mitziehen.
+
+## Original-CI (Design wie medicare-hamburg.de)
+Der Block „v14 · ORIGINAL-CI“ am Ende von `style.css` bildet die Hauptseite
+nach: flaches Marken-Teal (#00a8b8) für Header/Heros/Footer, weißes Logo
+(`logo-white-full.png`), zentrierte Hero-Texte, Outline-Buttons in Versalien,
+Wellen-Übergang (SVG in `::after`). Bewusste Marken-Entscheidung: weißer
+Nav-Text auf #00a8b8 liegt wie beim Original unter 4,5:1 (WCAG-AA-Kontrast) –
+wer AA strikt braucht, dunkelt die Header-Fläche auf ~#007a87 ab.
 
 ## Inhalt pflegen (Beträge 2026 – aus euren Unterlagen)
 Pflegegeld/Sachleistung: PG2 347/796 · PG3 599/1.497 · PG4 800/1.859 · PG5 990/2.299 €.

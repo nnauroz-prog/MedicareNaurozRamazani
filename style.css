@@ -2055,53 +2055,8 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 .cta-band .btn-ghost, .cta-band .btn-outline { background: transparent !important; color: var(--brand-blue) !important; border-color: var(--brand-blue) !important; }
 .cta-band .btn-ghost:hover, .cta-band .btn-outline:hover { background: var(--brand-blue) !important; color: #fff !important; }
 
-/* ---- Logo-Kombi: Unterseiten-Hero hell ---- */
-.page-hero { background: linear-gradient(170deg,#f3fbfc 0%,#ffffff 100%) !important; color: var(--ink) !important; border-bottom: 1px solid #e8eef0; }
-.page-hero::before { display: none !important; }
-.page-hero h1 { color: var(--ink) !important; }
-.page-hero p { color: var(--muted) !important; }
-.breadcrumb { color: var(--muted) !important; }
-.breadcrumb a { color: #00727b !important; }
-
-/* ---- Logo-Kombi: heller Footer (Hell & luftig) ---- */
-.site-footer { background: #f6fbfc !important; color: var(--ink) !important; border-top: 1px solid #e3eaec !important; }
-.site-footer::before { display: none !important; }
-.site-footer h2 { color: var(--ink) !important; }
-.site-footer h2::after { background: var(--brand-teal) !important; }
-.site-footer a { color: var(--brand-blue) !important; }
-.site-footer a:hover { color: var(--brand-blue-hover) !important; }
-.footer-brand strong { color: var(--ink) !important; }
-.footer-brand .tag { color: var(--muted) !important; }
-.site-footer p, .footer-brand p, .footer-bottom { color: var(--muted) !important; }
-.footer-bottom { border-top-color: #e3eaec !important; }
-
-/* ---- Logo-Kombi: weisser Header (Hell & luftig) ---- */
-.site-header { background: #ffffff !important; color: var(--ink) !important; box-shadow: inset 0 -1px 0 #e7eef0, 0 6px 18px rgba(16,42,67,.06) !important; }
-.brand, .brand:hover { color: var(--ink) !important; }
-.brand-sub { color: var(--muted) !important; border-left-color: #d7dee1 !important; }
-.nav-links a { color: #1f2933 !important; }
-.nav-links a:hover { background: rgba(var(--brand-teal-rgb),.10) !important; color: var(--brand-blue) !important; }
-.nav-links a.active { color: var(--brand-blue) !important; background: rgba(var(--brand-blue-rgb),.08) !important; }
-.nav-cta a { background: var(--brand-blue) !important; color: #fff !important; }
-.nav-cta a:hover { background: var(--brand-blue-hover) !important; }
-.lang-btn { background: #f1f6f7 !important; border-color: #d7dee1 !important; color: #1f2933 !important; }
-.lang-btn:hover { background: #e7eef0 !important; border-color: #c3ccd0 !important; }
-.lang-btn .lang-cur, .lang-btn .ico { color: #1f2933 !important; }
-.a11y-btn { color: #1f2933 !important; border-color: #d7dee1 !important; }
-.a11y-btn:hover { background: #eef3f4 !important; }
-.nav-toggle { color: #1f2933 !important; }
-.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after { background: #1f2933 !important; }
-
-/* Mobiles Menü-Panel weiss (passend zum hellen Header) */
-@media (max-width: 1024px) {
-  .nav-links { background: #ffffff !important; border: 1px solid #e7eef0 !important; box-shadow: 0 14px 32px rgba(16,42,67,.14) !important; }
-  .nav-links a.active { background: rgba(var(--brand-blue-rgb),.08) !important; }
-}
-
-/* ---- Logo-Kombi: heller Trust-Streifen (Hell & luftig) ---- */
-.trust-bar { background: #f1f8f9 !important; color: #1f2933 !important; border-top: 1px solid #e3eef0 !important; border-bottom: 1px solid #e3eef0 !important; }
-.trust-bar .badge { color: #1f2933 !important; }
-.trust-bar .badge svg { background: var(--brand-teal) !important; color: #ffffff !important; }
+/* (Der frühere „Hell & luftig“-Block – weißer Header, helle Heros/Footer –
+   wurde durch die Original-CI v14 ersetzt und entfernt.) */
 
 /* ---- Leistungs-Detailseiten: "Leistungen im Überblick"-Box ---- */
 .service-summary { background: var(--blue-deep); color: #fff; border-radius: var(--radius); padding: 30px 30px 32px; box-shadow: var(--shadow); }
@@ -2619,4 +2574,185 @@ p a[href^="http"]:not(.btn) { overflow-wrap: anywhere; word-break: normal; }
   .brand-stats { grid-template-columns: 1fr; gap: 12px; }
   .brand-stat { padding: 18px 16px; }
   .brand-band .brand-anchor { display: none; }
+}
+
+/* =========================================================
+   v14 · ORIGINAL-CI (Angleichung an medicare-hamburg.de)
+   Referenz: Screenshots der Hauptseite (Juli 2026).
+   Design-DNA: flaches Marken-Teal (#00a8b8) für Header, Hero
+   und Footer · weißes Logo · zentrierte Hero-Texte · Outline-
+   Buttons in Versalien · Wellen-Übergang zum weißen Inhalt.
+   ========================================================= */
+
+/* ---- Header: flaches Marken-Teal, weißes Logo ---- */
+.site-header {
+  background: #00a8b8 !important;
+  box-shadow: 0 2px 14px rgba(0,62,68,.20) !important;
+  border-bottom: 0 !important;
+}
+.site-header .nav-links a { color: #fff; }
+.site-header .nav-links a:hover { background: rgba(255,255,255,.16); color: #fff; }
+.site-header .nav-links a.active { color: #fff; }
+.site-header .nav-links a.active::after { background: #fff; }
+.brand-sub { color: #eafcfe; border-left-color: rgba(255,255,255,.55); }
+.nav-cta a { background: #fff; color: #00838c !important; box-shadow: 0 4px 12px rgba(0,60,66,.22); }
+.nav-cta a:hover { background: #eafcfe; }
+
+/* Mobile-Menü wie Original: Teal-Panel, weiße Einträge, feine Trennlinien */
+@media (max-width: 860px) {
+  .nav-links { background: #00a8b8; box-shadow: 0 14px 28px rgba(0,60,66,.30); }
+  .nav-links li + li { border-top: 1px solid rgba(255,255,255,.22); }
+  .nav-links li.nav-a11y, .nav-links li.nav-cta { border-top: 0; }
+}
+
+/* ---- Hero (Start): Teamfoto unter Teal-Overlay, zentriert ---- */
+.hero {
+  background:
+    linear-gradient(165deg, rgba(0,177,189,.90) 0%, rgba(0,151,166,.93) 60%, rgba(0,131,146,.95) 100%),
+    url("foto-team-800.webp") center 18% / cover no-repeat !important;
+  background-color: #0097a6 !important; /* Fallback (Force-Dark/No-Image) */
+  border-radius: 0 !important;
+  border-bottom: 0 !important;
+  padding: 88px 0 128px !important;
+}
+.hero::before { display: none !important; }
+.hero-grid { display: block !important; max-width: 840px; margin: 0 auto; text-align: center; }
+.hero-photos { display: none !important; }
+.hero-text { text-align: center; }
+.hero .lead { margin-left: auto; margin-right: auto; max-width: 60ch; }
+.hero-cta { justify-content: center; }
+.hero-call { text-align: center; }
+.hero-trust { display: flex; justify-content: center; }
+
+/* ---- Wellen-Übergang zum weißen Inhalt (Signature der Hauptseite) ---- */
+.hero::after, .page-hero::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 54px; z-index: 1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 54' preserveAspectRatio='none'%3E%3Cpath d='M0,27 C240,54 480,0 720,20 C960,40 1200,8 1440,27 L1440,54 L0,54 Z' fill='%23ffffff'/%3E%3C/svg%3E") bottom center / 100% 100% no-repeat;
+  pointer-events: none;
+  border: 0; width: auto; top: auto; box-shadow: none;
+  -webkit-mask-image: none; mask-image: none;
+  opacity: 1; transform: none;
+}
+@media (max-width: 760px) { .hero::after, .page-hero::after { height: 34px; } }
+
+/* ---- Unterseiten-Hero: flaches Teal, zentriert, Welle ---- */
+.page-hero {
+  background: linear-gradient(165deg, #00b1bd 0%, #0097a6 100%) !important;
+  background-color: #00a8b8 !important;
+  color: #fff !important;
+  text-align: center;
+  padding-bottom: 104px !important;
+  border-bottom: 0 !important;
+}
+.page-hero::before { display: none !important; }
+.page-hero h1 { color: #fff; }
+.page-hero p { color: #eafcfe; margin-left: auto; margin-right: auto; }
+.page-hero .lead { color: #eafcfe; }
+.page-hero .breadcrumb { color: #d3f1f4; justify-content: center; }
+.page-hero .breadcrumb a { color: #fff; }
+.page-hero .eyebrow { color: #eafcfe; justify-content: center; }
+.page-hero .eyebrow::before { background: rgba(255,255,255,.75); }
+.page-hero .section-head, .page-hero .hero-cta { text-align: center; justify-content: center; }
+.hero, .page-hero { position: relative; overflow: hidden; }
+
+/* ---- Hero-Buttons wie Original: Outline, Versalien, gesperrt ---- */
+.hero .btn, .page-hero .btn {
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,.92) !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-weight: 600;
+  box-shadow: none !important;
+  backdrop-filter: none;
+}
+.hero .btn:hover, .page-hero .btn:hover {
+  background: #fff !important;
+  color: #00838c !important;
+  transform: none;
+}
+.hero .role {
+  background: transparent; border: 0; padding: 0;
+  color: #eafcfe; letter-spacing: .12em; text-transform: uppercase; font-size: .82rem;
+  backdrop-filter: none;
+}
+.hero .hero-trust .rating { color: #eafcfe; }
+.hero .hero-call, .hero .hero-call a { color: #fff; }
+
+/* ---- Trust-Bar: nach der weißen Welle hell weiterführen ---- */
+.trust-bar { background: #ffffff !important; }
+.trust-bar .badge { color: #2b3a44; }
+.trust-bar .badge svg { stroke: #00929e; }
+
+/* ---- Bänder in die Teal-Welt der Hauptseite holen ---- */
+.cta-band { background: linear-gradient(165deg, #00aab6 0%, #00929e 100%) !important; color: #fff !important; }
+.cta-band h2, .cta-band p { color: #fff !important; }
+.brand-band { background: linear-gradient(160deg, #008e9c 0%, #00727b 100%); }
+.brand-band::before { background: radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 70%); }
+.brand-band .eyebrow, .brand-band .eyebrow::before { color: #d3f1f4; background-color: transparent; }
+.brand-band .eyebrow::before { background: rgba(255,255,255,.7); }
+.brand-band .brand-lead { color: #eafcfe; }
+.brand-band .brand-anchor { color: rgba(255,255,255,.14); }
+.brand-stat { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.28); }
+.brand-stat .num { color: #fff; }
+.brand-stat .lbl { color: #eafcfe; }
+.brand-src { color: #d3f1f4; }
+.brand-src a { color: #fff; }
+
+/* ---- Footer: flaches Marken-Teal wie die Hauptseite ---- */
+.site-footer { background: #00a8b8 !important; color: #f2fbfc; }
+.site-footer::before { background: rgba(255,255,255,.35); height: 1px; }
+.site-footer a { color: #fff; }
+.site-footer a:hover { color: #eafcfe; text-decoration: underline; }
+.site-footer h2 { color: #fff; }
+.site-footer h2::after { background: rgba(255,255,255,.7); }
+.footer-brand .tag { color: #eafcfe; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.28); color: #f2fbfc; }
+
+/* ---- MD-Siegel (wie das runde Prüfsiegel der Hauptseite) ---- */
+.md-seal {
+  width: 148px; height: 148px; border-radius: 50%;
+  background: #0a4f7e;
+  box-shadow: 0 10px 26px rgba(0,40,60,.35), inset 0 0 0 5px #0a4f7e, inset 0 0 0 7px rgba(255,255,255,.85);
+  border: 2px dashed rgba(255,255,255,.85);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; text-align: center; color: #fff; padding: 16px; flex: none;
+}
+.md-seal .md-top { font-size: .62rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #cfe8ff; }
+.md-seal strong { font-size: 1.02rem; line-height: 1.25; letter-spacing: -.01em; }
+.md-seal .md-sub { font-size: .62rem; color: #cfe8ff; line-height: 1.35; }
+.brand-head-row { display: flex; align-items: center; justify-content: space-between; gap: 34px; }
+.brand-head-row .section-head { flex: 1; }
+@media (max-width: 860px) {
+  .brand-head-row { flex-direction: column; align-items: flex-start; }
+  .md-seal { width: 132px; height: 132px; }
+}
+
+/* ---- v14b: Textfarben im Teal-Hero hart absichern (schlägt Alt-Blöcke) ---- */
+.hero h1, .page-hero h1 { color: #fff !important; }
+.hero h1 .accent { color: #bdf3f7 !important; }
+.hero .lead, .page-hero .lead, .page-hero p { color: #ecfbfd !important; }
+.hero .lead strong { color: #fff !important; }
+.hero .role { color: #ecfbfd !important; }
+.hero .hero-call, .hero .hero-call a, .hero .hero-trust .rating { color: #f2fdff !important; }
+.hero .hero-call a { text-decoration-color: rgba(255,255,255,.6); }
+.hero .hero-trust .stars { color: #bdf3f7; }
+.page-hero .breadcrumb { color: #d3f1f4 !important; }
+.page-hero .breadcrumb a { color: #ffffff !important; }
+.hero, .page-hero { border-bottom: 0 !important; }
+
+/* Foto-Overlay dichter: Teamfoto nur als dezente Textur, Text bleibt Star */
+.hero {
+  background:
+    linear-gradient(165deg, rgba(0,177,189,.95) 0%, rgba(0,151,166,.96) 60%, rgba(0,131,146,.97) 100%),
+    url("foto-team-800.webp") center 18% / cover no-repeat !important;
+  background-color: #0097a6 !important;
+}
+
+/* Mobil: Hero-Buttons kompakter, damit sie nicht dreizeilig brechen */
+@media (max-width: 480px) {
+  .hero .btn, .page-hero .btn { letter-spacing: .07em; padding: 13px 18px; font-size: .92rem; }
 }
