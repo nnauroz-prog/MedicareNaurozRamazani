@@ -2901,3 +2901,33 @@ main h2 { color: #3d4449; }
 /* A−/A+ immer nebeneinander in Headerhöhe halten */
 .nav-a11y { flex: none; }
 .nav-a11y span[role="group"] { display: inline-flex; flex-wrap: nowrap; align-items: center; gap: 6px; }
+
+/* =========================================================
+   v18 · POLITUR Header-Schalter + Hero-Headline
+   ========================================================= */
+
+/* A−/A+ als dezente Pill-Gruppe im Stil des Sprach-Schalters
+   (statt klobiger Einzel-Kästen) */
+.nav-a11y span[role="group"] {
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+.a11y-btn, .nav-a11y .a11y-btn {
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  min-width: 34px; height: 32px; padding: 0 9px;
+  font-weight: 700;
+}
+.a11y-btn:hover { background: rgba(255,255,255,.22); }
+.a11y-btn[aria-disabled="true"] { opacity: .45; }
+@media (min-width: 861px) and (max-width: 1340px) {
+  .a11y-btn, .nav-a11y .a11y-btn { min-width: 30px; height: 28px; padding: 0 7px; }
+}
+
+/* Hero-Headline einfarbig weiß wie „Wir sind Medicare“ –
+   der blasse Zweifarb-Akzent wirkte auf Teal verwaschen */
+.hero h1 .accent { color: #fff !important; }
