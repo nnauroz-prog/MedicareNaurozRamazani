@@ -2035,13 +2035,7 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 .hero .anchor-deco { opacity: .05 !important; color: var(--brand-teal) !important; }
 
 /* ---- Logo-Kombi: helle Inhaltssektionen (weniger Blau) ---- */
-.switch-band { background: linear-gradient(170deg,#f3fbfc 0%,#ffffff 100%) !important; color: var(--ink) !important; }
-.switch-band h2, .switch-step h3 { color: var(--ink) !important; }
-.switch-step p, .switch-cta .switch-note { color: var(--muted) !important; }
-.switch-band .eyebrow { color: #016b73 !important; }
-.switch-num { color: var(--brand-teal) !important; }
-.switch-band .btn-cta { background: var(--teal) !important; color: #fff !important; }
-.switch-band .btn-cta:hover { background: var(--teal-dark) !important; }
+/* (switch-band ist wieder ein Teal-Band im Original-Stil – Regeln in v17) */
 
 .counters { background: linear-gradient(170deg,#f3fbfc 0%,#ffffff 100%) !important; color: var(--ink) !important; border-top:1px solid #e8eef0; border-bottom:1px solid #e8eef0; }
 .counter-num { color: var(--brand-teal) !important; }
@@ -2866,3 +2860,44 @@ main h2 { color: #3d4449; }
 /* Nav-Lesbarkeit auf Marken-Teal maximieren (CI-Farbe bleibt Original) */
 .site-header .nav-links a { font-weight: 700; text-shadow: 0 1px 2px rgba(0,62,68,.28); }
 .brand-sub { text-shadow: 0 1px 2px rgba(0,62,68,.28); }
+
+
+/* =========================================================
+   v17 · LIVE-FEEDBACK-FIXES (iPad-Screenshots vom Nutzer)
+   ========================================================= */
+
+/* Wechsel-Sektion als Teal-Band wie „Immer mehr Menschen
+   vertrauen uns." auf der Hauptseite – weißer Text, helle Karten */
+.switch-band {
+  background: linear-gradient(165deg, #00aab6 0%, #00929e 100%) !important;
+  color: #fff !important;
+}
+.switch-band h2 { color: #fff !important; }
+.switch-band .section-head p, .switch-band .lead { color: #f2fdff !important; }
+.switch-band .eyebrow { color: #eafcfe !important; }
+.switch-band .eyebrow::before { background: rgba(255,255,255,.75) !important; }
+.switch-step { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.24); }
+.switch-step h3 { color: #fff !important; }
+.switch-step p { color: #f2fdff !important; }
+.switch-num { background: #fff !important; color: #00838c !important; }
+.switch-band .btn-cta { background: #fff !important; color: #00727b !important; box-shadow: 0 8px 20px rgba(0,60,66,.25) !important; }
+.switch-band .btn-cta:hover { background: #eafcfe !important; color: #00636e !important; }
+.switch-cta .switch-note { color: #f2fdff !important; }
+
+/* Header passt bei Tablet-Breiten (861–1340px) in EINE Zeile:
+   kompaktere Nav, kleinere Schalter – A−/A+ ragen nicht mehr heraus */
+@media (min-width: 861px) and (max-width: 1340px) {
+  .nav-links { gap: 0; }
+  .nav-links a { padding: 9px 9px; font-size: .93rem; }
+  .brand-logo { height: 30px; }
+  .brand-sub { display: none; }
+  .nav-a11y { margin-left: 4px; gap: 4px; }
+  .a11y-btn { min-width: 33px; height: 33px; padding: 0 5px; font-size: .85rem; border-radius: 8px; }
+  .a11y-btn[data-font="inc"] { font-size: .98rem; }
+  .nav-cta { margin-left: 4px; }
+  .nav-cta a { padding: 8px 13px !important; font-size: .93rem; }
+  .lang-btn { padding: 7px 10px !important; font-size: .9rem; }
+}
+/* A−/A+ immer nebeneinander in Headerhöhe halten */
+.nav-a11y { flex: none; }
+.nav-a11y span[role="group"] { display: inline-flex; flex-wrap: nowrap; align-items: center; gap: 6px; }
