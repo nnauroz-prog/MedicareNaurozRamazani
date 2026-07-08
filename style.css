@@ -2931,3 +2931,85 @@ main h2 { color: #3d4449; }
 /* Hero-Headline einfarbig weiß wie „Wir sind Medicare“ –
    der blasse Zweifarb-Akzent wirkte auf Teal verwaschen */
 .hero h1 .accent { color: #fff !important; }
+
+/* =========================================================
+   v19 · ORIGINAL-FORMATIONEN: Split-Band, Beraten-Sektion,
+   Unterseiten-Hero mit Foto (Referenzen IMG_0080/0082/0930)
+   ========================================================= */
+
+/* Unterseiten-Hero wie Original: Foto unter dichtem Teal-Overlay */
+.page-hero {
+  background:
+    linear-gradient(165deg, rgba(0,177,189,.90) 0%, rgba(0,151,166,.93) 60%, rgba(0,131,146,.95) 100%),
+    url("foto-team-800.webp") center 20% / cover no-repeat !important;
+  background-color: #00a8b8 !important;
+}
+
+/* Split-Band Foto | Teal (wie „Immer mehr Menschen vertrauen uns.") */
+.split-band {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 !important;
+  border-top: 0 !important;
+}
+.split-photo { position: relative; min-height: 420px; }
+.split-photo picture, .split-photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 22%;
+}
+.split-panel {
+  background: linear-gradient(165deg, #00aab6 0%, #00929e 100%);
+  color: #fff;
+  display: flex; align-items: center;
+  padding: clamp(48px, 7vw, 96px) clamp(28px, 6vw, 90px);
+}
+.split-inner { max-width: 520px; }
+.split-panel .eyebrow { color: #eafcfe; }
+.split-panel .eyebrow::before { background: rgba(255,255,255,.75); }
+.split-panel h2 { color: #fff !important; }
+.split-panel p { color: #f2fdff; margin-bottom: 26px; }
+.split-panel p strong { color: #fff; }
+@media (max-width: 860px) {
+  .split-band { grid-template-columns: 1fr; }
+  .split-photo { min-height: 280px; }
+}
+
+/* Outline-Button (weiß) für Teal-Flächen – wie die Hero-Buttons */
+.btn-outline-light {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.92);
+  color: #fff;
+  border-radius: 3px;
+  padding: 11px 22px;
+  font-size: .86rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  transition: background .2s ease, color .2s ease;
+}
+.btn-outline-light:hover { background: #fff; color: #00838c; text-decoration: none; }
+
+/* „Wir beraten Sie gern!“ – 3 Icon-Spalten (Standort/Kontakt/E-Mail) */
+.contact-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+  max-width: 980px;
+  margin: 44px auto 0;
+  text-align: center;
+}
+.contact-col .cc-ic {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px;
+  color: var(--blue);
+  margin-bottom: 14px;
+}
+.contact-col .cc-ic svg { width: 44px; height: 44px; }
+.contact-col h3 { color: #3d4449; margin-bottom: 8px; font-size: 1.12rem; }
+.contact-col p { color: var(--muted); line-height: 1.7; margin: 0; }
+.contact-col a { color: var(--navy); font-weight: 600; }
+.contact-col a:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .contact-cols { grid-template-columns: 1fr; gap: 30px; }
+}

@@ -97,7 +97,7 @@
   <!-- Open Graph -->
 <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="foto-team-800.webp" />
-  <link rel="stylesheet" href="style.css?v=66" />
+  <link rel="stylesheet" href="style.css?v=67" />
 
   <!-- Schema.org: MedicalBusiness -->
   <script type="application/ld+json">
@@ -381,18 +381,16 @@
     </section>
 
     <!-- ÜBER UNS TEASER -->
-    <section id="ueber-uns-teaser">
-      <div class="container about-intro">
-        <figure class="about-photo reveal">
-          <picture><source type="image/webp" srcset="foto-team-560.webp 560w, foto-team-800.webp 800w, foto-team.webp 1100w" sizes="(max-width: 700px) 92vw, 50vw" /><img decoding="async" src="foto-team.jpg" srcset="foto-team-560.jpg 560w, foto-team-800.jpg 800w, foto-team.jpg 1100w" sizes="(max-width: 700px) 92vw, 50vw" alt="Farhad Ramazani und Nadim Nauroz – Pflegeteam Medicare Hamburg" width="1100" height="1125" loading="lazy" /></picture>
-        </figure>
-        <div class="about-text reveal">
+    <section id="ueber-uns-teaser" class="split-band">
+      <div class="split-photo">
+        <picture><source type="image/webp" srcset="foto-team-560.webp 560w, foto-team-800.webp 800w, foto-team.webp 1100w" sizes="(max-width: 860px) 100vw, 50vw" /><img decoding="async" src="foto-team.jpg" srcset="foto-team-560.jpg 560w, foto-team-800.jpg 800w, foto-team.jpg 1100w" sizes="(max-width: 860px) 100vw, 50vw" alt="Farhad Ramazani und Nadim Nauroz – Pflegeteam Medicare Hamburg" width="1100" height="1125" loading="lazy" /></picture>
+      </div>
+      <div class="split-panel">
+        <div class="split-inner reveal">
           <span class="eyebrow">Über uns</span>
           <h2>Zwei Menschen, ein Versprechen</h2>
           <p>Wir sind <strong>Farhad Ramazani</strong> und <strong>Nadim Nauroz</strong> – examinierte Pflegefachkräfte aus Hamburg. Feste Gesichter, die sich Zeit nehmen und Ihre Familie einbeziehen. Wir haben gemeinsam gelernt und sind ein eingespieltes Team – so sind Sie nie auf eine einzelne Person angewiesen.</p>
-          <div class="hero-cta">
-            <a class="btn btn-cta btn-lg" href="ueber-uns.html">Lernen Sie uns kennen</a>
-          </div>
+          <a class="btn btn-outline-light" href="ueber-uns.html">Lernen Sie uns kennen</a>
         </div>
       </div>
     </section>
@@ -616,6 +614,32 @@
     </section>
 
     <!-- CTA BAND -->
+    <section id="beratung-kontakt" class="section-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Wir beraten Sie gern!</h2>
+          <p>Die Entscheidung für einen Pflegedienst will gut überlegt sein. Rufen Sie an oder schreiben Sie uns – wir nehmen uns Zeit für Ihre Fragen, kostenlos und unverbindlich.</p>
+        </div>
+        <div class="contact-cols reveal">
+          <div class="contact-col">
+            <span class="cc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <h3>Standort</h3>
+            <p>Heidhorst 4<br />21031 Hamburg</p>
+          </div>
+          <div class="contact-col">
+            <span class="cc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <h3>Kontakt</h3>
+            <p><a href="tel:+491607621876">Nadim · 0160 762 18 76</a><br /><a href="tel:+4917631730827">Farhad · 0176 317 308 27</a></p>
+          </div>
+          <div class="contact-col">
+            <span class="cc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <h3>E-Mail</h3>
+            <p><a href="mailto:nnauroz@live.de">nnauroz@live.de</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="cta-band">
       <div class="container reveal">
         <h2>Lassen Sie uns persönlich sprechen</h2>
@@ -706,6 +730,6 @@
   </div>
 
   <script src="script.js?v=29"></script>
-  <script src="i18n.js?v=10" defer></script>
+  <script src="i18n.js?v=11" defer></script>
 </body>
 </html>
