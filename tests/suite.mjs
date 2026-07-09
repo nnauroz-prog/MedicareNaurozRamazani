@@ -278,6 +278,76 @@ for (const w of [320, 390, 768, 1280, 1920]) {
   await ctx.close();
 }
 
+/* ---- 12) TOUCH-INTERAKTIONEN (iPhone-Emulation) ----
+   Touch hat andere Event-Reihenfolgen als Maus (blur vor click!) –
+   diese Sektion fängt Bugs wie den Autocomplete-Tap-Fehler ab. */
+{
+  console.log('\n[12] Touch-Interaktionen (hasTouch)…');
+  const mkTouch = async (path, lang = 'de') => {
+    const ctx = await b.newContext({
+      viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true,
+      userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15',
+    });
+    await ctx.addInitScript((l) => { try { localStorage.setItem('medicare_gate_v1','1'); localStorage.setItem('medicare_cookie_ok','1'); localStorage.setItem('medicare_lang', l); } catch(e){} }, lang);
+    const p = await ctx.newPage();
+    await p.goto(base + '/' + path, { waitUntil: 'load' }); await p.waitForTimeout(500);
+    return { ctx, p };
+  };
+  // a) Stadtteil-Autocomplete: Vorschlag antippen übernimmt Wert + zeigt Ergebnis
+  {
+    const { ctx, p } = await mkTouch('gebiete.html');
+    await p.evaluate(() => document.getElementById('areaInput').scrollIntoView({ block: 'center' }));
+    await p.waitForTimeout(300);
+    await p.tap('#areaInput');
+    await p.type('#areaInput', 'Wilhelms', { delay: 40 });
+    await p.waitForTimeout(350);
+    await p.tap('#areaSuggest .ac-item');
+    await p.waitForTimeout(500);
+    const v = await p.$eval('#areaInput', e => e.value);
+    const ok = await p.$eval('#areaResult', e => e.classList.contains('ok'));
+    if (v !== 'Wilhelmsburg') bug('Touch: Autocomplete-Tap übernimmt Wert nicht (' + v + ')');
+    if (!ok) bug('Touch: Autocomplete-Tap zeigt kein Ergebnis');
+    await ctx.close();
+  }
+  // b) FAQ-Akkordeon öffnet per Tap
+  {
+    const { ctx, p } = await mkTouch('faq.html');
+    await p.evaluate(() => document.querySelector('.faq-q').scrollIntoView({ block: 'center' }));
+    await p.tap('.faq-q'); await p.waitForTimeout(500);
+    if ((await p.$eval('.faq-q', e => e.getAttribute('aria-expanded'))) !== 'true') bug('Touch: FAQ öffnet nicht per Tap');
+    await ctx.close();
+  }
+  // c) Buchungskalender: Tag + Slot per Tap → Anfrage-Links erscheinen
+  {
+    const { ctx, p } = await mkTouch('pflegeberatung.html');
+    await p.evaluate(() => document.getElementById('booking-embed').scrollIntoView({ block: 'center' }));
+    await p.waitForTimeout(300);
+    const day = await p.$('.bcal-days button:not([disabled])');
+    if (!day) bug('Touch: Kalender ohne aktivierbaren Tag');
+    else {
+      await day.tap(); await p.waitForTimeout(400);
+      const slot = await p.$('.bcal-slots button');
+      if (!slot) bug('Touch: nach Tag-Tap keine Slots');
+      else {
+        await slot.tap(); await p.waitForTimeout(400);
+        const wa = await p.$('a[href*="wa.me/491607621876"]');
+        if (!wa) bug('Touch: nach Slot-Tap kein WhatsApp-Anfrage-Link');
+      }
+    }
+    await ctx.close();
+  }
+  // d) Mobile-Menü: öffnen + Sprachwechsel EN per Tap
+  {
+    const { ctx, p } = await mkTouch('index.html');
+    await p.tap('.nav-toggle'); await p.waitForTimeout(400);
+    if (!(await p.$eval('.nav-links', e => e.classList.contains('open')))) bug('Touch: Menü öffnet nicht');
+    await p.tap('.lang-btn'); await p.waitForTimeout(400);
+    await p.tap('.lang-opt[data-code="en"]'); await p.waitForTimeout(1400);
+    if ((await p.evaluate(() => localStorage.getItem('medicare_lang'))) !== 'en') bug('Touch: Sprachwechsel per Tap wirkungslos');
+    await ctx.close();
+  }
+}
+
 await b.close();
 console.log(bugs.length ? `\nSUITE: ${bugs.length} BUG(S)` : '\nSUITE: SAUBER – 0 Bugs');
 process.exit(bugs.length ? 1 : 0);

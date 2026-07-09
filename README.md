@@ -110,7 +110,10 @@ Initialen-Fallback für Portraits.
 
 ## 🧪 Qualitätssicherung (`tests/suite.mjs`)
 Automatisierte Regressions-Suite (Playwright) – prüft alle Seiten × 5 Breiten
-(320–1920 px) auf JS-Fehler/Overflow/kaputte Bilder sowie sämtliche Interaktionen
+(320–1920 px) auf JS-Fehler/Overflow/kaputte Bilder, sämtliche Interaktionen
+sowie **Touch-Bedienung per iPhone-Emulation** (Autocomplete-Tap, FAQ,
+Buchungskalender, Menü + Sprachwechsel – Touch hat andere Event-Reihenfolgen
+als die Maus)
 (Gate, Nav, FAQ, Checker, Kalender, Formular+Prefill, Sprachumschalter inkl. RTL,
 reduced-motion, EN-Automodus). **Nach jeder Änderung laufen lassen:**
 ```bash
