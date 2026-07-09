@@ -3089,3 +3089,14 @@ main section .section-head > .eyebrow { display: none !important; }
 
 /* Band-Überschriften ebenfalls im leichten Original-Gewicht */
 .cta-band h2, .brand-band h2, .switch-band h2, .split-panel h2, .counters h2 { font-weight: 600 !important; }
+
+/* =========================================================
+   v21 · DIVI-METRIKEN (Original-Theme): luftige Headlines,
+   großzügiger Durchschuss in zentrierten Intro-Absätzen
+   ========================================================= */
+h1, h2 { line-height: 1.35; }
+.hero h1, .page-hero h1 { line-height: 1.35; }
+h3 { line-height: 1.4; }
+.section-head p { line-height: 1.9; font-size: 1.02rem; }
+.hero .lead { line-height: 1.85; }
+.page-hero p { line-height: 1.85; }
