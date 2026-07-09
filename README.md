@@ -103,7 +103,11 @@ Initialen-Fallback für Portraits.
 - `og-image.jpg` – Vorschaubild fürs Teilen (1200×630, ohne Bewertungs-Angabe)
 - `foto-team.jpg` (Hero), `IMG_7363.jpeg` (Nadim), `IMG_0631.jpeg` (Farhad) – optimiert
 - `i18n/` – Wörterbücher (`en/tr/ru/fa.json`), Quell-Strings & Build-Skript (`_build.py`)
-- `fonts/open-sans-latin-*.woff2` (300/400/600/700, Original-Schrift) + `inter-latin.woff2` (Fallback) – selbst gehostet (DSGVO, kein Google-CDN)
+- `fonts/open-sans-latin-*.woff2` (300/400/600/700, Original-Schrift) +
+  `open-sans-cyrillic-*` (RU) + `vazirmatn-arabic-*` (FA/Dari) +
+  `inter-latin.woff2` (Fallback) – selbst gehostet (DSGVO, kein Google-CDN).
+  Kyrillisch/Arabisch laden dank `unicode-range` NUR, wenn die Seite in
+  RU/FA angezeigt wird – deutsche Besucher laden 0 Byte extra.
 - `nadim-nauroz.vcf`, `farhad-ramazani.vcf` – Visitenkarten zum Speichern
 - Referenzdateien (`IMG_0376–0381`, `logo-color.png`) wurden entfernt – sie
   enthielten u. a. Kontaktdaten Dritter und wären öffentlich deploybar gewesen

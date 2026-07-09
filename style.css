@@ -24,6 +24,38 @@
   src: url("fonts/open-sans-latin-700-normal.woff2") format("woff2");
   font-weight: 700 900; font-style: normal; font-display: swap;
 }
+/* Kyrillisch (RU): lädt dank unicode-range NUR bei kyrillischem Text */
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/open-sans-cyrillic-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/open-sans-cyrillic-600-normal.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/open-sans-cyrillic-700-normal.woff2") format("woff2");
+  font-weight: 700 900; font-style: normal; font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* Persisch/Dari (FA): Vazirmatn, lädt NUR bei arabischem Skript */
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("fonts/vazirmatn-arabic-400-normal.woff2") format("woff2");
+  font-weight: 300 600; font-style: normal; font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("fonts/vazirmatn-arabic-700-normal.woff2") format("woff2");
+  font-weight: 700 900; font-style: normal; font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFF;
+}
 @font-face {
   font-family: "Inter";
   src: url("fonts/inter-latin.woff2") format("woff2");
@@ -61,7 +93,7 @@
   --radius-sm: 4px;
   --maxw: 1160px;
   --header-h: 76px;
-  --font: "Open Sans", "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font: "Open Sans", "Vazirmatn", "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --grad-teal: linear-gradient(135deg, #00afb9 0%, #0a7d8a 100%);
   --grad-navy: linear-gradient(135deg, #0a6ca9 0%, #0a4f7e 100%);
 
