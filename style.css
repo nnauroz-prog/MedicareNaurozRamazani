@@ -3125,3 +3125,43 @@ h3 { line-height: 1.4; }
   .nav-links a { font-size: 1.14rem; padding: 13px 2px; }
   .nav-links li + li { border-top-color: rgba(255,255,255,.26); }
 }
+
+/* =========================================================
+   v23 · BUTTONS SITE-WEIT IM ORIGINAL-STIL
+   Wie „UNSERE TEAMS / KONTAKT“: eckig (3px), 1px-Border,
+   Versalien mit Sperrung, flach ohne Schatten, ruhige Hover.
+   ========================================================= */
+.btn, .btn-cta, .btn-outline, .btn-ghost {
+  border-radius: 3px !important;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600 !important;
+  font-size: .87rem !important;
+  padding: 13px 26px !important;
+  line-height: 1.5 !important;
+  box-shadow: none !important;
+  border-width: 1px !important;
+  transform: none !important;
+}
+.btn-lg { padding: 15px 32px !important; font-size: .9rem !important; }
+.btn:hover, .btn-cta:hover, .btn-outline:hover, .btn-ghost:hover { transform: none !important; box-shadow: none !important; }
+
+/* Outline auf hellem Grund: CI-Teal-Rahmen, beim Hover gefüllt */
+.btn-outline {
+  background: transparent !important;
+  color: var(--teal) !important;
+  border: 1px solid var(--teal) !important;
+}
+.btn-outline:hover { background: var(--teal) !important; color: #fff !important; }
+
+/* Gefüllter Primär-Button: flaches CI-Teal (in Teal-Bändern weiß – geregelt) */
+.btn-cta { border: 1px solid transparent !important; }
+
+/* Formular-Absenden im gleichen Original-Stil */
+.form-actions .btn, button[type="submit"].btn { width: auto; }
+
+/* Mobile: Sperrung leicht reduziert, damit lange Beschriftungen ruhig umbrechen */
+@media (max-width: 480px) {
+  .btn, .btn-cta, .btn-outline, .btn-ghost { letter-spacing: .07em; padding: 12px 18px !important; font-size: .8rem !important; }
+  .btn-lg { padding: 13px 20px !important; font-size: .82rem !important; }
+}
