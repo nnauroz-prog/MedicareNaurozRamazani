@@ -99,11 +99,11 @@ und Doppelklick-Schutz. Defekte Bilder: `<picture>`-WebP/JPEG-Fallback +
 Initialen-Fallback für Portraits.
 
 ## Assets
-- `logo-white-full.png` (weißes Header-Logo auf Teal, Original-CI), `favicon.svg`, `apple-touch-icon.png` · (`logo-color-header.png`/`logo-white.png` aktuell ungenutzt, als Varianten behalten)
+- `logo-white.png` (schlankes Header-Logo auf Teal) · `logo-white-full.png` (Footer-Logo mit Claim) · `favicon.svg`, `apple-touch-icon.png` · (`logo-color-header.png` aktuell ungenutzt, als Variante behalten)
 - `og-image.jpg` – Vorschaubild fürs Teilen (1200×630, ohne Bewertungs-Angabe)
 - `foto-team.jpg` (Hero), `IMG_7363.jpeg` (Nadim), `IMG_0631.jpeg` (Farhad) – optimiert
 - `i18n/` – Wörterbücher (`en/tr/ru/fa.json`), Quell-Strings & Build-Skript (`_build.py`)
-- `fonts/inter-latin.woff2` – selbst gehostete Schrift (DSGVO, kein Google-CDN)
+- `fonts/open-sans-latin-*.woff2` (300/400/600/700, Original-Schrift) + `inter-latin.woff2` (Fallback) – selbst gehostet (DSGVO, kein Google-CDN)
 - `nadim-nauroz.vcf`, `farhad-ramazani.vcf` – Visitenkarten zum Speichern
 - `IMG_0376–0381`, `logo-color.png` – Referenzdateien (nicht eingebunden;
   können vor Go-Live aus dem Repo entfernt werden)
