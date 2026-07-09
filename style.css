@@ -5,6 +5,26 @@
    ========================================================= */
 
 @font-face {
+  font-family: "Open Sans";
+  src: url("fonts/open-sans-latin-300-normal.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/open-sans-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/open-sans-latin-600-normal.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/open-sans-latin-700-normal.woff2") format("woff2");
+  font-weight: 700 900; font-style: normal; font-display: swap;
+}
+@font-face {
   font-family: "Inter";
   src: url("fonts/inter-latin.woff2") format("woff2");
   font-weight: 100 900;
@@ -41,7 +61,7 @@
   --radius-sm: 12px;
   --maxw: 1160px;
   --header-h: 76px;
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font: "Open Sans", "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --grad-teal: linear-gradient(135deg, #00afb9 0%, #0a7d8a 100%);
   --grad-navy: linear-gradient(135deg, #0a6ca9 0%, #0a4f7e 100%);
 
@@ -3023,3 +3043,49 @@ main h2 { color: #3d4449; }
   text-decoration-color: rgba(255,255,255,.65);
   font-weight: 600;
 }
+
+/* =========================================================
+   v20 · 1:1-TYPOGRAFIE & FORMATION (Original: Open Sans,
+   leichte Headlines, keine Eyebrow-Labels, Divider-Linie)
+   ========================================================= */
+
+/* Headline-Gewichte wie das Original (Divi-Look: leicht & luftig) */
+h1 { font-weight: 300; letter-spacing: 0; }
+.hero h1, .page-hero h1 { font-weight: 300 !important; letter-spacing: 0; }
+main h2 { font-weight: 600; letter-spacing: 0; }
+h3, .card h3, .assure h3, .switch-step h3, .contact-col h3 { font-weight: 700; }
+body { letter-spacing: 0; }
+
+/* Eyebrow-Labels gibt es im Original nicht – Inhalt wandert optisch
+   in die Divider+H2-Formation. Ausnahmen: Hero-Kicker (.role) bleibt. */
+main .section-head .eyebrow,
+.brand-band .eyebrow,
+.switch-band .eyebrow,
+main section .section-head > .eyebrow { display: none !important; }
+.about-text .eyebrow, .split-panel .eyebrow, .rating-text .eyebrow { display: none !important; }
+
+/* Divider-Linie über JEDER section-head-Überschrift (wie Original) */
+.section-head > h2:first-child::before { content: ""; }
+.section-head::before {
+  content: ""; display: block; width: 64px; height: 3px; border-radius: 2px;
+  background: var(--blue); margin: 0 auto 20px;
+}
+.section-head > h2:first-child::before { display: none; } /* nicht doppelt */
+.brand-band .section-head::before { margin-left: 0; background: rgba(255,255,255,.75); }
+.switch-band .section-head::before, .cta-band .section-head::before { background: rgba(255,255,255,.75); }
+.split-inner::before {
+  content: ""; display: block; width: 64px; height: 3px; border-radius: 2px;
+  background: rgba(255,255,255,.75); margin: 0 0 20px;
+}
+
+/* Hero-Formation wie „Wir sind Medicare“: Unterzeile UNTER der H1 */
+.hero-text { display: flex; flex-direction: column; }
+.hero-text .role { order: 2; margin-top: 14px; letter-spacing: .04em; text-transform: none; font-size: 1.15rem; font-weight: 400; }
+.hero-text h1 { order: 1; margin-top: 0; }
+.hero-text .lead { order: 3; }
+.hero-text .hero-cta { order: 4; }
+.hero-text .hero-call { order: 5; }
+.hero-text .hero-trust { order: 6; }
+
+/* Band-Überschriften ebenfalls im leichten Original-Gewicht */
+.cta-band h2, .brand-band h2, .switch-band h2, .split-panel h2, .counters h2 { font-weight: 600 !important; }
