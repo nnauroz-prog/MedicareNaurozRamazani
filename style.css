@@ -2026,8 +2026,7 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 }
 .hero .btn-cta { background: var(--teal) !important; color: #fff !important; box-shadow: 0 8px 20px rgba(11,125,114,.22) !important; }
 .hero .btn-cta:hover { background: var(--teal-dark) !important; color: #fff !important; }
-.hero .btn-ghost { background: transparent !important; color: var(--brand-blue) !important; border-color: var(--brand-blue) !important; }  /* Logo-Blau als Sekundaer-Akzent */
-.hero .btn-ghost:hover { background: var(--brand-blue) !important; color: #fff !important; }
+/* (Hero-Buttons: Original-Outline-Stil in v14/v16) */
 .hero-call { color: var(--muted) !important; }
 .hero-call a { color: #00727b !important; }
 .rating { color: var(--ink) !important; }
@@ -2043,11 +2042,12 @@ h1, h2, h3, .h-plain, .eyebrow, .card h3, .assure h3 { overflow-wrap: break-word
 
 .cta-band { background: linear-gradient(170deg,#eef7f8 0%,#f6fbfc 100%) !important; color: var(--ink) !important; }
 .cta-band h2 { color: var(--ink) !important; }
-.cta-band p, .cta-band .cta-reassure { color: var(--muted) !important; }
-.cta-band .btn-cta { background: var(--teal) !important; color: #fff !important; }
-.cta-band .btn-cta:hover { background: var(--teal-dark) !important; }
-.cta-band .btn-ghost, .cta-band .btn-outline { background: transparent !important; color: var(--brand-blue) !important; border-color: var(--brand-blue) !important; }
-.cta-band .btn-ghost:hover, .cta-band .btn-outline:hover { background: var(--brand-blue) !important; color: #fff !important; }
+/* CTA-Band auf Teal: weiße Texte, weißer Primär-Button, weiße Outline-Buttons */
+.cta-band p, .cta-band .cta-reassure { color: #f2fdff !important; }
+.cta-band .btn-cta { background: #fff !important; color: #00727b !important; box-shadow: 0 8px 20px rgba(0,60,66,.25) !important; }
+.cta-band .btn-cta:hover { background: #eafcfe !important; color: #00636e !important; }
+.cta-band .btn-ghost, .cta-band .btn-outline { background: transparent !important; color: #fff !important; border: 1px solid rgba(255,255,255,.92) !important; }
+.cta-band .btn-ghost:hover, .cta-band .btn-outline:hover { background: #fff !important; color: #00838c !important; }
 
 /* (Der frühere „Hell & luftig“-Block – weißer Header, helle Heros/Footer –
    wurde durch die Original-CI v14 ersetzt und entfernt.) */
@@ -3012,4 +3012,14 @@ main h2 { color: #3d4449; }
 .contact-col a:hover { text-decoration: underline; }
 @media (max-width: 760px) {
   .contact-cols { grid-template-columns: 1fr; gap: 30px; }
+}
+
+/* Fließtext-Links in Teal-Heros: weiß mit Unterstrich (z. B. Stadtteil-Links) */
+.hero p a:not(.btn):not(.btn-cta):not(.btn-ghost),
+.page-hero p a:not(.btn):not(.btn-cta):not(.btn-ghost) {
+  color: #fff !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255,255,255,.65);
+  font-weight: 600;
 }
