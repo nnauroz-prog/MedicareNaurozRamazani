@@ -57,8 +57,8 @@
   --shadow: 0 4px 12px rgba(17,40,75,.06), 0 16px 40px rgba(17,40,75,.10);
   --shadow-lg: 0 14px 32px rgba(17,40,75,.10), 0 44px 90px rgba(17,40,75,.17);
   --ring: 0 0 0 4px rgba(0,175,185,.16);
-  --radius: 20px;
-  --radius-sm: 12px;
+  --radius: 6px;
+  --radius-sm: 4px;
   --maxw: 1160px;
   --header-h: 76px;
   --font: "Open Sans", "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
@@ -3165,3 +3165,30 @@ h3 { line-height: 1.4; }
   .btn, .btn-cta, .btn-outline, .btn-ghost { letter-spacing: .07em; padding: 12px 18px !important; font-size: .8rem !important; }
   .btn-lg { padding: 13px 20px !important; font-size: .82rem !important; }
 }
+
+/* =========================================================
+   v24 · FLÄCHEN IM ORIGINAL-STIL: eckig & ruhig (Divi-Look)
+   Alle Karten/Boxen/Felder mit dezenter 5px-Rundung, keine
+   Hover-Sprünge – wie die ruhigen Flächen der Hauptseite.
+   ========================================================= */
+.card, .pg-card, .assure, .switch-step, .brand-stat, .faq-item,
+.contact-aside, .factsheet, .booking-embed, .notice, .callout,
+.service-summary, .step, .tip, .compare-col, .member, .area-note,
+.hero-float-card, .offer-tile, .contact-form, .form-note {
+  border-radius: 5px !important;
+}
+.card:hover, .tip:hover, .pg-card:hover, .assure:hover {
+  transform: none !important;
+  box-shadow: 0 3px 14px rgba(17,40,75,.10) !important;
+}
+input, select, textarea, .form-grid input, .form-grid select, .form-grid textarea {
+  border-radius: 3px !important;
+}
+.faq-item { border-left-width: 3px; }
+/* Icon-Kacheln ruhiger: dezente Fläche, kein Verlauf/Glanz */
+.icon-circle {
+  border-radius: 5px;
+  background: rgba(0,168,184,.10);
+  box-shadow: none;
+}
+.icon-circle svg { stroke: #00838c; }
