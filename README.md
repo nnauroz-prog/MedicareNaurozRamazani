@@ -105,8 +105,8 @@ Initialen-Fallback für Portraits.
 - `i18n/` – Wörterbücher (`en/tr/ru/fa.json`), Quell-Strings & Build-Skript (`_build.py`)
 - `fonts/open-sans-latin-*.woff2` (300/400/600/700, Original-Schrift) + `inter-latin.woff2` (Fallback) – selbst gehostet (DSGVO, kein Google-CDN)
 - `nadim-nauroz.vcf`, `farhad-ramazani.vcf` – Visitenkarten zum Speichern
-- `IMG_0376–0381`, `logo-color.png` – Referenzdateien (nicht eingebunden;
-  können vor Go-Live aus dem Repo entfernt werden)
+- Referenzdateien (`IMG_0376–0381`, `logo-color.png`) wurden entfernt – sie
+  enthielten u. a. Kontaktdaten Dritter und wären öffentlich deploybar gewesen
 
 ## 🧪 Qualitätssicherung (`tests/suite.mjs`)
 Automatisierte Regressions-Suite (Playwright) – prüft alle Seiten × 5 Breiten
