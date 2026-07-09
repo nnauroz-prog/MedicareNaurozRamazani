@@ -288,7 +288,12 @@
     // ---- Autocomplete (Stadtteil-Vorschläge) ----
     var matches = [], active = -1;
     function closeList() { if (!list) return; list.hidden = true; list.innerHTML = ""; active = -1; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); }
-    function pick(name) { input.value = name; closeList(); check(); input.focus(); }
+    function pick(name) {
+      input.value = name; closeList(); check();
+      var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      if (fine) input.focus();
+      else if (out && out.scrollIntoView) out.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
     function setActive(i) {
       var opts = list.querySelectorAll(".ac-item");
       for (var k = 0; k < opts.length; k++) { opts[k].classList.remove("is-active"); opts[k].setAttribute("aria-selected", "false"); }
@@ -307,7 +312,14 @@
         var t = document.createElement("span");
         t.className = "ac-name"; t.textContent = name;
         li.appendChild(pin); li.appendChild(t);
-        li.addEventListener("mousedown", function (ev) { ev.preventDefault(); pick(name); });
+        if (window.PointerEvent) {
+          li.addEventListener("pointerdown", function (ev) { ev.preventDefault(); pick(name); });
+          li.addEventListener("mousedown", function (ev) { ev.preventDefault(); });
+        } else {
+          li.addEventListener("touchstart", function (ev) { ev.preventDefault(); pick(name); }, { passive: false });
+          li.addEventListener("mousedown", function (ev) { ev.preventDefault(); pick(name); });
+        }
+        li.addEventListener("click", function (ev) { ev.preventDefault(); if (input.value !== name) pick(name); });
         list.appendChild(li);
       });
       list.hidden = items.length === 0;
@@ -336,7 +348,7 @@
         else if (e.key === "Enter") { if (active >= 0 && matches[active]) { e.preventDefault(); pick(matches[active]); } }
         else if (e.key === "Escape") { closeList(); }
       });
-      input.addEventListener("blur", function () { setTimeout(closeList, 120); });
+      input.addEventListener("blur", function () { setTimeout(closeList, 260); });
       document.addEventListener("click", function (e) { if (!form.contains(e.target)) closeList(); });
     }
   }
