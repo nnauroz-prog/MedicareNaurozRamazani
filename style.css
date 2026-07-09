@@ -3224,3 +3224,15 @@ input, select, textarea, .form-grid input, .form-grid select, .form-grid textare
   box-shadow: none;
 }
 .icon-circle svg { stroke: #00838c; }
+
+/* Wisch-Hinweis über scrollbaren Tabellen – nur auf schmalen Geräten */
+.table-hint { display: none; }
+@media (max-width: 700px) {
+  .table-hint {
+    display: block;
+    text-align: center;
+    font-size: .82rem;
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+}
