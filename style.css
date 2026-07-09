@@ -356,7 +356,7 @@ p a:not(.btn):not(.btn-cta):not(.btn-outline):not(.btn-ghost), .consent a, .cook
 .hero-team figcaption {
   position: absolute;
   left: 50%; bottom: 16px; transform: translateX(-50%);
-  background: rgba(20,63,114,.85);
+  background: rgba(0,99,110,.88);
   color: #fff; font-weight: 700; font-size: .95rem;
   padding: 8px 18px; border-radius: 999px; white-space: nowrap; text-align: center;
   -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
@@ -966,7 +966,7 @@ table.pg td.amount { font-weight: 700; color: var(--teal); white-space: nowrap; 
 .member-tags { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .member-tags li {
   font-size: .8rem; font-weight: 600; color: var(--teal-dark);
-  background: #e7f7f5; padding: 5px 11px; border-radius: 8px;
+  background: #e9f4f6; padding: 5px 11px; border-radius: 8px;
 }
 .member-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
 .member-actions .btn { font-size: .92rem; padding: 11px 18px; }
@@ -1641,7 +1641,7 @@ a.card-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px;
 .whatsapp-float svg { width: 26px; height: 26px; }
 .back-to-top {
   width: 42px; height: 42px; right: 20px; bottom: 80px;
-  background: rgba(20,63,114,.78); backdrop-filter: blur(2px);
+  background: rgba(0,99,110,.82); backdrop-filter: blur(2px);
   box-shadow: 0 6px 14px rgba(0,0,0,.16);
 }
 @media (max-width: 1024px) { .back-to-top { bottom: 80px; } .whatsapp-float { bottom: 20px; } }
@@ -2405,10 +2405,10 @@ main > section + section { border-top: 1px solid var(--section-line); }
 /* Wichtig-Hinweis (Voraussetzung Video) */
 .notice {
   display: flex; gap: 16px; align-items: flex-start; max-width: 860px; margin: 0 auto;
-  background: #fff7ed; border: 1px solid #f3d6a8; border-left: 4px solid #e0871f;
+  background: #eef6f8; border: 1px solid #cfe3e8; border-left: 4px solid var(--navy);
   border-radius: 14px; padding: 22px 24px;
 }
-.notice-ic { flex: none; width: 30px; height: 30px; border-radius: 50%; background: #e0871f; color: #fff; font-weight: 800; display: grid; place-items: center; }
+.notice-ic { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 800; display: grid; place-items: center; }
 .notice > div { min-width: 0; }
 .notice > div > strong { color: var(--ink); display: block; margin-bottom: 4px; font-size: 1.05rem; }
 .notice p { color: var(--muted); margin: 0; }
@@ -2417,8 +2417,8 @@ main > section + section { border-top: 1px solid var(--section-line); }
 /* Häufigkeit nach Pflegegrad */
 .pg-card { text-align: center; }
 .pg-badge { display: inline-block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 800; padding: 5px 13px; border-radius: 999px; margin-bottom: 12px; }
-.pg-badge-soft { background: rgba(11,122,59,.12); color: #0b7a3b; }
-.pg-badge-req { background: rgba(224,135,31,.15); color: #96570b; } /* 4,97:1 auf #faeddd (WCAG AA) */
+.pg-badge-soft { background: rgba(0,122,135,.12); color: #00636e; }
+.pg-badge-req { background: rgba(6,103,163,.12); color: #0667a3; } /* Marken-Blau, 6,1:1 (WCAG AA) */
 .pg-freq { font-size: 1.5rem; font-weight: 800; color: var(--brand-teal); margin: .1em 0 .45em; line-height: 1.1; }
 .pg-card p:last-child { color: var(--muted); margin-bottom: 0; }
 
@@ -3236,3 +3236,7 @@ input, select, textarea, .form-grid input, .form-grid select, .form-grid textare
     margin: 0 0 8px;
   }
 }
+
+
+/* Formularfelder: Ink-Ton statt UA-Schwarz */
+input, select, textarea { color: var(--ink); }

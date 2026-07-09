@@ -563,7 +563,8 @@
      das den Termin persönlich bestätigt. Sobald ein Cal.com-/Calendly-Link unter
      data-booking-url steht, wird stattdessen dieser echte Kalender geladen. */
   function initBookingCalendar(box) {
-    var WA = "491607621876";
+    var WA = "491607621876";      // Nadim
+    var WA2 = "4917631730827";    // Farhad
     var months = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
     var wdShort = ["Mo","Di","Mi","Do","Fr","Sa","So"];
     var wdLong = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
@@ -673,12 +674,12 @@
     }
     function fmtDay(dt) { return wdLong[dt.getDay()] + ", " + dt.getDate() + ". " + months[dt.getMonth()] + " " + dt.getFullYear(); }
     function curName() { var el = elConfirm.querySelector(".bcal-name"); return el ? el.value.trim() : ""; }
-    function waHref() {
+    function waHref(num) {
       var name = curName();
       var msg = "Hallo, ich möchte einen Beratungsbesuch nach § 37.3 vereinbaren.\n" +
         "Wunschtermin: " + fmtDay(selDay) + " um " + selSlot + " Uhr\n" +
         "Art: " + mode + (name ? "\nName: " + name : "");
-      return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
+      return "https://wa.me/" + (num || WA) + "?text=" + encodeURIComponent(msg);
     }
     function mailHref() {
       var name = curName();
@@ -694,15 +695,18 @@
         '<p class="bcal-summary">Ihr Wunschtermin: <strong>' + fmtDay(selDay) + ' · ' + selSlot + ' Uhr · ' + mode + '</strong></p>' +
         '<input type="text" class="bcal-name" placeholder="Ihr Name (optional)" autocomplete="name">' +
         '<div class="bcal-actions">' +
-          '<a class="btn btn-cta btn-lg bcal-wa" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg> Per WhatsApp anfragen</a>' +
+          '<a class="btn btn-cta btn-lg bcal-wa" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg> WhatsApp an Nadim</a>' +
+          '<a class="btn btn-cta btn-lg bcal-wa2" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg> WhatsApp an Farhad</a>' +
           '<a class="btn btn-outline btn-lg bcal-mail"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg> Per E-Mail anfragen</a>' +
         '</div>' +
         '<p class="bcal-alt">oder direkt anrufen (24/7): <a href="tel:+491607621876">Nadim 0160 762 18 76</a> · <a href="tel:+4917631730827">Farhad 0176 317 308 27</a></p>' +
         '<p class="bcal-note">Sie wählen Ihren Wunschtermin – wir bestätigen ihn Ihnen persönlich. Kostenlos &amp; unverbindlich.</p>';
       var wa = elConfirm.querySelector(".bcal-wa");
+      var wa2 = elConfirm.querySelector(".bcal-wa2");
       var mail = elConfirm.querySelector(".bcal-mail");
-      wa.href = waHref(); mail.href = mailHref();
-      elConfirm.querySelector(".bcal-name").addEventListener("input", function () { wa.href = waHref(); mail.href = mailHref(); });
+      var sync = function () { wa.href = waHref(WA); wa2.href = waHref(WA2); mail.href = mailHref(); };
+      sync();
+      elConfirm.querySelector(".bcal-name").addEventListener("input", sync);
       elConfirm.hidden = false;
     }
     renderMonth();
