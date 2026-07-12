@@ -188,7 +188,14 @@ for (const w of [320, 390, 768, 1280, 1920]) {
   if (!mailErr.trim()) bug('Formular: ungültige E-Mail nicht bemängelt');
   await p.fill('#email', ''); await p.fill('#name', 'Test'); await p.fill('#phone', '0176123456'); await p.check('.consent input');
   await p.click('#careForm button[type=submit]'); await p.waitForTimeout(400);
-  if (!(await p.$('.form-fallback'))) bug('Formular: Fallback erscheint nicht (YOUR_FORM_ID)');
+  if (!(await p.$('.form-fallback'))) bug('Formular: Direktversand-Panel erscheint nicht');
+  else {
+    const fbMail = decodeURIComponent(await p.$eval('.fb-mail', e => e.href));
+    if (!fbMail.startsWith('mailto:n.nauroz@medicare-hamburg.de,f.ramazani@medicare-hamburg.de')) bug('Formular: Direktversand-Mail nicht an beide Adressen');
+    if (!fbMail.includes('Test') || !fbMail.includes('0176123456')) bug('Formular: Direktversand-Mail ohne Formulardaten');
+    const fbWa2 = await p.$eval('.fb-wa2', e => e.href);
+    if (!fbWa2.includes('4917631730827')) bug('Formular: Direktversand ohne Farhad-WhatsApp');
+  }
   await p.close();
   // Prefill-Deep-Links
   p = await ctx.newPage();

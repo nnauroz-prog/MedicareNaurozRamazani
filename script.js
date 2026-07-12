@@ -761,25 +761,53 @@
       f.addEventListener("change", function () { validateField(f); });
     });
 
-    // Fallback, falls das Formspree-Formular noch nicht eingerichtet ist:
-    // keine Anfrage ins Leere/auf eine Fehlerseite schicken.
+    // Versand OHNE Server/Formspree: Anfrage aus den Feldern bauen und
+    // vorbefüllt per E-Mail-Programm oder WhatsApp senden lassen.
+    var MAIL_TO = "n.nauroz@medicare-hamburg.de,f.ramazani@medicare-hamburg.de";
+    var buildMessage = function () {
+      var v = function (id) { var el = document.getElementById(id); return el ? (el.value || "").trim() : ""; };
+      var sel = function (id) { var el = document.getElementById(id); return el && el.selectedIndex >= 0 ? el.options[el.selectedIndex].value || el.options[el.selectedIndex].text : ""; };
+      var lines = [
+        "Neue Pflegeanfrage über die Website", "",
+        "Name: " + v("name"),
+        "Telefon: " + v("phone"),
+        v("email") ? "E-Mail: " + v("email") : "",
+        "Ansprechpartner-Wunsch: " + sel("team"),
+        "Leistung: " + sel("leistung"),
+        "Beratungsart: " + sel("modus"),
+        v("termin") ? "Wunschtermin: " + v("termin") : "",
+        "", v("message") ? "Nachricht:\n" + v("message") : ""
+      ];
+      return lines.filter(function (l) { return l !== ""; }).join("\n");
+    };
     var showFallback = function () {
       var btn = form.querySelector('button[type="submit"]');
       var box = form.querySelector(".form-fallback");
+      var msg = buildMessage();
+      var mailHref = "mailto:" + MAIL_TO +
+        "?subject=" + encodeURIComponent("Pflegeanfrage über die Website") +
+        "&body=" + encodeURIComponent(msg);
+      var waHref = "https://wa.me/491607621876?text=" + encodeURIComponent(msg);
+      var wa2Href = "https://wa.me/4917631730827?text=" + encodeURIComponent(msg);
       if (!box) {
         box = document.createElement("div");
         box.className = "form-fallback";
         box.setAttribute("role", "alert");
         box.innerHTML =
-          '<strong>Fast geschafft!</strong> Unser Online-Formular wird gerade eingerichtet. ' +
-          'Am schnellsten erreichen Sie uns direkt – wir sind rund um die Uhr für Sie da:' +
+          '<strong>Ihre Anfrage ist fertig!</strong> Wählen Sie, wie Sie sie an uns senden möchten – ' +
+          'Ihre Angaben sind bereits eingetragen, Sie müssen nur noch auf Senden tippen:' +
           '<div class="form-fallback-actions">' +
-            '<a class="btn btn-cta" href="tel:+491607621876" data-direct>Jetzt anrufen</a>' +
-            '<a class="btn btn-outline" href="https://wa.me/491607621876" target="_blank" rel="noopener">WhatsApp schreiben</a>' +
+            '<a class="btn btn-cta fb-mail" target="_blank" rel="noopener">Per E-Mail senden</a>' +
+            '<a class="btn btn-cta fb-wa" target="_blank" rel="noopener">WhatsApp an Nadim</a>' +
+            '<a class="btn btn-cta fb-wa2" target="_blank" rel="noopener">WhatsApp an Farhad</a>' +
+            '<a class="btn btn-outline" href="tel:+491607621876" data-direct>Oder direkt anrufen</a>' +
           '</div>';
         if (btn) btn.parentNode.insertBefore(box, btn.nextSibling);
         else form.appendChild(box);
       }
+      box.querySelector(".fb-mail").href = mailHref;
+      box.querySelector(".fb-wa").href = waHref;
+      box.querySelector(".fb-wa2").href = wa2Href;
       box.scrollIntoView({ behavior: "smooth", block: "center" });
     };
 
