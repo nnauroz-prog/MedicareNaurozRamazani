@@ -171,7 +171,7 @@ for (const w of [320, 390, 768, 1280, 1920]) {
   wa = await p.$eval('.bcal-wa', e => decodeURIComponent(e.href));
   const mail = await p.$eval('.bcal-mail', e => decodeURIComponent(e.href));
   if (!wa.includes('Testperson Ü')) bug('Kalender: Name fehlt im WA-Link');
-  if (!mail.includes('Testperson Ü') || !mail.startsWith('mailto:nnauroz@live.de')) bug('Kalender: Mail-Link fehlerhaft');
+  if (!mail.includes('Testperson Ü') || !mail.startsWith('mailto:n.nauroz@medicare-hamburg.de,f.ramazani@medicare-hamburg.de')) bug('Kalender: Mail-Link fehlerhaft');
   await ctx.close();
 }
 

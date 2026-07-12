@@ -134,7 +134,7 @@ bei Wörterbuch-Änderungen zusätzlich `VER` in `i18n.js`.
 1. **Wartungsmodus entfernen** (Gate aus allen Seiten) – sonst sieht niemand die
    Inhalte **und Google kann nicht indexieren**.
 2. **Formspree-ID:** in `kontakt.html` `YOUR_FORM_ID` durch die echte ID ersetzen
-   (formspree.io, Ziel-E-Mail `nnauroz@live.de`). Danach submittet das Formular normal.
+   (formspree.io, Ziel-E-Mail `n.nauroz@medicare-hamburg.de`). Danach submittet das Formular normal.
 2b. **Cal.com-/Calendly-Link (optional, echtes Online-Booking):** Konto anlegen
    (Termin „Beratungsbesuch § 37.3", 30 Min) und den Buchungslink in
    `pflegeberatung.html` bei `data-booking-url=""` eintragen – der eingebaute

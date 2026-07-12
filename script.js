@@ -688,7 +688,7 @@
         "Wunschtermin: " + fmtDay(selDay) + " um " + selSlot + " Uhr\n" +
         "Art: " + mode + (name ? "\nName: " + name : "") +
         "\n\nBitte bestätigen Sie mir den Termin. Vielen Dank!";
-      return "mailto:nnauroz@live.de?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      return "mailto:n.nauroz@medicare-hamburg.de,f.ramazani@medicare-hamburg.de?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     }
     function renderConfirm() {
       elConfirm.innerHTML =
