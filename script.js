@@ -25,6 +25,7 @@
     safe("MobileNav", initMobileNav);
     safe("FAQ", initFAQ);
     safe("FaqSearch", initFaqSearch);
+    safe("IntroVideo", initIntroVideo);
     safe("AreaChecker", initAreaChecker);
     safe("Counters", initCounters);
     safe("Reveal", initReveal);
@@ -243,6 +244,37 @@
   }
 
   /* ---- Gebiets-Checker (Stadtteil eingeben) ---- */
+  /* ---- Vorstellungs-Video (erscheint nur mit eingetragener URL) ---- */
+  function initIntroVideo() {
+    var slot = document.getElementById("intro-video");
+    if (!slot) return;
+    var url = (slot.getAttribute("data-video-url") || "").trim();
+    if (!url) return; // noch kein Video – Baustein bleibt unsichtbar
+    var poster = (slot.getAttribute("data-video-poster") || "").trim();
+    var section = document.createElement("section");
+    section.innerHTML =
+      '<div class="container"><div class="section-head reveal">' +
+      '<h2>Lernen Sie uns kennen – in einer Minute</h2>' +
+      '<p>Ein kurzer, persönlicher Eindruck von uns beiden. Klicken Sie auf Abspielen – das Video lädt erst dann.</p>' +
+      '</div><div class="video-intro reveal">' +
+      '<button type="button" class="video-frame" aria-label="Video abspielen"' + (poster ? ' style="background-image:url(\'' + poster + '\')"' : '') + '>' +
+      '<span class="vf-play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.18)"/><path d="M10 8l6 4-6 4z"/></svg>' +
+      '<span class="vf-label">Video abspielen</span></span></button>' +
+      '</div></div>';
+    slot.replaceWith(section);
+    var frame = section.querySelector(".video-frame");
+    frame.addEventListener("click", function () {
+      var holder = document.createElement("div");
+      holder.className = "video-frame";
+      if (/\.mp4(\?|$)/i.test(url)) {
+        holder.innerHTML = '<video controls autoplay playsinline src="' + url + '"></video>';
+      } else {
+        holder.innerHTML = '<iframe src="' + url + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Vorstellungs-Video"></iframe>';
+      }
+      frame.replaceWith(holder);
+    });
+  }
+
   function initAreaChecker() {
     var form = document.getElementById("areaForm");
     var input = document.getElementById("areaInput");

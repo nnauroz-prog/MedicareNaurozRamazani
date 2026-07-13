@@ -144,6 +144,17 @@ bei Wörterbuch-Änderungen zusätzlich `VER` in `i18n.js`.
    Kalender wird dann automatisch durch den echten Live-Kalender ersetzt.
 3. **Impressum/Datenschutz:** durch die GF freigeben; `[BITTE ERGÄNZEN]`-Felder ausfüllen
    (USt-IdNr.; ggf. Datenschutzbeauftragte/r).
+3b. **Verantwortlichkeit (Rückmeldung der Zentrale, Juli 2026):** Die Seite
+   nennt aktuell die MBD/Zentrale als Verantwortliche – laut Janina (Zentrale)
+   sollt ihr das **in eigener Regie** lösen. Wird ab dem 22. im Büro besprochen;
+   danach Impressum/Datenschutz entsprechend umstellen (sagt mir das Ergebnis,
+   ich baue es ein).
+3c. **Vorstellungs-Video (Wunsch der Zentrale, vorbereitet):** In
+   `ueber-uns.html` bei `#intro-video` unter `data-video-url` die Video-Adresse
+   eintragen (MP4-Datei im Repo oder YouTube/Vimeo-Einbettlink; optional
+   `data-video-poster` für das Vorschaubild). Der Abschnitt „Lernen Sie uns
+   kennen – in einer Minute“ erscheint automatisch und lädt DSGVO-konform
+   erst nach Klick. Solange keine URL eingetragen ist, bleibt er unsichtbar.
 4. **Domain:** sobald final, in `canonical`, `og:url`, Schema.org, Sitemap & robots.txt
    die echte absolute Adresse eintragen (aktuell: Vercel-Domain
    `medicare-nauroz-ramazani.vercel.app` – per Suchen&Ersetzen austauschbar).
